@@ -32,11 +32,14 @@ public class MoveValidator {
 
 
     // Moves the figure at p1 to p2 if the move is valid
-    public Field move(Point p1, Point p2, Field field) {
+    public Field moveIfvalid(Point p1, Point p2, Field field) {
+        System.out.println("Move:["+p1.x+","+p1.y+"] to ["+p2.x+","+p2.y+"]");
         if (isValid(p1, p2, field)) {        // if the move is valid
+            System.out.println("Valid!");
             field.move(p1,p2);          // move p1 to p2
             field.toggleWhiteOrBlack();       // change color for next move
         }
+        System.out.println("Not Valid!");
         return field;
     }
 
@@ -77,8 +80,8 @@ public class MoveValidator {
     // checks if the move is valid
     public boolean isValid(Point p1, Point p2, Field field) {
 
-        FigureMask f1 = Figures.getMap().get(field.getCell(p1.x,p1.y));
-        FigureMask f2 = Figures.getMap().get(field.getCell(p2.x,p2.y));
+        FigureMask f1 = Figures.lookUpID(field.getCell(p1.x,p1.y)).getMask();
+        FigureMask f2 = Figures.lookUpID(field.getCell(p2.x,p2.y)).getMask();
 
         Vector2D v = new Vector2D(p1, p2);
 

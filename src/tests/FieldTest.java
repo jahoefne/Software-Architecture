@@ -24,12 +24,12 @@ public class FieldTest {
 		for (int i = 0; i < 8; i++) {
 			assertTrue(
 					"Black Pawn at [0," + i + "] should be -1! Is"
-							+ sut.getCell(1, i), sut.getCell(1, i) == -1);
+							+ sut.getCell(i, 1), sut.getCell(i, 1) == -1);
 		}
 		for (int i = 0; i < 8; i++) {
 			assertTrue(
 					"White Pawn at [0," + i + "] should be 1! Is"
-							+ sut.getCell(6, i), sut.getCell(6, i) == 1);
+							+ sut.getCell(i, 6), sut.getCell(i, 6) == 1);
 		}
 	}
 

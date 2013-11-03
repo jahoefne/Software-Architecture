@@ -21,6 +21,12 @@ public class GameController {
     }
 
     public boolean move(Point x, Point y){
-        return false;
+        field = validator.moveIfvalid(x,y,field);
+        return true;
+    }
+
+    @Override
+    public String toString(){
+        return field.toString();
     }
 }

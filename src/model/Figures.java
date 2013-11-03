@@ -1,6 +1,8 @@
 package model;
 
+import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 // Associates the bytes, which are internally used for the representation 
 // of the different cell states, with human readable ids.
@@ -118,24 +120,15 @@ public enum Figures {
 	public FigureMask getMask(){
 		return mask;
 		}
-	
-	// used for reverse lookup -> maps Id to FigrueMasks
-	public static HashMap<Byte,FigureMask> getMap(){
-		HashMap<Byte, FigureMask> map = new HashMap<Byte, FigureMask>();
-		map.put(pawnBlack.id(),pawnBlack.getMask());
-		map.put(rookBlack.id(),rookBlack.getMask());
-		map.put(knightBlack.id(),knightBlack.getMask());
-		map.put(bishopBlack.id(),bishopBlack.getMask());
-		map.put(queenBlack.id(),queenBlack.getMask());
-		map.put(kingBlack.id(),kingBlack.getMask());
-		map.put(empty.id(),empty.getMask());
-		map.put(pawnWhite.id(),pawnWhite.getMask());
-		map.put(rookWhite.id(),rookWhite.getMask());
-		map.put(knightWhite.id(),knightWhite.getMask());
-		map.put(bishopWhite.id(),bishopWhite.getMask());
-		map.put(queenWhite.id(),queenWhite.getMask());
-		map.put(kingWhite.id(),kingWhite.getMask());
-		return map;
-	}
+
+
+    // for reverse lookup
+    public static Figures lookUpID(byte id) {
+        for(Figures s : values()) {
+            if(s.id() == id)
+                return s;
+        }
+        return null;
+    }
 	
 }

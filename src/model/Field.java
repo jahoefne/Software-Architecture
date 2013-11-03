@@ -20,21 +20,22 @@ public class Field {
 
     // Resets the field
 	public void reset(){
+        whiteOrBlack=1;
 		field = new byte[len][len];
 		for(int x=0;x<8;x++){
-			field[1][x]=Figures.pawnBlack.id();
-			field[6][x]=Figures.pawnWhite.id();			
+			field[x][1]=Figures.pawnBlack.id();
+			field[x][6]=Figures.pawnWhite.id();
 		}
 		
 		for(int x=0;x<8;x+=7){
-			field[x][0]= (x==0) ? Figures.rookBlack.id() : Figures.rookWhite.id();
-			field[x][1]= (x==0) ? Figures.knightBlack.id() : Figures.knightWhite.id();
-			field[x][2]= (x==0) ? Figures.bishopBlack.id(): Figures.bishopWhite.id();
-			field[x][3]= (x==0) ? Figures.queenBlack.id() : Figures.queenWhite.id();
-			field[x][4]= (x==0) ? Figures.kingBlack.id() : Figures.kingWhite.id();
-			field[x][5]= (x==0) ? Figures.bishopBlack.id(): Figures.bishopWhite.id();
-			field[x][6]= (x==0) ? Figures.knightBlack.id() : Figures.knightWhite.id();
-			field[x][7]= (x==0) ? Figures.rookBlack.id() : Figures.rookWhite.id();
+			field[0][x]= (x==0) ? Figures.rookBlack.id() : Figures.rookWhite.id();
+			field[1][x]= (x==0) ? Figures.knightBlack.id() : Figures.knightWhite.id();
+			field[2][x]= (x==0) ? Figures.bishopBlack.id(): Figures.bishopWhite.id();
+			field[3][x]= (x==0) ? Figures.queenBlack.id() : Figures.queenWhite.id();
+			field[4][x]= (x==0) ? Figures.kingBlack.id() : Figures.kingWhite.id();
+			field[5][x]= (x==0) ? Figures.bishopBlack.id(): Figures.bishopWhite.id();
+			field[6][x]= (x==0) ? Figures.knightBlack.id() : Figures.knightWhite.id();
+			field[7][x]= (x==0) ? Figures.rookBlack.id() : Figures.rookWhite.id();
 		}
 	}
 	
@@ -42,14 +43,10 @@ public class Field {
 		this.reset();
 	}
 
-    public byte[][] getField(){
-        return field;
-    }
-
 	public byte getCell(int x, int y){
 		return this.getCell(new Point(x,y));
 	}
-	
+
 	public byte getCell(Point p){
 		return field[p.x][p.y];
 	}
@@ -61,9 +58,10 @@ public class Field {
 
 	@Override
 	public String toString() {
-		String rep = "";
-		for (int x = 0; x < len; x++) {
-			for (int y = 0; y < len; y++) {
+		String rep = (whiteOrBlack>0) ? "Whites " : "Blacks ";
+        rep+="Turn!\n";
+		for (int y = 0; y < len; y++) {
+			for (int x = 0; x < len; x++) {
 				rep += (field[x][y]>=0) ? " "+field[x][y]+" |":
 					field[x][y]+" |";
 			}
@@ -78,9 +76,5 @@ public class Field {
 
     public byte getWhiteOrBlack() {
         return whiteOrBlack;
-    }
-
-    public void setWhiteOrBlack(byte whiteOrBlack) {
-        this.whiteOrBlack = whiteOrBlack;
     }
 }
