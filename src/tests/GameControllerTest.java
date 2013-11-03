@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class GameControllerTest {
 
-    GameController sut = new GameController();
+    private final GameController sut = new GameController();
 
    /* @Test
     public void testReset() throws Exception {

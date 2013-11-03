@@ -17,11 +17,6 @@ public class FiguresTest {
 	}
 
     @Test
-    public void reverseLookUp(){
-       // TODO check reverse lookup
-    }
-
-	@Test
 	public void correctReturnValues() {
 		assertTrue(
 				"Empty field should be represented as 0! (Is "

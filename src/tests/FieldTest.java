@@ -1,13 +1,16 @@
 package tests;
 
-import static org.junit.Assert.*;
 import model.Field;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import org.junit.*;
+import static org.junit.Assert.assertTrue;
 
 public class FieldTest {
 
-	Field sut;
+	private Field sut;
 
 	@BeforeClass
 	public static void beforeClass() {

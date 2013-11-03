@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class GameController {
 
-    Field field = new Field();
-    MoveValidator validator = new MoveValidator();
+    private final Field field = new Field();
+    private final MoveValidator validator = new MoveValidator();
 
    // public void reset(){
    //     field.reset();

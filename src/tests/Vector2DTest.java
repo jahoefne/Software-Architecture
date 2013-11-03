@@ -2,8 +2,9 @@ package tests;
 
 
 import controller.Vector2D;
-
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.awt.*;
 
@@ -15,11 +16,6 @@ public class Vector2DTest {
     @BeforeClass
     public static void beforeClass() {
         System.out.println("Testing the Vector2D Class..");
-    }
-
-    @Before
-    public void setUp() throws Exception {
-
     }
 
     @Test

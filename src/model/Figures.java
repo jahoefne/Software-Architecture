@@ -1,10 +1,6 @@
 package model;
 
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.TreeMap;
-
-// Associates the bytes, which are internally used for the representation 
+// Associates the bytes, which are internally used for the representation
 // of the different cell states, with human readable ids.
 // -> Improves readability of the Model & Controller code
 // And also:
@@ -106,7 +102,7 @@ public enum Figures {
             "\u265A");
 
 
-	FigureMask mask;
+	private final FigureMask mask;
 	
 	Figures(byte id, String mask, boolean limited, String unicode){
 		this.mask=new FigureMask(id,mask,limited,unicode);

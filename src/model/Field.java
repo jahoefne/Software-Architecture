@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.Point;
+import java.awt.*;
 
 // Denotes a Chess field.
 // The field is realized as a 2D byte Array, with one byte for each cell.
@@ -9,7 +9,7 @@ import java.awt.Point;
 public class Field {
 
 	private byte[][] field;
-	private static int len = 8;
+	private static final int len = 8;
 
     private byte whiteOrBlack = 1; // Which player can move next ->
     //						        negative => Black
@@ -17,7 +17,7 @@ public class Field {
     //      positive => White
 
     // Resets the field
-	public void reset(){
+    void reset(){
         whiteOrBlack=1;
 		field = new byte[len][len];
 		for(int x=0;x<8;x++){

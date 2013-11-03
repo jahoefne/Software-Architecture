@@ -1,8 +1,10 @@
 package controller;
 
-import java.awt.Point;
+import model.Field;
+import model.FigureMask;
+import model.Figures;
 
-import model.*;
+import java.awt.*;
 
 public class MoveValidator {
 
@@ -11,7 +13,7 @@ public class MoveValidator {
     //- m x e -
     //l l i g f
     //- j - h -
-    public static Vector2D[] directions = {     // denotes the 16 possible direction vectors
+    private static final Vector2D[] directions = {     // denotes the 16 possible direction vectors
             new Vector2D(0, -1),    // x -> a
             new Vector2D(1, -2),    // x -> b
             new Vector2D(1, -1),    // x -> c
@@ -29,7 +31,6 @@ public class MoveValidator {
             new Vector2D(-1, -1),   // x -> o
             new Vector2D(-1, -2)    // x -> p
     };
-
 
     // Moves the figure at p1 to p2 if the move is valid
     public boolean moveIfValid(Point p1, Point p2, Field field) {
@@ -52,14 +53,13 @@ public class MoveValidator {
         return -1;
     }
 
-    // sets the  nth bit in mask
-    public int setBit(int mask, int n) {
-        mask |= (1 << n);
-        return mask;
+    // return s int with the nth bit set
+    int setBit(int n) {
+        return (1 << n);
     }
 
     // returns whether the path BETWEEN p1 and p2 is empty
-    public boolean isEmptyPath(Point p1, Point p2, int dirId, Field field) {
+    boolean isEmptyPath(Point p1, Point p2, int dirId, Field field) {
         int vX = (int)directions[dirId].x;
         int vY = (int)directions[dirId].y;
 
@@ -77,7 +77,7 @@ public class MoveValidator {
     }
 
     // returns the length of the path
-    public int getPathLength(Point p1, Point p2, int dirId) {
+    int getPathLength(Point p1, Point p2, int dirId) {
         int vX = (int)directions[dirId].x;
         int vY = (int)directions[dirId].y;
 
@@ -102,8 +102,8 @@ public class MoveValidator {
         Vector2D v = new Vector2D(p1, p2);
 
         int dirId = this.getDirectionID(v);
-        int moveMask = this.setBit(0, dirId);
-        int captureMask = this.setBit(0, dirId + 16);
+        int moveMask = this.setBit(dirId);
+        int captureMask = this.setBit(dirId + 16);
 
 
         if (!(figureToMove.id * field.getWhiteOrBlack() >= 0))

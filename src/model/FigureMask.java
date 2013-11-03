@@ -2,9 +2,9 @@ package model;
 
 // describes the FigureMask Bitmasks
 public class FigureMask {
-	public byte id;
-	public int bitMask;
-	public boolean limited;
+	public final byte id;
+	public final int bitMask;
+	public final boolean limited;
 
     public String unicode="";
 
@@ -22,7 +22,7 @@ public class FigureMask {
         return s;
     }
 
-    public int parse(String bitMask){
+    int parse(String bitMask){
         int mask=0;
         for(int i=0;i<bitMask.toCharArray().length; i++){
             if(bitMask.toCharArray()[i]=='1')

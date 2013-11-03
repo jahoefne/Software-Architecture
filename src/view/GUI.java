@@ -2,9 +2,10 @@ package view;
 
 import controller.GameController;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  * User: jahoefne
  * Creation Date: 03.11.13
@@ -12,21 +13,21 @@ import javax.swing.*;
  */
 public class GUI extends JFrame implements ActionListener{
 
-    JButton[][] fields = new JButton[8][8];
-    GameController controller = new GameController();
-    JButton newGame;
-    JButton quit;
-    JLabel status;
-    GridLayout layout = new GridLayout(9,8);
+    private final JButton[][] fields = new JButton[8][8];
+    private final GameController controller = new GameController();
+    private JButton newGame;
+    private JButton quit;
+    private JLabel status;
+    private final GridLayout layout = new GridLayout(9,8);
 
 
-    Point selected = new Point(-1,-1);
-    Color tmp;
-    Point[] possibilities;
-    Color[] tmpColors;
+    private Point selected = new Point(-1,-1);
+    private Color tmp;
+    private Point[] possibilities;
+    private Color[] tmpColors;
 
 
-    public JPanel createContentPane (){
+    JPanel createContentPane(){
         try {
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
         } catch (Exception e) {
