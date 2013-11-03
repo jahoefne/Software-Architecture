@@ -32,15 +32,16 @@ public class MoveValidator {
 
 
     // Moves the figure at p1 to p2 if the move is valid
-    public Field moveIfvalid(Point p1, Point p2, Field field) {
-        System.out.println("Move:["+p1.x+","+p1.y+"] to ["+p2.x+","+p2.y+"]");
+    public boolean moveIfValid(Point p1, Point p2, Field field) {
+        System.out.println("\nMove:["+p1.x+","+p1.y+"] to ["+p2.x+","+p2.y+"]");
         if (isValid(p1, p2, field)) {        // if the move is valid
             System.out.println("Valid!");
             field.move(p1,p2);          // move p1 to p2
             field.toggleWhiteOrBlack();       // change color for next move
+            return true;
         }
         System.out.println("Not Valid!");
-        return field;
+        return false;
     }
 
     // returns the ID (0-15) if 'v' points in the same direction, or -1 if it is not identical with
@@ -70,8 +71,12 @@ public class MoveValidator {
         while (x != p2.x && y != p2.y) {
             x += (int) v.x;
             y += (int) v.y;
-            if (field.getCell(x,y)!=Figures.empty.id())
+            if (field.getCell(x,y)!=Figures.empty.id()){
+                System.out.println("Path not empty! ["+x+","+y+"]");
                 return false;
+            }
+
+
         }
         return true;
     }
@@ -79,7 +84,6 @@ public class MoveValidator {
 
     // checks if the move is valid
     public boolean isValid(Point p1, Point p2, Field field) {
-
         FigureMask f1 = Figures.lookUpID(field.getCell(p1.x,p1.y)).getMask();
         FigureMask f2 = Figures.lookUpID(field.getCell(p2.x,p2.y)).getMask();
 
@@ -89,21 +93,25 @@ public class MoveValidator {
         int moveMask = this.setBit(0, bit);
         int captureMask = this.setBit(0, bit + 16);
 
+        System.out.println(Figures.lookUpID(f1.id).name()+" (ID="+f1.id+")");
+        System.out.println("V("+v.x+","+v.y+")");
+        System.out.println("Figure Mask:\t"+FigureMask.getBitString(f1.bitMask));
+        System.out.println("Move Mask:\t\t"+ FigureMask.getBitString(moveMask));
+        System.out.println("(f1.bitMask & moveMask) == "+(f1.bitMask & moveMask));
+        System.out.println((field.getWhiteOrBlack()<0) ? " Blacks turn!" : "Whites turn!");
+
+
+
         if (!(f1.id * field.getWhiteOrBlack() >= 0))
             return false;       // not the turn of the player or empty field
-
         if (bit < 0)
             return false;       // wrong direction
-
-        if ((f1.bitMask & moveMask) == 0 && f2.id == Figures.empty.id())
+        if ((f1.bitMask & moveMask) == 0 && f2.id == Figures.empty.id()){
             return false;   // player may not move in this direction and there is no enemy figure to capture
-
-        else if ((f1.bitMask & moveMask) != 0 && f2.id == Figures.empty.id() && isEmptyPath(p1, p2, field))
+        }else if ((f1.bitMask & moveMask) != 0 && f2.id == Figures.empty.id() && isEmptyPath(p1, p2, field))
             return true;                    // f1 may move in this direction f2 is empty => f1 may move to f2
-
         if ((f1.bitMask & captureMask) != 0 && (f2.id * f1.id < 0) && isEmptyPath(p1, p2, field))
             return true;                // f1 may move to, and capture f2
-
         return false;      // if something unexpected happens => fail
     }
 }

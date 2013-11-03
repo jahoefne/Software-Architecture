@@ -5,6 +5,10 @@ import controller.Vector2D;
 
 import org.junit.*;
 
+import java.awt.*;
+
+import static org.junit.Assert.assertTrue;
+
 
 public class Vector2DTest {
 
@@ -17,6 +21,13 @@ public class Vector2DTest {
     public void setUp() throws Exception {
 
     }
+
+    @Test
+    public void constructDirections(){
+        assertTrue("Error!",new Vector2D(new Point(0,0),new Point(1,0)).equals(new Vector2D(1,0)));
+    }
+
+
 
     @Test
     public void initialSetup() {

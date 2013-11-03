@@ -7,8 +7,8 @@ public class Vector2D {
     double y;
 
     public Vector2D(Point org, Point dst){
-        this.x = dst.x-org.x;
-        this.y = dst.y-org.y;
+        this.x = org.x-dst.x;
+        this.y = org.y-dst.y;
     }
 
     public Vector2D(double x, double y){
@@ -19,6 +19,10 @@ public class Vector2D {
     public Vector2D(int x, int y){
         this.x = x;
         this.y = y;
+    }
+
+    public double getLength(Vector2D v){
+        return 0.0;
     }
 
     // compares 2 vectors

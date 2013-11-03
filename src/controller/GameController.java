@@ -1,6 +1,7 @@
 package controller;
 
 import model.Field;
+import model.Figures;
 
 import java.awt.*;
 
@@ -21,8 +22,19 @@ public class GameController {
     }
 
     public boolean move(Point x, Point y){
-        field = validator.moveIfvalid(x,y,field);
-        return true;
+        return validator.moveIfValid(x, y, field);
+    }
+
+    public String getUnicode(Point x){
+           return Figures.lookUpID(field.getCell(x)).getMask().unicode;
+    }
+
+    public byte getID(Point x){
+        return Figures.lookUpID(field.getCell(x)).getMask().id;
+    }
+
+    public boolean whitesTurn(){
+        return field.getWhiteOrBlack()>0;
     }
 
     @Override

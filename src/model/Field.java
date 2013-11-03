@@ -16,8 +16,6 @@ public class Field {
     //
     //      positive => White
 
-
-
     // Resets the field
 	public void reset(){
         whiteOrBlack=1;
@@ -55,6 +53,10 @@ public class Field {
 		field[pos2.x][pos2.y]=field[pos1.x][pos1.y];
 		field[pos1.x][pos1.y]=Figures.empty.id();
 	}
+
+    public void set(Point p, byte value){
+         field[p.x][p.y]=value;
+    }
 
 	@Override
 	public String toString() {

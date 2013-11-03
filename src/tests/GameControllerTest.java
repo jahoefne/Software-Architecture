@@ -1,7 +1,6 @@
 package tests;
 
 import controller.GameController;
-import model.Figures;
 import org.junit.Test;
 
 import java.awt.*;
@@ -22,9 +21,14 @@ public class GameControllerTest {
 
     @Test
     public void testMove() throws Exception {
-
-     System.out.print(sut.toString());
-     sut.move(new Point(2,1),new Point(2,2));
-     System.out.print(sut.toString());
+        System.out.print(sut.toString());
+        sut.move(new Point(1, 6), new Point(1, 5));
+        System.out.print(sut.toString());
+        sut.move(new Point(1, 5), new Point(1, 4));
+        System.out.print(sut.toString());
+        sut.move(new Point(1, 1), new Point(1, 2));
+        System.out.print(sut.toString());
+        sut.move(new Point(1, 5), new Point(1, 4));
+        System.out.print(sut.toString());
     }
 }
