@@ -12,6 +12,8 @@ public class FigureMask {
     public static String getBitString(int mask){
         String s="";
         for(int i=0;i<32;i++){
+            if(i==15)
+                s+=" | ";
             if((mask & ( 1 << i )) >> i==1)
                 s+="1";
             else

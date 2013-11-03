@@ -7,8 +7,8 @@ public class Vector2D {
     double y;
 
     public Vector2D(Point org, Point dst){
-        this.x = org.x-dst.x;
-        this.y = org.y-dst.y;
+        this.x = dst.x-org.x;
+        this.y = dst.y-org.y;
     }
 
     public Vector2D(double x, double y){
@@ -21,13 +21,10 @@ public class Vector2D {
         this.y = y;
     }
 
-    public double getLength(Vector2D v){
-        return 0.0;
-    }
 
     // compares 2 vectors
     public static boolean equals(Vector2D a, Vector2D b){
-        return (a.x==b.x&&a.y==b.y);
+        return (Math.abs(a.x-b.x)<0.00000000001 &&  Math.abs(a.y-b.y)<0.000000001); // threshold necessary because floats
     }
 
     // normalizes v and returns the normalize vectors
@@ -41,6 +38,7 @@ public class Vector2D {
     // checks if the vectors point in same direction
     // (first normalize the vectors and then compare them)
     public static boolean sameDirection(Vector2D a, Vector2D b){
+
         return equals(normalize(a),normalize(b));
     }
 }

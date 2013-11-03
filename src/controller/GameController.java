@@ -4,6 +4,7 @@ import model.Field;
 import model.Figures;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * User: jahoefne
@@ -17,9 +18,22 @@ public class GameController {
     Field field = new Field();
     MoveValidator validator = new MoveValidator();
 
-    public void reset(){
-        field.reset();
+   // public void reset(){
+   //     field.reset();
+   // }
+
+    public Point[] getPossibleMoves(Point p){
+        ArrayList<Point> list= new ArrayList<Point>();
+        for(int y=0;y<8;y++){
+            for(int x=0;x<8;x++){
+                 if(validator.isValid(p,new Point(x,y),field))
+                     list.add(new Point(x,y));
+
+            }
+        }
+        return list.toArray(new Point[list.size()]);
     }
+
 
     public boolean move(Point x, Point y){
         return validator.moveIfValid(x, y, field);

@@ -22,6 +22,9 @@ public class GUI extends JFrame implements ActionListener{
 
     Point selected = new Point(-1,-1);
     Color tmp;
+    Point[] possibilities;
+    Color[] tmpColors;
+
 
     public JPanel createContentPane (){
         try {
@@ -42,12 +45,13 @@ public class GUI extends JFrame implements ActionListener{
                 else
                     fields[x][i].setForeground(Color.white);
                 fields[x][i].setBackground((colorSwitch>0) ? Color.lightGray : Color.gray);
-                fields[x][i].setFont(new Font("Dialog", 1, 36));
+                fields[x][i].setFont(new Font("Dialog", Font.BOLD, 36));
                 fields[x][i].setActionCommand(x + " " + i);
                 fields[x][i].setPreferredSize(new Dimension(70, 70));
                 fields[x][i].setBorderPainted(false);
                 fields[x][i].setOpaque(true);
                 fields[x][i].addActionListener(this);
+                fields[x][i].setFocusPainted(false);
                 mainPanel.add(fields[x][i]);
                 colorSwitch*=-1;
             }
@@ -76,7 +80,7 @@ public class GUI extends JFrame implements ActionListener{
     private static void createAndShowGUI() {
 
         JFrame.setDefaultLookAndFeelDecorated(true);
-        JFrame frame = new JFrame("Chess\n0.00000001 pre alpha");
+        JFrame frame = new JFrame("Chess");
 
         GUI gui = new GUI();
         frame.setContentPane(gui.createContentPane());
@@ -96,13 +100,24 @@ public class GUI extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-          // TODO parse stuff and feed to controller
-       // if(actionEvent.getActionCommand()=="quit")
+
+        if(actionEvent.getActionCommand().equals("quit"))
+            System.exit(0);
 
         String s[] = actionEvent.getActionCommand().split(" ");
         Point p = new Point(Integer.parseInt(s[0]),Integer.parseInt(s[1]));
 
+        if(fields[p.x][p.y].getText().equals("") && selected.x==-1)
+            return;
+
         if(selected.x==-1){
+            possibilities = controller.getPossibleMoves(p);
+
+            tmpColors= new Color[possibilities.length];
+            for(int i=0;i<possibilities.length;i++) {
+                tmpColors[i]=fields[possibilities[i].x][possibilities[i].y].getBackground();
+                fields[possibilities[i].x][possibilities[i].y].setBackground(new Color(184,220,184));
+            }
             tmp = fields[p.x][p.y].getBackground();
             fields[p.x][p.y].setBackground(Color.darkGray);
             selected = p;
@@ -110,6 +125,9 @@ public class GUI extends JFrame implements ActionListener{
             fields[p.x][p.y].setBackground(tmp);
             tmp=null;
             selected=new Point(-1,-1);
+            for(int i=0;i<possibilities.length;i++) {
+                fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
+            }
         }else{
             fields[selected.x][selected.y].setBackground(tmp);
             if(controller.move(selected, p)){
@@ -120,6 +138,9 @@ public class GUI extends JFrame implements ActionListener{
                     fields[p.x][p.y].setForeground(Color.black);
                 else
                     fields[p.x][p.y].setForeground(Color.white);
+            }
+            for(int i=0;i<possibilities.length;i++) {
+                fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
             }
             selected=new Point(-1,-1);
         }

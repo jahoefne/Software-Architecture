@@ -15,11 +15,6 @@ public class MoveValidatorTest {
 
 	@Test
 	public void test() {
-        //o p a b c
-        //n - - - d
-        //m - x - e
-        //l - - - f
-        //k j i h g
     }
 
 }
