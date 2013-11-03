@@ -9,10 +9,16 @@ import java.awt.Point;
 public class Field {
 
 	private byte[][] field;
-
 	private static int len = 8;
-	
-	// Resets the field
+
+    private byte whiteOrBlack = 1; // Which player can move next ->
+    //						        negative => Black
+    //
+    //      positive => White
+
+
+
+    // Resets the field
 	public void reset(){
 		field = new byte[len][len];
 		for(int x=0;x<8;x++){
@@ -35,7 +41,11 @@ public class Field {
 	public Field() {
 		this.reset();
 	}
-	
+
+    public byte[][] getField(){
+        return field;
+    }
+
 	public byte getCell(int x, int y){
 		return this.getCell(new Point(x,y));
 	}
@@ -46,7 +56,7 @@ public class Field {
 	
 	public void move(Point pos1, Point pos2) {
 		field[pos2.x][pos2.y]=field[pos1.x][pos1.y];
-		field[pos1.x][pos1.y]=0;
+		field[pos1.x][pos1.y]=Figures.empty.id();
 	}
 
 	@Override
@@ -61,4 +71,16 @@ public class Field {
 		}
 		return rep;
 	}
+
+    public void toggleWhiteOrBlack(){
+        whiteOrBlack*=-1;
+    }
+
+    public byte getWhiteOrBlack() {
+        return whiteOrBlack;
+    }
+
+    public void setWhiteOrBlack(byte whiteOrBlack) {
+        this.whiteOrBlack = whiteOrBlack;
+    }
 }
