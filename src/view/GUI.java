@@ -49,7 +49,7 @@ public class GUI extends JFrame implements ActionListener{
                 fields[x][i].setFont(new Font("Dialog", Font.BOLD, 36));
                 fields[x][i].setActionCommand(x + " " + i);
                 fields[x][i].setPreferredSize(new Dimension(70, 70));
-                fields[x][i].setBorderPainted(false);
+                fields[x][i].setBorderPainted(true);
                 fields[x][i].setOpaque(true);
                 fields[x][i].addActionListener(this);
                 fields[x][i].setFocusPainted(false);

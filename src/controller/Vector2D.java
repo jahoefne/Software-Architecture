@@ -16,18 +16,18 @@ public class Vector2D {
         this.y = y;
     }
 
+    // constructs vector out of 2 integers
     public Vector2D(int x, int y){
         this.x = x;
         this.y = y;
     }
-
 
     // compares 2 vectors
     private static boolean equals(Vector2D a, Vector2D b){
         return (Math.abs(a.x-b.x)<0.00000000001 &&  Math.abs(a.y-b.y)<0.000000001); // threshold necessary because floats
     }
 
-    // normalizes v and returns the normalize vectors
+    // normalizes v and returns the normalized vectors
     private static Vector2D normalize(Vector2D v){
         double lA = Math.sqrt((v.x*v.x)+(v.y*v.y));
         double x=v.x/lA;
