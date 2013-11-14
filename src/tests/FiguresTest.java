@@ -2,6 +2,7 @@ package tests;
 
 
 
+
 import model.FigureMask;
 import model.Figures;
 import org.junit.AfterClass;
@@ -93,6 +94,7 @@ public class FiguresTest {
     	assertTrue(mask.id == -1 && mask.limited== true);   
     	
     }
+
 	@AfterClass
 	public static void afterClass(){
 		System.out.println("Successful!");
