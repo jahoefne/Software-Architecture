@@ -1,5 +1,7 @@
 package tests;
 
+import java.awt.Point;
+
 import model.Field;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -34,6 +36,26 @@ public class FieldTest {
 					"White Pawn at [0," + i + "] should be 1! Is"
 							+ sut.getCell(i, 6), sut.getCell(i, 6) == 1);
 		}
+	}
+	
+	@Test
+	public void set(){
+		sut.set(new Point(0,1), (byte)-2);
+		assertTrue(sut.getCell(0,1) == -2);
+	}
+	
+	@Test
+	public void move(){
+		sut.move(new Point(0,1), new Point(0,2));
+		assertTrue(sut.getCell(0,2) == -1);
+		
+	}
+	
+	@Test
+	public void toggleWhiteOrBlack(){
+		assertTrue(sut.getWhiteOrBlack() == 1);
+		sut.toggleWhiteOrBlack();
+		assertTrue(sut.getWhiteOrBlack() == -1);
 	}
 
 	@AfterClass

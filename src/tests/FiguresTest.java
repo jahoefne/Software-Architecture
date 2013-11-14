@@ -2,6 +2,7 @@ package tests;
 
 
 
+import model.FigureMask;
 import model.Figures;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -60,6 +61,38 @@ public class FiguresTest {
 						+ Figures.kingBlack.id(), Figures.kingBlack.id() == -6);
 	}
 	
+    @Test
+    public void lookUpID(){
+    	assertTrue(Figures.lookUpID((byte)7) == null);
+    	assertTrue(Figures.lookUpID((byte)-7) == null);
+    	
+    	assertTrue(Figures.lookUpID((byte)-1) == Figures.pawnBlack);
+    	assertTrue(Figures.lookUpID((byte)-2) == Figures.rookBlack);
+    	assertTrue(Figures.lookUpID((byte)-3) == Figures.knightBlack);
+    	assertTrue(Figures.lookUpID((byte)-4) == Figures.bishopBlack);
+    	assertTrue(Figures.lookUpID((byte)-5) == Figures.queenBlack);
+    	assertTrue(Figures.lookUpID((byte)-6) == Figures.kingBlack);
+    	
+    	assertTrue(Figures.lookUpID((byte)1) == Figures.pawnWhite);
+    	assertTrue(Figures.lookUpID((byte)2) == Figures.rookWhite);
+    	assertTrue(Figures.lookUpID((byte)3) == Figures.knightWhite);
+    	assertTrue(Figures.lookUpID((byte)4) == Figures.bishopWhite);
+    	assertTrue(Figures.lookUpID((byte)5) == Figures.queenWhite);
+    	assertTrue(Figures.lookUpID((byte)6) == Figures.kingWhite);
+    	
+    }
+    
+    @Test
+    public void getMask(){
+    	
+    	// TODO: Test mask.bitMask!
+    	
+    	FigureMask mask;
+    	
+    	mask = Figures.pawnBlack.getMask();
+    	assertTrue(mask.id == -1 && mask.limited== true);   
+    	
+    }
 	@AfterClass
 	public static void afterClass(){
 		System.out.println("Successful!");
