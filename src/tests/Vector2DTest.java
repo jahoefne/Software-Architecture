@@ -20,10 +20,8 @@ public class Vector2DTest {
 
     @Test
     public void constructDirections(){
-        assertTrue("Error!",new Vector2D(new Point(0,0),new Point(1,0)).equals(new Vector2D(1,0)));
+        assertTrue("Error!",Vector2D.sameDirection(new Vector2D(new Point(0,0),new Point(1,0)),new Vector2D(1,0)));
     }
-
-
 
     @Test
     public void initialSetup() {
