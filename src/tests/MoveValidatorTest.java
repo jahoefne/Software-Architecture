@@ -1,7 +1,9 @@
 package tests;
 
 import controller.MoveValidator;
+
 import org.junit.Before;
+import org.junit.Test;
 
 public class MoveValidatorTest {
 
@@ -12,4 +14,8 @@ public class MoveValidatorTest {
         sut = new MoveValidator();
 	}
 
+	@Test
+	public void test(){
+		return;
+	}
 }

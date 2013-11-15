@@ -9,7 +9,7 @@ public class FigureMask {
     public String unicode="";
 
     // TODO: remove later -> TESTING Method
-    public static String getBitString(int mask){
+ /*   public static String getBitString(int mask){
         String s="";
         for(int i=0;i<32;i++){
             if(i==15)
@@ -20,7 +20,7 @@ public class FigureMask {
                 s+="0";
         }
         return s;
-    }
+    }*/
 
     int parse(String bitMask){
         int mask=0;

@@ -24,7 +24,7 @@ public class Vector2D {
 
     // compares 2 vectors
     private static boolean equals(Vector2D a, Vector2D b){
-        return (Math.abs(a.x-b.x)<0.00001 &&  Math.abs(a.y-b.y)<0.0001); // threshold necessary because floats
+        return (Math.abs(a.x-b.x)<0.000000001 &&  Math.abs(a.y-b.y)<0.00000001); // threshold necessary because floats
     }
 
     // normalizes v and returns the normalized vectors

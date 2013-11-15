@@ -28,9 +28,14 @@ public class GameController {
 		//init code
 	}
 	
-    private final Field field = new Field();
-    private final MoveValidator validator = new MoveValidator();
+    private Field field = new Field();
+    private MoveValidator validator = new MoveValidator();
 
+    public void resetGame(){
+    	this.field=new Field();
+    	this.validator=new MoveValidator();
+    }
+    
     // checks whether field is in checkmate state
     public boolean isCheckMate(Field field){
     	// iterate over field to find kings
