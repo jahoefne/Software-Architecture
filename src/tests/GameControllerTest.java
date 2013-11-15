@@ -1,6 +1,10 @@
 package tests;
 
+import static org.junit.Assert.*;
 import controller.GameController;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.awt.*;
@@ -12,7 +16,17 @@ import java.awt.*;
  */
 public class GameControllerTest {
 
-    private final GameController sut = new GameController();
+    private GameController sut;
+    
+    @BeforeClass
+    public static void beforeClass(){
+    	System.out.println("Testing the GameController Class..");
+    }
+    
+    @Before
+    public void before(){
+    	sut = new GameController();
+    }
 
    /* @Test
     public void testReset() throws Exception {
@@ -31,4 +45,28 @@ public class GameControllerTest {
         sut.move(new Point(1, 5), new Point(1, 4));
         System.out.print(sut.toString());
     }
+    
+    @Test
+    public void getUnicode(){
+    	for(int i = 0; i < 8;i++){
+    		
+    		//testing pawn unicodes
+    		assertTrue(sut.getUnicode(new Point(i,1)).compareTo("\u265F") == 0);
+    		assertTrue(sut.getUnicode(new Point(i,6)).compareTo("\u265F") == 0);
+    	}
+    	
+    }
+    
+    @Test
+    public void whitesTurn(){
+    	assertTrue(sut.whitesTurn() == true);
+    	sut.move(new Point(1, 6), new Point(1, 5));
+    	assertTrue(sut.whitesTurn() == false);
+    	sut.move(new Point(1, 1), new Point(1, 3));
+    	assertTrue(sut.whitesTurn() == true);
+    	
+    }
+    
+    
+    
 }
