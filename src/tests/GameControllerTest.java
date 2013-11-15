@@ -25,7 +25,7 @@ public class GameControllerTest {
     
     @Before
     public void before(){
-    	sut = new GameController();
+    	sut = GameController.GetInstance();
     }
 
    /* @Test

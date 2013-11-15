@@ -5,6 +5,7 @@ import model.FigureMask;
 import model.Figures;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MoveValidator {
 
@@ -41,14 +42,13 @@ public class MoveValidator {
         }
         return false;
     }
-
+    
     // returns the ID (0-15) if 'v' points in the same direction, or -1 if it is not identical with
     // any of the directions
     private int getDirectionID(Vector2D v) {
         for (int i = 0; i < directions.length; i++) {
             if (Vector2D.sameDirection(v, directions[i]))
                 return i;
-
         }
         return -1;
     }

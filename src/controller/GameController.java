@@ -15,13 +15,33 @@ import java.util.ArrayList;
  */
 public class GameController {
 
+	private static GameController instance;
+	
+	public static GameController GetInstance() {
+		if(instance==null)
+			instance = new GameController();
+		return instance;
+	}
+	
+	private GameController()
+	{
+		//init code
+	}
+	
     private final Field field = new Field();
     private final MoveValidator validator = new MoveValidator();
 
-   // public void reset(){
-   //     field.reset();
-   // }
-
+    // checks whether field is in checkmate state
+    public boolean isCheckMate(Field field){
+    	// iterate over field to find kings
+    	Point[] kings  =  field.getKingsPositions();
+    	for(Point king : kings){
+    		// check stuff
+    	}
+    	return false;
+    }
+    
+    
     public Point[] getPossibleMoves(Point p){
         ArrayList<Point> list= new ArrayList<Point>();
         for(int y=0;y<8;y++){
@@ -55,4 +75,5 @@ public class GameController {
     public String toString(){
         return field.toString();
     }
+
 }

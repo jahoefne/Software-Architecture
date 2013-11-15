@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class GUI extends JFrame implements ActionListener{
 
     private final JButton[][] fields = new JButton[8][8];
-    private final GameController controller = new GameController();
+    private final GameController controller = GameController.GetInstance();
     private JButton newGame;
     private JButton quit;
     private JLabel status;
