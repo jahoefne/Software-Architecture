@@ -99,7 +99,6 @@ public class GUI extends JFrame implements ActionListener{
         });
     }
 
-    @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
         if(actionEvent.getActionCommand().equals("quit"))
