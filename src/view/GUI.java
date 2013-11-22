@@ -31,7 +31,7 @@ public class GUI extends JFrame implements ActionListener{
         try {
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
         } catch (Exception e) {
-            System.out.println("Magic Error!");
+            e.printStackTrace();
         }
 
         JPanel totalGUI = new JPanel();
@@ -46,7 +46,6 @@ public class GUI extends JFrame implements ActionListener{
                 }else{
                     fields[x][i].setForeground(Color.white);
                 }
-
                 fields[x][i].setBackground((colorSwitch>0) ? Color.lightGray : Color.gray);
                 fields[x][i].setFont(new Font("Dialog", Font.BOLD, 36));
                 fields[x][i].setActionCommand(x + " " + i);
@@ -106,6 +105,7 @@ public class GUI extends JFrame implements ActionListener{
         if(actionEvent.getActionCommand().equals("quit")){
             System.exit(0);
         }
+
         String s[] = actionEvent.getActionCommand().split(" ");
         Point p = new Point(Integer.parseInt(s[0]),Integer.parseInt(s[1]));
 
@@ -151,9 +151,8 @@ public class GUI extends JFrame implements ActionListener{
 
         if(controller.whitesTurn()){
             status.setText("Whites turn!");
-        }else {
+        }else{
             status.setText("Blacks turn!");
         }
-
     }
 }

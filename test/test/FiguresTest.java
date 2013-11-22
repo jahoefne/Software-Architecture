@@ -1,7 +1,4 @@
-package tests;
-
-
-
+package test;
 
 import model.FigureMask;
 import model.Figures;
@@ -91,7 +88,7 @@ public class FiguresTest {
     	FigureMask mask;
     	
     	mask = Figures.PawnBlack.getMask();
-    	assertTrue(mask.id == -1 && mask.limited);
+    	assertTrue(mask.id == -1 && mask.limited== true);   
     	
     }
 

@@ -1,6 +1,4 @@
-package tests;
-
-
+package test;
 import java.awt.Point;
 
 import model.Field;

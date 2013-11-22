@@ -1,5 +1,4 @@
-package tests;
-
+package test;
 
 import controller.Vector2D;
 import org.junit.AfterClass;
