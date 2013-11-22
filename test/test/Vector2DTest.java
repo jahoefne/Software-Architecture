@@ -18,14 +18,14 @@ public class Vector2DTest {
     }
 
     @Test
-    public void constructDirections(){
-        assertTrue("Error!",Vector2D.sameDirection(new Vector2D(new Point(0,0),new Point(1,0)),new Vector2D(1,0)));
+    public void constructDirections() {
+        assertTrue("Error!", Vector2D.sameDirection(new Vector2D(new Point(0, 0), new Point(1, 0)), new Vector2D(1, 0)));
     }
 
     @Test
     public void initialSetup() {
-        Vector2D.sameDirection(new Vector2D(0,2),new Vector2D(0,4));
-        Vector2D.sameDirection(new Vector2D(2,1),new Vector2D(4,2));
+        Vector2D.sameDirection(new Vector2D(0, 2), new Vector2D(0, 4));
+        Vector2D.sameDirection(new Vector2D(2, 1), new Vector2D(4, 2));
 
     }
 

@@ -24,107 +24,107 @@ package model;
 //This is combined in the class FigureMask.
 
 public enum Figures {
-	PawnBlack(
-			(byte)-1,
-			"00000000100000000000001000100000",
-			true,
+    PawnBlack(
+            (byte) -1,
+            "00000000100000000000001000100000",
+            true,
             "\u265F"),
 
-	RookBlack(
-			(byte)-2,
+    RookBlack(
+            (byte) -2,
             "10001000100010001000100010001000",
-			false,
+            false,
             "\u265C"),
-	KnightBlack(
-			(byte)-3,
+    KnightBlack(
+            (byte) -3,
             "01010101010101010101010101010101",
-			true,
+            true,
             "\u265E"),
-			
-	BishopBlack(
-			(byte)-4,
+
+    BishopBlack(
+            (byte) -4,
             "00100010001000100010001000100010",
-			false,
+            false,
             "\u265D"),
-			
-	QueenBlack(
-			(byte)-5,
+
+    QueenBlack(
+            (byte) -5,
             "10101010101010101010101010101010",
-			false,
+            false,
             "\u265B"),
-			
-	KingBlack(
-			(byte)-6,
+
+    KingBlack(
+            (byte) -6,
             "10101010101010101010101010101010",
-			true,
+            true,
             "\u265A"),
-			
-	Empty(
-			(byte)0,
+
+    Empty(
+            (byte) 0,
             "00000000000000000000000000000000",
-			true,
+            true,
             ""),
 
-	PawnWhite(
-			(byte)1,
-            "10000000000000000010000000000010" ,
-			true,
+    PawnWhite(
+            (byte) 1,
+            "10000000000000000010000000000010",
+            true,
             "\u265F"),
-			
-	RookWhite(
-			(byte)2,
-           "10001000100010001000100010001000",
-			false,
+
+    RookWhite(
+            (byte) 2,
+            "10001000100010001000100010001000",
+            false,
             "\u265C"),
-			
-	KnightWhite(
-			(byte)3,
+
+    KnightWhite(
+            (byte) 3,
             "01010101010101010101010101010101",
-			true,
+            true,
             "\u265E"),
-			
-	BishopWhite(
-			(byte)4,
-           "00100010001000100010001000100010",
-			false,
+
+    BishopWhite(
+            (byte) 4,
+            "00100010001000100010001000100010",
+            false,
             "\u265D"),
-			
-	QueenWhite(
-			(byte)5,
+
+    QueenWhite(
+            (byte) 5,
             "10101010101010101010101010101010",
-			false,
+            false,
             "\u265B"),
-			
-	KingWhite(
-			(byte)6,
+
+    KingWhite(
+            (byte) 6,
             "10101010101010101010101010101010",
-			true,
+            true,
             "\u265A");
 
 
-	private final FigureMask mask;
-	
-	Figures(byte id, String mask, boolean limited, String unicode){
-		this.mask=new FigureMask(id,mask,limited,unicode);
-	}
+    private final FigureMask mask;
 
-	public byte id(){
-		return mask.getId();
-	}
-	
-	public FigureMask getMask(){
-		return mask;
-		}
+    Figures(byte id, String mask, boolean limited, String unicode) {
+        this.mask = new FigureMask(id, mask, limited, unicode);
+    }
+
+    public byte id() {
+        return mask.getId();
+    }
+
+    public FigureMask getMask() {
+        return mask;
+    }
 
 
     // for reverse lookup
     public static Figures lookUpID(byte id) {
-        for(Figures s : values()) {
-            if(s.id() == id){
+        for (Figures s : values()) {
+            if (s.id() == id) {
                 return s;
             }
         }
         return null;
     }
-	
+
 }

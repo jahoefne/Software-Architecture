@@ -1,11 +1,11 @@
 package view;
 
-import controller.*;
+import controller.GameController;
 
 public class TUI {
-	private final static GameController controller = GameController.GetInstance();
-	
+    private final static GameController controller = GameController.GetInstance();
+
     public static void main(String[] args) {
-    	System.out.println(controller.toString());
+        System.out.println(controller.toString());
     }
 }
