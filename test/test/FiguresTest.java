@@ -88,7 +88,7 @@ public class FiguresTest {
     	FigureMask mask;
     	
     	mask = Figures.PawnBlack.getMask();
-    	assertTrue(mask.id == -1 && mask.limited== true);   
+    	assertTrue(mask.getId() == -1 && mask.isLimited());
     	
     }
 

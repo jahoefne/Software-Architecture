@@ -1,7 +1,7 @@
 package model;
 
 import java.awt.*;
-import java.util.ArrayList;
+
 
 // Denotes a Chess field.
 // The field is realized as a 2D byte Array, with one byte for each cell.
@@ -62,8 +62,8 @@ public class Field {
 		field[pos1.x][pos1.y]=Figures.Empty.id();
 	}
 
-    public Point[] getKingsPositions(){
-    	ArrayList<Point> list = new ArrayList<Point>();
+  /*  public Point[] getKingsPositions(){
+    	Collection<Point> list = new ArrayList<Point>();
     	for(int x=0; x<8;x++){
     		for(int y=0; x<8; y++){
     			if(Math.abs(this.getCell(x,y)) == Math.abs(Figures.KingWhite.id())){
@@ -72,7 +72,7 @@ public class Field {
     		}
     	}
     	return (Point[])list.toArray();
-    }
+    } */
     
     public void set(Point p, byte value){
          field[p.x][p.y]=value;

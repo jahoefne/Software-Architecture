@@ -2,25 +2,11 @@ package model;
 
 // describes the FigureMask Bitmasks
 public class FigureMask {
-	public final byte id;
-	public final int bitMask;
-	public final boolean limited;
+	private final byte id;
+	private final int bitMask;
+	private final boolean limited;
 
-    public String unicode="";
-
-    // TODO: remove later -> TESTING Method
- /*   public static String getBitString(int mask){
-        String s="";
-        for(int i=0;i<32;i++){
-            if(i==15)
-                s+=" | ";
-            if((mask & ( 1 << i )) >> i==1)
-                s+="1";
-            else
-                s+="0";
-        }
-        return s;
-    }*/
+    private String unicode="";
 
     int parse(String bitMask){
         int mask=0;
@@ -36,6 +22,26 @@ public class FigureMask {
 		this.bitMask=this.parse(bitMask);
 		this.limited=limited;
 		this.id=id;
-        this.unicode=unicode;
+        this.setUnicode(unicode);
 	}
+
+    public byte getId() {
+        return id;
+    }
+
+    public int getBitMask() {
+        return bitMask;
+    }
+
+    public boolean isLimited() {
+        return limited;
+    }
+
+    public String getUnicode() {
+        return unicode;
+    }
+
+    public void setUnicode(String unicode) {
+        this.unicode = unicode;
+    }
 }

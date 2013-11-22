@@ -23,9 +23,9 @@ public class Vector2D {
     }
 
     // compares 2 vectors
-
+    private static final double threshold =   0.000000001;
     private static boolean isEqual(Vector2D a, Vector2D b){
-        return Math.abs(a.x-b.x)<0.000000001 &&  Math.abs(a.y-b.y)<0.00000001; // threshold necessary because floats
+        return Math.abs(a.x-b.x)<threshold &&  Math.abs(a.y-b.y)<threshold; // threshold necessary because floats
     }
 
     // normalizes v and returns the normalized vectors

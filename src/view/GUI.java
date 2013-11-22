@@ -26,6 +26,9 @@ public class GUI extends JFrame implements ActionListener{
     private Point[] possibilities;
     private Color[] tmpColors;
 
+    private static final int filedSize = 70;
+    private static final int fontSize = 36;
+
 
     JPanel createContentPane(){
         try {
@@ -47,9 +50,9 @@ public class GUI extends JFrame implements ActionListener{
                     fields[x][i].setForeground(Color.white);
                 }
                 fields[x][i].setBackground((colorSwitch>0) ? Color.lightGray : Color.gray);
-                fields[x][i].setFont(new Font("Dialog", Font.BOLD, 36));
+                fields[x][i].setFont(new Font("Dialog", Font.BOLD, fontSize));
                 fields[x][i].setActionCommand(x + " " + i);
-                fields[x][i].setPreferredSize(new Dimension(70, 70));
+                fields[x][i].setPreferredSize(new Dimension(filedSize,filedSize));
                 fields[x][i].setBorderPainted(true);
                 fields[x][i].setOpaque(true);
                 fields[x][i].addActionListener(this);

@@ -24,11 +24,6 @@ public class GameController {
 		return instance;
 	}
 	
-	private GameController()
-	{
-		//init code
-	}
-	
     private Field field = new Field();
     private MoveValidator validator = new MoveValidator();
 
@@ -36,17 +31,6 @@ public class GameController {
     	this.field=new Field();
     	this.validator=new MoveValidator();
     }
-    
-    // checks whether field is in checkmate state
-    //public boolean isCheckMate(Field field){
-    	// iterate over field to find kings
-    	//Point[] kings  =  field.getKingsPositions();
-    	//for(Point king : kings){
-    		// check stuff
-    	//}
-    //return false;
-   // }
-    
     
     public Point[] getPossibleMoves(Point p){
         ArrayList<Point> list= new ArrayList<Point>();
@@ -66,11 +50,11 @@ public class GameController {
     }
 
     public String getUnicode(Point x){
-           return Figures.lookUpID(field.getCell(x)).getMask().unicode;
+        return Figures.lookUpID(field.getCell(x)).getMask().getUnicode();
     }
 
     public byte getID(Point x){
-        return Figures.lookUpID(field.getCell(x)).getMask().id;
+        return Figures.lookUpID(field.getCell(x)).getMask().getId();
     }
 
     public boolean whitesTurn(){

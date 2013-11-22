@@ -6,11 +6,11 @@ package model;
 // And also:
 //Contains a bitmask used for validating moves and captures of enemy figures.
 //There are 16 relevant directions a figure might be moved or might capture:
-//o p a b c
-//n - - - d
-//m - x - e
-//l - - - f
-//k j i h g  
+//- p - b -
+//n o a c d
+//- m x e -
+//l l i g f
+//- j - h -
 //With these 16 values the movement direction of any type of figure may be
 //described.
 //Because movement and and capturing is not always identical (see pawn)
@@ -109,7 +109,7 @@ public enum Figures {
 	}
 
 	public byte id(){
-		return mask.id;
+		return mask.getId();
 	}
 	
 	public FigureMask getMask(){
