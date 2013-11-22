@@ -60,11 +60,11 @@ public class GameControllerTest {
 
     @Test
     public void whitesTurn() {
-        assertTrue(sut.whitesTurn());
+        assertTrue(sut.whitesTurn() == true);
         sut.move(new Point(1, 6), new Point(1, 5));
-        assertTrue(sut.whitesTurn());
+        assertTrue(sut.whitesTurn() == false);
         sut.move(new Point(1, 1), new Point(1, 3));
-        assertTrue(sut.whitesTurn());
+        assertTrue(sut.whitesTurn() == true);
 
     }
 
