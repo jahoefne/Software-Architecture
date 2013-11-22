@@ -22,20 +22,27 @@ public class Field {
         whiteOrBlack=1;
 		field = new byte[len][len];
 		for(int x=0;x<8;x++){
-			field[x][1]=Figures.pawnBlack.id();
-			field[x][6]=Figures.pawnWhite.id();
+			field[x][1]=Figures.PawnBlack.id();
+			field[x][6]=Figures.PawnWhite.id();
 		}
 		
-		for(int x=0;x<8;x+=7){
-			field[0][x]= (x==0) ? Figures.rookBlack.id() : Figures.rookWhite.id();
-			field[1][x]= (x==0) ? Figures.knightBlack.id() : Figures.knightWhite.id();
-			field[2][x]= (x==0) ? Figures.bishopBlack.id(): Figures.bishopWhite.id();
-			field[3][x]= (x==0) ? Figures.queenBlack.id() : Figures.queenWhite.id();
-			field[4][x]= (x==0) ? Figures.kingBlack.id() : Figures.kingWhite.id();
-			field[5][x]= (x==0) ? Figures.bishopBlack.id(): Figures.bishopWhite.id();
-			field[6][x]= (x==0) ? Figures.knightBlack.id() : Figures.knightWhite.id();
-			field[7][x]= (x==0) ? Figures.rookBlack.id() : Figures.rookWhite.id();
-		}
+			field[0][0]= Figures.RookBlack.id();
+			field[1][0]= Figures.KnightBlack.id();
+			field[2][0]= Figures.BishopBlack.id();
+			field[3][0]= Figures.QueenBlack.id();
+			field[4][0]= Figures.KingBlack.id();
+			field[5][0]= Figures.BishopBlack.id();
+			field[6][0]= Figures.KnightBlack.id();
+			field[7][0]= Figures.RookBlack.id();
+			
+			field[0][7]=Figures.RookWhite.id();
+			field[1][7]=Figures.KnightWhite.id();
+			field[2][7]=Figures.BishopWhite.id();
+			field[3][7]=Figures.QueenWhite.id();
+			field[4][7]=Figures.KingWhite.id();
+			field[5][7]=Figures.BishopWhite.id();
+			field[6][7]=Figures.KnightWhite.id();
+			field[7][7]=Figures.RookWhite.id();
 	}
 	
 	public Field() {
@@ -52,15 +59,16 @@ public class Field {
 	
 	public void move(Point pos1, Point pos2) {
 		field[pos2.x][pos2.y]=field[pos1.x][pos1.y];
-		field[pos1.x][pos1.y]=Figures.empty.id();
+		field[pos1.x][pos1.y]=Figures.Empty.id();
 	}
 
     public Point[] getKingsPositions(){
     	ArrayList<Point> list = new ArrayList<Point>();
     	for(int x=0; x<8;x++){
     		for(int y=0; x<8; y++){
-    			if(Math.abs(this.getCell(x,y)) == Math.abs(Figures.kingWhite.id()))
+    			if(Math.abs(this.getCell(x,y)) == Math.abs(Figures.KingWhite.id())){
     					list.add(new Point(x,y));
+    			}
     		}
     	}
     	return (Point[])list.toArray();

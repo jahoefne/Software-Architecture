@@ -47,15 +47,16 @@ public class MoveValidator {
     // any of the directions
     private int getDirectionID(Vector2D v) {
         for (int i = 0; i < directions.length; i++) {
-            if (Vector2D.sameDirection(v, directions[i]))
+            if (Vector2D.sameDirection(v, directions[i])){
                 return i;
+            }
         }
         return -1;
     }
 
     // return s int with the nth bit set
     int setBit(int n) {
-        return (1 << n);
+        return 1 << n;
     }
 
     // returns whether the path BETWEEN p1 and p2 is empty
@@ -67,7 +68,7 @@ public class MoveValidator {
         int y = p1.y + vY;
 
         while (x != p2.x || y != p2.y) {
-            if (field.getCell(x,y)!=Figures.empty.id()){
+            if (field.getCell(x,y)!=Figures.Empty.id()){
                 return false;
             }
             x += vX;
@@ -96,10 +97,12 @@ public class MoveValidator {
 
     // returns whether figure is a pawn and pos is a pawn start-position
     private boolean isPawnInStartPosition(FigureMask figure, Point pos){
-        if((figure.id==Figures.pawnBlack.id() && pos.y==1))
+        if((figure.id==Figures.PawnBlack.id() && pos.y==1)){
             return false;
-        else if(figure.id==Figures.pawnWhite.id() &&pos.y==6)
+        }
+        else if(figure.id==Figures.PawnWhite.id() &&pos.y==6){
             return false;
+        }
         return true;
     }
 
@@ -107,10 +110,8 @@ public class MoveValidator {
     private boolean isMovementLimited(int pathLength, FigureMask figure, Point pos){
         // Limit movement to one field if applicable
         if(pathLength>1 && figure.limited){
-
             // Rule Exception for first move of pawns
             return pathLength != 2 || isPawnInStartPosition(figure, pos);
-
         }
         return false;
     }
@@ -127,19 +128,22 @@ public class MoveValidator {
         int moveMask = this.setBit(dirId);
         int captureMask = this.setBit(dirId + 16);
 
-        if (!(figureToMove.id * field.getWhiteOrBlack() >= 0)|| dirId < 0)
+        if (!(figureToMove.id * field.getWhiteOrBlack() >= 0)|| dirId < 0){
             return false;       // not the turn of the player or empty field    // wrong direction
-
+        }
+        
         // if the movement of the figure must be limited to one step, the move is not valid
-        if(isMovementLimited(getPathLength(p1,p2,dirId),figureToMove,p1))
+        if(isMovementLimited(getPathLength(p1,p2,dirId),figureToMove,p1)){
             return false;
+        }
 
-        if ((figureToMove.bitMask & moveMask) == 0 && destinationFigure.id == Figures.empty.id()){
+        if ((figureToMove.bitMask & moveMask) == 0 && destinationFigure.id == Figures.Empty.id()){
             return false;    // player may not move in this direction and there is no enemy figure to capture
-        }else if ((figureToMove.bitMask & moveMask) != 0 && destinationFigure.id == Figures.empty.id() && isEmptyPath(p1,
-                p2, dirId, field))
+        }else if ((figureToMove.bitMask & moveMask) != 0 && destinationFigure.id == Figures.Empty.id() && isEmptyPath(p1,
+                p2, dirId, field)){
             return true;                    // f1 may move in this direction f2 is empty => f1 may move to f2
-
+        }
+        
         return (figureToMove.bitMask & captureMask) != 0 && (destinationFigure.id * figureToMove.id < 0) && isEmptyPath(p1,
                 p2, dirId, field);
     }

@@ -24,78 +24,78 @@ package model;
 //This is combined in the class FigureMask.
 
 public enum Figures {
-	pawnBlack(
+	PawnBlack(
 			(byte)-1,
 			"00000000100000000000001000100000",
 			true,
             "\u265F"),
 
-	rookBlack(
+	RookBlack(
 			(byte)-2,
             "10001000100010001000100010001000",
 			false,
             "\u265C"),
-	knightBlack(
+	KnightBlack(
 			(byte)-3,
             "01010101010101010101010101010101",
 			true,
             "\u265E"),
 			
-	bishopBlack(
+	BishopBlack(
 			(byte)-4,
             "00100010001000100010001000100010",
 			false,
             "\u265D"),
 			
-	queenBlack(
+	QueenBlack(
 			(byte)-5,
             "10101010101010101010101010101010",
 			false,
             "\u265B"),
 			
-	kingBlack(
+	KingBlack(
 			(byte)-6,
             "10101010101010101010101010101010",
 			true,
             "\u265A"),
 			
-	empty(
+	Empty(
 			(byte)0,
             "00000000000000000000000000000000",
 			true,
             ""),
 
-	pawnWhite(
+	PawnWhite(
 			(byte)1,
             "10000000000000000010000000000010" ,
 			true,
             "\u265F"),
 			
-	rookWhite(
+	RookWhite(
 			(byte)2,
            "10001000100010001000100010001000",
 			false,
             "\u265C"),
 			
-	knightWhite(
+	KnightWhite(
 			(byte)3,
             "01010101010101010101010101010101",
 			true,
             "\u265E"),
 			
-	bishopWhite(
+	BishopWhite(
 			(byte)4,
            "00100010001000100010001000100010",
 			false,
             "\u265D"),
 			
-	queenWhite(
+	QueenWhite(
 			(byte)5,
             "10101010101010101010101010101010",
 			false,
             "\u265B"),
 			
-	kingWhite(
+	KingWhite(
 			(byte)6,
             "10101010101010101010101010101010",
 			true,
@@ -120,8 +120,9 @@ public enum Figures {
     // for reverse lookup
     public static Figures lookUpID(byte id) {
         for(Figures s : values()) {
-            if(s.id() == id)
+            if(s.id() == id){
                 return s;
+            }
         }
         return null;
     }
