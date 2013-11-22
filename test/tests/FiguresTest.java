@@ -22,44 +22,44 @@ public class FiguresTest {
 	public void correctReturnValues() {
 		assertTrue(
 				"Empty field should be represented as 0! (Is "
-						+ Figures.empty.id(), Figures.empty.id() == 0);
+						+ Figures.Empty.id(), Figures.Empty.id() == 0);
 		assertTrue(
 				"White pawn field should be represented as 1! (Is "
-						+ Figures.pawnWhite.id(), Figures.pawnWhite.id() == 1);
+						+ Figures.PawnWhite.id(), Figures.PawnWhite.id() == 1);
 		assertTrue(
 				"White rook field should be represented as 2! (Is "
-						+ Figures.rookWhite.id(), Figures.rookWhite.id() == 2);
+						+ Figures.RookWhite.id(), Figures.RookWhite.id() == 2);
 		assertTrue(
 				"White Knight should be represented as 3! (Is "
-						+ Figures.knightWhite.id(), Figures.knightWhite.id() == 3);
+						+ Figures.KnightWhite.id(), Figures.KnightWhite.id() == 3);
 		assertTrue(
 				"White Bishop field should be represented as 4! (Is "
-						+ Figures.bishopWhite.id(), Figures.bishopWhite.id() == 4);
+						+ Figures.BishopWhite.id(), Figures.BishopWhite.id() == 4);
 		assertTrue(
 				"White Queen field should be represented as 5! (Is "
-						+ Figures.queenWhite.id(), Figures.queenWhite.id() == 5);
+						+ Figures.QueenWhite.id(), Figures.QueenWhite.id() == 5);
 		assertTrue(
 				"White King field should be represented as 6! (Is "
-						+ Figures.kingWhite.id(), Figures.kingWhite.id() == 6);
+						+ Figures.KingWhite.id(), Figures.KingWhite.id() == 6);
 
 		assertTrue(
 				"Black pawn field should be represented as -1! (Is "
-						+ Figures.pawnBlack.id(), Figures.pawnBlack.id() == -1);
+						+ Figures.PawnBlack.id(), Figures.PawnBlack.id() == -1);
 		assertTrue(
 				"Black rook field should be represented as -2! (Is "
-						+ Figures.rookBlack.id(), Figures.rookBlack.id() == -2);
+						+ Figures.RookBlack.id(), Figures.RookBlack.id() == -2);
 		assertTrue(
 				"Black Knight should be represented as -3! (Is "
-						+ Figures.knightBlack.id(), Figures.knightBlack.id() == -3);
+						+ Figures.KnightBlack.id(), Figures.KnightBlack.id() == -3);
 		assertTrue(
 				"Black Bishop field should be represented as -4! (Is "
-						+ Figures.bishopBlack.id(), Figures.bishopBlack.id() == -4);
+						+ Figures.BishopBlack.id(), Figures.BishopBlack.id() == -4);
 		assertTrue(
 				"Black Queen field should be represented as -5! (Is "
-						+ Figures.queenBlack.id(), Figures.queenBlack.id() == -5);
+						+ Figures.QueenBlack.id(), Figures.QueenBlack.id() == -5);
 		assertTrue(
 				"Black King field should be represented as -6! (Is "
-						+ Figures.kingBlack.id(), Figures.kingBlack.id() == -6);
+						+ Figures.KingBlack.id(), Figures.KingBlack.id() == -6);
 	}
 	
     @Test
@@ -67,19 +67,19 @@ public class FiguresTest {
     	assertTrue(Figures.lookUpID((byte)7) == null);
     	assertTrue(Figures.lookUpID((byte)-7) == null);
     	
-    	assertTrue(Figures.lookUpID((byte)-1) == Figures.pawnBlack);
-    	assertTrue(Figures.lookUpID((byte)-2) == Figures.rookBlack);
-    	assertTrue(Figures.lookUpID((byte)-3) == Figures.knightBlack);
-    	assertTrue(Figures.lookUpID((byte)-4) == Figures.bishopBlack);
-    	assertTrue(Figures.lookUpID((byte)-5) == Figures.queenBlack);
-    	assertTrue(Figures.lookUpID((byte)-6) == Figures.kingBlack);
+    	assertTrue(Figures.lookUpID((byte)-1) == Figures.PawnBlack);
+    	assertTrue(Figures.lookUpID((byte)-2) == Figures.RookBlack);
+    	assertTrue(Figures.lookUpID((byte)-3) == Figures.KnightBlack);
+    	assertTrue(Figures.lookUpID((byte)-4) == Figures.BishopBlack);
+    	assertTrue(Figures.lookUpID((byte)-5) == Figures.QueenBlack);
+    	assertTrue(Figures.lookUpID((byte)-6) == Figures.KingBlack);
     	
-    	assertTrue(Figures.lookUpID((byte)1) == Figures.pawnWhite);
-    	assertTrue(Figures.lookUpID((byte)2) == Figures.rookWhite);
-    	assertTrue(Figures.lookUpID((byte)3) == Figures.knightWhite);
-    	assertTrue(Figures.lookUpID((byte)4) == Figures.bishopWhite);
-    	assertTrue(Figures.lookUpID((byte)5) == Figures.queenWhite);
-    	assertTrue(Figures.lookUpID((byte)6) == Figures.kingWhite);
+    	assertTrue(Figures.lookUpID((byte)1) == Figures.PawnWhite);
+    	assertTrue(Figures.lookUpID((byte)2) == Figures.RookWhite);
+    	assertTrue(Figures.lookUpID((byte)3) == Figures.KnightWhite);
+    	assertTrue(Figures.lookUpID((byte)4) == Figures.BishopWhite);
+    	assertTrue(Figures.lookUpID((byte)5) == Figures.QueenWhite);
+    	assertTrue(Figures.lookUpID((byte)6) == Figures.KingWhite);
     	
     }
     
@@ -90,8 +90,8 @@ public class FiguresTest {
     	
     	FigureMask mask;
     	
-    	mask = Figures.pawnBlack.getMask();
-    	assertTrue(mask.id == -1 && mask.limited== true);   
+    	mask = Figures.PawnBlack.getMask();
+    	assertTrue(mask.id == -1 && mask.limited);
     	
     }
 

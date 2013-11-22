@@ -18,8 +18,9 @@ public class GameController {
 	private static GameController instance;
 	
 	public static GameController GetInstance() {
-		if(instance==null)
+		if(instance==null){
 			instance = new GameController();
+        }
 		return instance;
 	}
 	
@@ -37,23 +38,23 @@ public class GameController {
     }
     
     // checks whether field is in checkmate state
-    public boolean isCheckMate(Field field){
+    //public boolean isCheckMate(Field field){
     	// iterate over field to find kings
-    	Point[] kings  =  field.getKingsPositions();
-    	for(Point king : kings){
+    	//Point[] kings  =  field.getKingsPositions();
+    	//for(Point king : kings){
     		// check stuff
-    	}
-    	return false;
-    }
+    	//}
+    //return false;
+   // }
     
     
     public Point[] getPossibleMoves(Point p){
         ArrayList<Point> list= new ArrayList<Point>();
         for(int y=0;y<8;y++){
             for(int x=0;x<8;x++){
-                 if(validator.isValid(p,new Point(x,y),field))
+                 if(validator.isValid(p,new Point(x,y),field)){
                      list.add(new Point(x,y));
-
+                 }
             }
         }
         return list.toArray(new Point[list.size()]);

@@ -31,7 +31,7 @@ public class GUI extends JFrame implements ActionListener{
         try {
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Magic Error!");
         }
 
         JPanel totalGUI = new JPanel();
@@ -41,10 +41,12 @@ public class GUI extends JFrame implements ActionListener{
         for(int i=0;i<8;i++){
             for(int x=0;x<8;x++){
                 fields[x][i]= new JButton(controller.getUnicode(new Point(x, i)));
-                if(controller.getID(new Point(x, i))<0)
+                if(controller.getID(new Point(x, i))<0){
                     fields[x][i].setForeground(Color.black);
-                else
+                }else{
                     fields[x][i].setForeground(Color.white);
+                }
+
                 fields[x][i].setBackground((colorSwitch>0) ? Color.lightGray : Color.gray);
                 fields[x][i].setFont(new Font("Dialog", Font.BOLD, 36));
                 fields[x][i].setActionCommand(x + " " + i);
@@ -101,14 +103,15 @@ public class GUI extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent actionEvent) {
 
-        if(actionEvent.getActionCommand().equals("quit"))
+        if(actionEvent.getActionCommand().equals("quit")){
             System.exit(0);
-
+        }
         String s[] = actionEvent.getActionCommand().split(" ");
         Point p = new Point(Integer.parseInt(s[0]),Integer.parseInt(s[1]));
 
-        if(fields[p.x][p.y].getText().equals("") && selected.x==-1)
+        if(fields[p.x][p.y].getText().equals("") && selected.x==-1){
             return;
+        }
 
         if(selected.x==-1){
             possibilities = controller.getPossibleMoves(p);
@@ -134,10 +137,11 @@ public class GUI extends JFrame implements ActionListener{
                 fields[p.x][p.y].setText(fields[selected.x][selected.y].getText());
                 fields[selected.x][selected.y].setText("");
 
-                if(controller.getID(p)<0)
+                if(controller.getID(p)<0){
                     fields[p.x][p.y].setForeground(Color.black);
-                else
+                }else{
                     fields[p.x][p.y].setForeground(Color.white);
+                }
             }
             for(int i=0;i<possibilities.length;i++) {
                 fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
@@ -145,11 +149,11 @@ public class GUI extends JFrame implements ActionListener{
             selected=new Point(-1,-1);
         }
 
-        if(controller.whitesTurn())
+        if(controller.whitesTurn()){
             status.setText("Whites turn!");
-        else
+        }else {
             status.setText("Blacks turn!");
-
+        }
 
     }
 }
