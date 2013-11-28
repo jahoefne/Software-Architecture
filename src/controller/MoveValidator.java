@@ -8,13 +8,13 @@ import java.awt.*;
 
 public class MoveValidator {
 
-    public static final int NumberOfDirections = 16;
+    public static final int NUMBER_OF_DIRECTIONS = 16;
     //- p - b -
     //n o a c d
     //- m x e -
     //l l i g f
     //- j - h -
-    private static final Vector2D[] directions = {
+    private static final Vector2D[] DIRECTIONS = {
      // denotes the 16 possible direction vectors
             new Vector2D(0, -1),
             // x -> a
@@ -64,10 +64,10 @@ public class MoveValidator {
     }
 
     // returns the ID (0-15) if 'v' points in the same direction, or -1 if it is not identical with
-    // any of the directions
+    // any of the DIRECTIONS
     private int getDirectionID(Vector2D v) {
-        for (int i = 0; i < directions.length; i++) {
-            if (Vector2D.sameDirection(v, directions[i])) {
+        for (int i = 0; i < DIRECTIONS.length; i++) {
+            if (Vector2D.sameDirection(v, DIRECTIONS[i])) {
                 return i;
             }
         }
@@ -81,8 +81,8 @@ public class MoveValidator {
 
     // returns whether the path BETWEEN p1 and p2 is empty
     boolean isEmptyPath(Point p1, Point p2, int dirId, Field field) {
-        int vX = (int) directions[dirId].getX();
-        int vY = (int) directions[dirId].getY();
+        int vX = (int) DIRECTIONS[dirId].getX();
+        int vY = (int) DIRECTIONS[dirId].getY();
 
         int x = p1.x + vX;
         int y = p1.y + vY;
@@ -99,8 +99,8 @@ public class MoveValidator {
 
     // returns the length of the path
     int getPathLength(Point p1, Point p2, int dirId) {
-        int vX = (int) directions[dirId].getX();
-        int vY = (int) directions[dirId].getY();
+        int vX = (int) DIRECTIONS[dirId].getX();
+        int vY = (int) DIRECTIONS[dirId].getY();
 
         int x = p1.x;
         int y = p1.y;
@@ -145,7 +145,7 @@ public class MoveValidator {
 
         int dirId = this.getDirectionID(v);
         int moveMask = this.setBit(dirId);
-        int captureMask = this.setBit(dirId + NumberOfDirections);
+        int captureMask = this.setBit(dirId + NUMBER_OF_DIRECTIONS);
 
         if (!(figureToMove.getId() * field.getWhiteOrBlack() >= 0) || dirId < 0) {
             return false;

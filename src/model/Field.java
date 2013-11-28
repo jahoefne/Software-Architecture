@@ -1,8 +1,6 @@
 package model;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 
 // Denotes a Chess field.
@@ -12,39 +10,47 @@ import java.util.Collection;
 public class Field {
 
     private byte[][] field;
-    private static final int Len = 8;
+    private static final int LEN = 8;
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int THREE = 3;
+    private static final int FOUR = 4;
+    private static final int FIVE = 5;
+    private static final int SIX = 6;
+    private static final int SEVEN = 7;
 
-    private byte whiteOrBlack = 1;
+    private byte whiteOrBlack = ONE;
     // Which player can move next ->
     //	    negative => Black
     //      positive => White
 
     // Resets the field
     final void reset() {
-        whiteOrBlack = 1;
-        field = new byte[Len][Len];
-        for (int x = 0; x < 8; x++) {
-            field[x][1] = Figures.PawnBlack.id();
-            field[x][6] = Figures.PawnWhite.id();
+        whiteOrBlack = ONE;
+        field = new byte[LEN][LEN];
+        for (int x = ZERO; x < LEN; x++) {
+            field[x][ONE] = Figures.PawnBlack.id();
+            field[x][SIX] = Figures.PawnWhite.id();
         }
 
-        field[0][0] = Figures.RookBlack.id();
-        field[1][0] = Figures.KnightBlack.id();
-        field[2][0] = Figures.BishopBlack.id();
-        field[3][0] = Figures.QueenBlack.id();
-        field[4][0] = Figures.KingBlack.id();
-        field[5][0] = Figures.BishopBlack.id();
-        field[6][0] = Figures.KnightBlack.id();
-        field[7][0] = Figures.RookBlack.id();
+        field[ZERO][ZERO] = Figures.RookBlack.id();
+        field[ONE][ZERO] = Figures.KnightBlack.id();
+        field[TWO][ZERO] = Figures.BishopBlack.id();
+        field[THREE][ZERO] = Figures.QueenBlack.id();
+        field[FOUR][ZERO] = Figures.KingBlack.id();
+        field[FIVE][ZERO] = Figures.BishopBlack.id();
+        field[SIX][ZERO] = Figures.KnightBlack.id();
+        field[SEVEN][ZERO] = Figures.RookBlack.id();
 
-        field[0][7] = Figures.RookWhite.id();
-        field[1][7] = Figures.KnightWhite.id();
-        field[2][7] = Figures.BishopWhite.id();
-        field[3][7] = Figures.QueenWhite.id();
-        field[4][7] = Figures.KingWhite.id();
-        field[5][7] = Figures.BishopWhite.id();
-        field[6][7] = Figures.KnightWhite.id();
-        field[7][7] = Figures.RookWhite.id();
+        field[ZERO][SEVEN] = Figures.RookWhite.id();
+        field[ONE][SEVEN] = Figures.KnightWhite.id();
+        field[TWO][SEVEN] = Figures.BishopWhite.id();
+        field[THREE][SEVEN] = Figures.QueenWhite.id();
+        field[FOUR][SEVEN] = Figures.KingWhite.id();
+        field[FIVE][SEVEN] = Figures.BishopWhite.id();
+        field[SIX][SEVEN] = Figures.KnightWhite.id();
+        field[SEVEN][SEVEN] = Figures.RookWhite.id();
     }
 
     public Field() {
@@ -64,29 +70,17 @@ public class Field {
         field[pos1.x][pos1.y] = Figures.Empty.id();
     }
 
-    public Point[] getKingsPositions(){
-        Collection<Point> list = new ArrayList<Point>();
-    	for(int x=0; x<8;x++){
-    		for(int y=0; x<8; y++){
-    			if(Math.abs(this.getCell(x,y)) == Math.abs(Figures.KingWhite.id())){
-    					list.add(new Point(x,y));
-    			}
-    		}
-    	}
-    	return (Point[])list.toArray();
-    }
-
     public void set(Point p, byte value) {
         field[p.x][p.y] = value;
     }
 
     @Override
     public String toString() {
-        String rep = (whiteOrBlack > 0) ? "Whites " : "Blacks ";
+        String rep = (whiteOrBlack > ZERO) ? "Whites " : "Blacks ";
         rep += "Turn!\n";
-        for (int y = 0; y < Len; y++) {
-            for (int x = 0; x < Len; x++) {
-                rep += (field[x][y] >= 0) ? " " + field[x][y] + " |" :
+        for (int y = ZERO; y < LEN; y++) {
+            for (int x = ZERO; x < LEN; x++) {
+                rep += (field[x][y] >= ZERO) ? " " + field[x][y] + " |" :
                         field[x][y] + " |";
             }
             rep += "\n";

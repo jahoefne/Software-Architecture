@@ -14,9 +14,9 @@ import java.awt.event.ActionListener;
  */
 public class GUI extends JFrame implements ActionListener {
 
-    private static final int lengthOfBoard = 8;
+    private static final int LENGTH_OF_BOARD = 8;
 
-    private final JButton[][] fields = new JButton[lengthOfBoard][lengthOfBoard];
+    private final JButton[][] fields = new JButton[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
     private final GameController controller = GameController.getInstance();
     private JLabel status;
     private final GridLayout layout = new GridLayout(9, 8);
@@ -27,8 +27,8 @@ public class GUI extends JFrame implements ActionListener {
     private Point[] possibilities;
     private Color[] tmpColors;
 
-    private static final int filedSize = 70;
-    private static final int fontSize = 36;
+    private static final int FILED_SIZE = 70;
+    private static final int FONT_SIZE = 36;
 
 
     JPanel createContentPane() {
@@ -44,8 +44,8 @@ public class GUI extends JFrame implements ActionListener {
         JPanel mainPanel = new JPanel(layout);
 
         byte colorSwitch = 1;
-        for (int i = 0; i < lengthOfBoard; i++) {
-            for (int x = 0; x < lengthOfBoard; x++) {
+        for (int i = 0; i < LENGTH_OF_BOARD; i++) {
+            for (int x = 0; x < LENGTH_OF_BOARD; x++) {
                 fields[x][i] = new JButton(controller.getUnicode(new Point(x, i)));
                 if (controller.getID(new Point(x, i)) < 0) {
                     fields[x][i].setForeground(Color.black);
@@ -53,9 +53,9 @@ public class GUI extends JFrame implements ActionListener {
                     fields[x][i].setForeground(Color.white);
                 }
                 fields[x][i].setBackground((colorSwitch > 0) ? Color.lightGray : Color.gray);
-                fields[x][i].setFont(new Font("Dialog", Font.BOLD, fontSize));
+                fields[x][i].setFont(new Font("Dialog", Font.BOLD, FONT_SIZE));
                 fields[x][i].setActionCommand(x + " " + i);
-                fields[x][i].setPreferredSize(new Dimension(filedSize, filedSize));
+                fields[x][i].setPreferredSize(new Dimension(FILED_SIZE, FILED_SIZE));
                 fields[x][i].setBorderPainted(true);
                 fields[x][i].setOpaque(true);
                 fields[x][i].addActionListener(this);
