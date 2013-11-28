@@ -3,9 +3,9 @@ package view;
 import controller.GameController;
 
 public class TUI {
-    private final static GameController controller = GameController.GetInstance();
+    private static final GameController Controller = GameController.getInstance();
 
     public static void main(String[] args) {
-        System.out.println(controller.toString());
+        Controller.resetGame();
     }
 }

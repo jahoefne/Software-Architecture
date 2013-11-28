@@ -1,6 +1,8 @@
 package model;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 // Denotes a Chess field.
@@ -10,17 +12,17 @@ import java.awt.*;
 public class Field {
 
     private byte[][] field;
-    private static final int len = 8;
+    private static final int Len = 8;
 
-    private byte whiteOrBlack = 1; // Which player can move next ->
-    //						        negative => Black
-    //
+    private byte whiteOrBlack = 1;
+    // Which player can move next ->
+    //	    negative => Black
     //      positive => White
 
     // Resets the field
-    void reset() {
+    final void reset() {
         whiteOrBlack = 1;
-        field = new byte[len][len];
+        field = new byte[Len][Len];
         for (int x = 0; x < 8; x++) {
             field[x][1] = Figures.PawnBlack.id();
             field[x][6] = Figures.PawnWhite.id();
@@ -62,7 +64,7 @@ public class Field {
         field[pos1.x][pos1.y] = Figures.Empty.id();
     }
 
-  /*  public Point[] getKingsPositions(){
+    public Point[] getKingsPositions(){
         Collection<Point> list = new ArrayList<Point>();
     	for(int x=0; x<8;x++){
     		for(int y=0; x<8; y++){
@@ -72,7 +74,7 @@ public class Field {
     		}
     	}
     	return (Point[])list.toArray();
-    } */
+    }
 
     public void set(Point p, byte value) {
         field[p.x][p.y] = value;
@@ -82,8 +84,8 @@ public class Field {
     public String toString() {
         String rep = (whiteOrBlack > 0) ? "Whites " : "Blacks ";
         rep += "Turn!\n";
-        for (int y = 0; y < len; y++) {
-            for (int x = 0; x < len; x++) {
+        for (int y = 0; y < Len; y++) {
+            for (int x = 0; x < Len; x++) {
                 rep += (field[x][y] >= 0) ? " " + field[x][y] + " |" :
                         field[x][y] + " |";
             }

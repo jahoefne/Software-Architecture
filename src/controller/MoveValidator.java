@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class MoveValidator {
 
-    public static final int numberOfDirections = 16;
+    public static final int NumberOfDirections = 16;
     //- p - b -
     //n o a c d
     //- m x e -
@@ -145,7 +145,7 @@ public class MoveValidator {
 
         int dirId = this.getDirectionID(v);
         int moveMask = this.setBit(dirId);
-        int captureMask = this.setBit(dirId + numberOfDirections);
+        int captureMask = this.setBit(dirId + NumberOfDirections);
 
         if (!(figureToMove.getId() * field.getWhiteOrBlack() >= 0) || dirId < 0) {
             return false;

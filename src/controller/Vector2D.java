@@ -18,16 +18,16 @@ public class Vector2D {
 
     // constructs vector out of 2 integers
     public Vector2D(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.x = (double)x;
+        this.y = (double)y;
     }
 
     // compares 2 vectors
-    private static final double threshold = 0.000000001;
+    private static final double Threshold = 0.000000001;
 
     private static boolean isEqual(Vector2D a, Vector2D b) {
-        // threshold necessary because floats
-        return Math.abs(a.getX() - b.getX()) < threshold && Math.abs(a.getY() - b.getY()) < threshold;
+        // Threshold necessary because floats
+        return Math.abs(a.getX() - b.getX()) < Threshold && Math.abs(a.getY() - b.getY()) < Threshold;
     }
 
     // normalizes v and returns the normalized vectors

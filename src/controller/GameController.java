@@ -17,7 +17,7 @@ public class GameController {
 
     private static GameController instance;
 
-    public static GameController GetInstance() {
+    public static GameController getInstance() {
         if (instance == null) {
             instance = new GameController();
         }

@@ -14,10 +14,10 @@ import java.awt.event.ActionListener;
  */
 public class GUI extends JFrame implements ActionListener {
 
-    private final JButton[][] fields = new JButton[8][8];
-    private final GameController controller = GameController.GetInstance();
-    private JButton newGame;
-    private JButton quit;
+    private static final int lengthOfBoard = 8;
+
+    private final JButton[][] fields = new JButton[lengthOfBoard][lengthOfBoard];
+    private final GameController controller = GameController.getInstance();
     private JLabel status;
     private final GridLayout layout = new GridLayout(9, 8);
 
@@ -32,18 +32,20 @@ public class GUI extends JFrame implements ActionListener {
 
 
     JPanel createContentPane() {
+        JButton newGame;
+        JButton quit;
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Could not set cross platform look and feel!");
         }
 
         JPanel totalGUI = new JPanel();
         JPanel mainPanel = new JPanel(layout);
 
         byte colorSwitch = 1;
-        for (int i = 0; i < 8; i++) {
-            for (int x = 0; x < 8; x++) {
+        for (int i = 0; i < lengthOfBoard; i++) {
+            for (int x = 0; x < lengthOfBoard; x++) {
                 fields[x][i] = new JButton(controller.getUnicode(new Point(x, i)));
                 if (controller.getID(new Point(x, i)) < 0) {
                     fields[x][i].setForeground(Color.black);
