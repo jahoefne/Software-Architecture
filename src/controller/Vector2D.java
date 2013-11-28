@@ -23,11 +23,11 @@ public class Vector2D {
     }
 
     // compares 2 vectors
-    private static final double Threshold = 0.000000001;
+    private static final double THRESHOLD = 0.000000001;
 
     private static boolean isEqual(Vector2D a, Vector2D b) {
-        // Threshold necessary because floats
-        return Math.abs(a.getX() - b.getX()) < Threshold && Math.abs(a.getY() - b.getY()) < Threshold;
+        // THRESHOLD necessary because floats
+        return Math.abs(a.getX() - b.getX()) < THRESHOLD && Math.abs(a.getY() - b.getY()) < THRESHOLD;
     }
 
     // normalizes v and returns the normalized vectors

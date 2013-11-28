@@ -115,11 +115,12 @@ public class MoveValidator {
     }
 
 
+    private static final int PAWN_STARTPOS = 6;
     // returns whether figure is a pawn and pos is a pawn start-position
     private boolean isPawnInStartPosition(FigureMask figure, Point pos) {
         if ((figure.getId() == Figures.PawnBlack.id() && pos.y == 1)) {
             return false;
-        } else if (figure.getId() == Figures.PawnWhite.id() && pos.y == 6) {
+        } else if (figure.getId() == Figures.PawnWhite.id() && pos.y == PAWN_STARTPOS) {
             return false;
         }
         return true;

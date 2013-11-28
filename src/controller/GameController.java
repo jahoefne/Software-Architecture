@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class GameController {
 
     private static GameController instance;
+    private static final int FIELD_LENGTH = 8;
 
     public static GameController getInstance() {
         if (instance == null) {
@@ -34,8 +35,8 @@ public class GameController {
 
     public Point[] getPossibleMoves(Point p) {
         ArrayList<Point> list = new ArrayList<Point>();
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < FIELD_LENGTH; y++) {
+            for (int x = 0; x < FIELD_LENGTH; x++) {
                 if (validator.isValid(p, new Point(x, y), field)) {
                     list.add(new Point(x, y));
                 }

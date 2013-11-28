@@ -126,7 +126,7 @@ public class GUI extends JFrame implements ActionListener {
             tmpColors = new Color[possibilities.length];
             for (int i = 0; i < possibilities.length; i++) {
                 tmpColors[i] = fields[possibilities[i].x][possibilities[i].y].getBackground();
-                fields[possibilities[i].x][possibilities[i].y].setBackground(new Color(184, 220, 184));
+                fields[possibilities[i].x][possibilities[i].y].setBackground(Color.RED);
             }
             tmp = fields[p.x][p.y].getBackground();
             fields[p.x][p.y].setBackground(Color.darkGray);
