@@ -9,16 +9,26 @@ import java.awt.*;
  *
  */
 public interface IGameController {
-     void resetGame();
 
-     Point[] getPossibleMoves(Point p);
-     boolean move(Point x, Point y);
+    // restarts the game
+    void resetGame();
 
-     String getUnicode(Point x);
+    // get an array of all possible moves of the figure at point p
+    Point[] getPossibleMoves(Point p);
 
-     byte getID(Point x);
+    // moves figure at point x, to point y, returns if the move was successful
+    boolean move(Point x, Point y);
 
-     boolean whitesTurn();
+    // returns the unicode representation of the figure at point x
+    String getUnicode(Point x);
 
-     boolean isCheckMate();
+    // is used to determine the colour of a figure on field x
+    // >0 white, <0 black
+    byte getID(Point x);
+
+    // obvious
+    boolean whitesTurn();
+
+    // obvious
+    boolean isCheckMate();
 }
