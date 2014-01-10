@@ -1,8 +1,8 @@
 package controller;
 
-import model.FigureMask;
 import model.Figures;
 import model.IField;
+import model.IFigureMask;
 
 import java.awt.*;
 
@@ -117,7 +117,7 @@ public class MoveValidator {
 
     private static final int PAWN_STARTPOS = 6;
     // returns whether figure is a pawn and pos is a pawn start-position
-    private boolean isPawnInStartPosition(FigureMask figure, Point pos) {
+    private boolean isPawnInStartPosition(IFigureMask figure, Point pos) {
         if ((figure.getId() == Figures.PawnBlack.id() && pos.y == 1)) {
             return false;
         } else if (figure.getId() == Figures.PawnWhite.id() && pos.y == PAWN_STARTPOS) {
@@ -127,7 +127,7 @@ public class MoveValidator {
     }
 
     // Checks whether the movement of the current figure must be limited or not
-    private boolean isMovementLimited(int pathLength, FigureMask figure, Point pos) {
+    private boolean isMovementLimited(int pathLength, IFigureMask figure, Point pos) {
         // Limit movement to one field if applicable
         if (pathLength > 1 && figure.isLimited()) {
             // Rule Exception for first move of pawns
@@ -139,8 +139,8 @@ public class MoveValidator {
 
     // checks if the move is valid
     public boolean isValid(Point p1, Point p2, IField field) {
-        FigureMask figureToMove = Figures.lookUpID(field.getCell(p1.x, p1.y)).getMask();
-        FigureMask destinationFigure = Figures.lookUpID(field.getCell(p2.x, p2.y)).getMask();
+        IFigureMask figureToMove = Figures.lookUpID(field.getCell(p1.x, p1.y)).getMask();
+        IFigureMask destinationFigure = Figures.lookUpID(field.getCell(p2.x, p2.y)).getMask();
 
         Vector2D v = new Vector2D(p1, p2);
 

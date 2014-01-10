@@ -1,7 +1,7 @@
 package test;
 
-import model.FigureMask;
 import model.Figures;
+import model.IFigureMask;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -85,7 +85,7 @@ public class FiguresTest {
 
         // TODO: Test mask.bitMask!
 
-        FigureMask mask;
+        IFigureMask mask;
 
         mask = Figures.PawnBlack.getMask();
         assertTrue(mask.getId() == -1 && mask.isLimited());

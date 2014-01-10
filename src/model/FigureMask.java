@@ -1,7 +1,7 @@
 package model;
 
 // describes the FigureMask Bitmasks
-public class FigureMask {
+public class FigureMask implements IFigureMask{
     private final byte id;
     private final int bitMask;
     private final boolean limited;

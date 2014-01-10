@@ -11,10 +11,11 @@ import java.util.ArrayList;
      * User: jahoefne
      * Creation Date: 03.11.13
      * Time: 11:38
-     * <p/>
      * The main controller of the game, all relevant logic
+     * this class also serves as the 'Game Object' instantiate a GameController object in order
+     * to start a new game.
      */
-    public class GameController {
+    public class GameController implements IGameController{
 
         private static GameController instance;
         private static final int FIELD_LENGTH = 8;
@@ -61,6 +62,11 @@ import java.util.ArrayList;
 
         public boolean whitesTurn() {
             return field.getWhiteOrBlack() > 0;
+        }
+
+        public boolean isCheckMate(){
+            // TODO: implement check mate test
+            return false;
         }
 
         @Override

@@ -102,7 +102,7 @@ public enum Figures {
             "\u265A");
 
 
-    private final FigureMask mask;
+    private final IFigureMask mask;
 
     Figures(byte id, String mask, boolean limited, String unicode) {
         this.mask = new FigureMask(id, mask, limited, unicode);
@@ -112,7 +112,7 @@ public enum Figures {
         return mask.getId();
     }
 
-    public FigureMask getMask() {
+    public IFigureMask getMask() {
         return mask;
     }
 

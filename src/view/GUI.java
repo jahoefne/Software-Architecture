@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameController;
+import controller.IGameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class GUI extends JFrame implements ActionListener {
     private static final int LENGTH_OF_BOARD = 8;
 
     private final JButton[][] fields = new JButton[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
-    private final GameController controller = GameController.getInstance();
+    private final IGameController controller = GameController.getInstance();
     private JLabel status;
     private final GridLayout layout = new GridLayout(9, 8);
 
