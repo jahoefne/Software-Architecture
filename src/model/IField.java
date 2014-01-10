@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.*;
+        import java.awt.*;
 
 /**
  * User: jahoefne
@@ -8,10 +8,10 @@ import java.awt.*;
  * Time: 12:20
  */
 public interface IField {
-    public byte getCell(int x, int y);
-    public byte getCell(Point p);
-    public void move(Point pos1, Point pos2);
-    public void set(Point p, byte value);
-    public void toggleWhiteOrBlack();
-    public byte getWhiteOrBlack();
+     byte getCell(int x, int y);
+     byte getCell(Point p);
+     void move(Point pos1, Point pos2);
+     void set(Point p, byte value);
+     void toggleWhiteOrBlack();
+     byte getWhiteOrBlack();
 }

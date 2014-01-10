@@ -9,16 +9,16 @@ import java.awt.*;
  *
  */
 public interface IGameController {
-    public void resetGame();
+     void resetGame();
 
-    public Point[] getPossibleMoves(Point p);
-    public boolean move(Point x, Point y);
+     Point[] getPossibleMoves(Point p);
+     boolean move(Point x, Point y);
 
-    public String getUnicode(Point x);
+     String getUnicode(Point x);
 
-    public byte getID(Point x);
+     byte getID(Point x);
 
-    public boolean whitesTurn();
+     boolean whitesTurn();
 
-    public boolean isCheckMate();
+     boolean isCheckMate();
 }

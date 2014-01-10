@@ -6,8 +6,8 @@ package model;
  * Time: 12:29
  */
 public interface IFigureMask {
-    public byte getId();
-    public int getBitMask();
-    public boolean isLimited();
-    public String getUnicode();
+     byte getId();
+     int getBitMask();
+     boolean isLimited();
+     String getUnicode();
 }
