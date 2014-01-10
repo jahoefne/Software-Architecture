@@ -1,4 +1,4 @@
-=== Chess HTWG Konstanz SE Project
+## Chess - HTWG Konstanz - SE Project
 
 
 #### Overview
