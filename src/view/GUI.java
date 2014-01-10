@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  * Creation Date: 03.11.13
  * Time: 13:42
  */
-public class GUI extends JFrame implements ActionListener {
+class GUI extends JFrame implements ActionListener {
 
     private static final int LENGTH_OF_BOARD = 8;
 
@@ -38,7 +38,7 @@ public class GUI extends JFrame implements ActionListener {
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Exception e) {
-            System.out.println("Could not set cross platform look and feel!");
+            // wow, an error occured!
         }
 
         JPanel totalGUI = new JPanel();
