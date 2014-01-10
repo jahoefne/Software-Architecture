@@ -1,8 +1,8 @@
 package controller;
 
-import model.Field;
 import model.FigureMask;
 import model.Figures;
+import model.IField;
 
 import java.awt.*;
 
@@ -51,7 +51,7 @@ public class MoveValidator {
     };
 
     // Moves the figure at p1 to p2 if the move is valid
-    public boolean moveIfValid(Point p1, Point p2, Field field) {
+    public boolean moveIfValid(Point p1, Point p2, IField field) {
         if (isValid(p1, p2, field)) {
         // if the move is valid
             field.move(p1, p2);
@@ -80,7 +80,7 @@ public class MoveValidator {
     }
 
     // returns whether the path BETWEEN p1 and p2 is empty
-    boolean isEmptyPath(Point p1, Point p2, int dirId, Field field) {
+    boolean isEmptyPath(Point p1, Point p2, int dirId, IField field) {
         int vX = (int) DIRECTIONS[dirId].getX();
         int vY = (int) DIRECTIONS[dirId].getY();
 
@@ -138,7 +138,7 @@ public class MoveValidator {
 
 
     // checks if the move is valid
-    public boolean isValid(Point p1, Point p2, Field field) {
+    public boolean isValid(Point p1, Point p2, IField field) {
         FigureMask figureToMove = Figures.lookUpID(field.getCell(p1.x, p1.y)).getMask();
         FigureMask destinationFigure = Figures.lookUpID(field.getCell(p2.x, p2.y)).getMask();
 

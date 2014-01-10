@@ -7,7 +7,7 @@ import java.awt.*;
 // The field is realized as a 2D byte Array, with one byte for each cell.
 // The state of the field is denoted by the enum defined in
 // Figures.java
-public class Field {
+public class Field implements IField{
 
     private byte[][] field;
     private static final int LEN = 8;

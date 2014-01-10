@@ -113,7 +113,10 @@ public class GUI extends JFrame implements ActionListener {
             System.exit(0);
         }
 
+
         String s[] = actionEvent.getActionCommand().split(" ");
+
+        // TODO: chrash if new game button pressed because of the of point below
         Point p = new Point(Integer.parseInt(s[0]), Integer.parseInt(s[1]));
 
         if (fields[p.x][p.y].getText().equals("") && selected.x == -1) {
