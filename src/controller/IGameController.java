@@ -7,6 +7,7 @@ import java.awt.*;
  * Date: 10/01/14
  * Time: 12:36
  *
+ * Game controller Interface
  */
 public interface IGameController {
 
