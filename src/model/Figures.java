@@ -22,7 +22,6 @@ package model;
 //This implementation uses a 32-bit int for representing the capture and the 
 //movement mask and a boolean to define the movement limitation.
 //This is combined in the class FigureMask.
-
 public enum Figures {
     PawnBlack(
             (byte) -1,

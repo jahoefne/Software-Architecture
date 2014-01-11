@@ -137,6 +137,8 @@ public class MoveValidator {
     }
 
 
+
+
     // checks if the move is valid
     public boolean isValid(Point p1, Point p2, IField field) {
         IFigureMask figureToMove = Figures.lookUpID(field.getCell(p1.x, p1.y)).getMask();
@@ -148,15 +150,8 @@ public class MoveValidator {
         int moveMask = this.setBit(dirId);
         int captureMask = this.setBit(dirId + NUMBER_OF_DIRECTIONS);
 
-        if (!(figureToMove.getId() * field.getWhiteOrBlack() >= 0) || dirId < 0) {
+        if (mayNotMove(p1, p2, field, figureToMove, dirId))
             return false;
-            // not the turn of the player or empty field    // wrong direction
-        }
-
-        // if the movement of the figure must be limited to one step, the move is not valid
-        if (isMovementLimited(getPathLength(p1, p2, dirId), figureToMove, p1)) {
-            return false;
-        }
 
         if ((figureToMove.getBitMask() & moveMask) == 0 && destinationFigure.getId() == Figures.Empty.id()) {
             return false;
@@ -169,5 +164,19 @@ public class MoveValidator {
 
         return (figureToMove.getBitMask() & captureMask) != 0 && (destinationFigure.getId() * figureToMove.getId() < 0) && isEmptyPath(p1,
                 p2, dirId, field);
+    }
+
+    private boolean mayNotMove(Point p1, Point p2, IField field, IFigureMask figureToMove, int dirId) {
+
+        if (!(figureToMove.getId() * field.getWhiteOrBlack() >= 0) || dirId < 0) {
+            return true;
+            // not the turn of the player or empty field    // wrong direction
+        }
+
+        // if the movement of the figure must be limited to one step, the move is not valid
+        if (isMovementLimited(getPathLength(p1, p2, dirId), figureToMove, p1)) {
+            return true;
+        }
+        return false;
     }
 }

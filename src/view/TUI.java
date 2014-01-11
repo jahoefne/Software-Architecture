@@ -2,7 +2,8 @@ package view;
 
 import controller.GameController;
 
-class TUI {
+final class TUI {
+
     private static final GameController GAME_CONTROLLER = GameController.getInstance();
 
     public static void main(String[] args) {
