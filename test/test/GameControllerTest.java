@@ -30,14 +30,26 @@ public class GameControllerTest {
     }
 
     @Test
-    public void getPossibleMovesTest() throws Exception {
-        sut = new GameController();
+    public void isCheckMateTest(){
+        assertTrue("The should not be a check mate in the initial game position!",
+                sut.isCheckMate()==false);
+    }
 
+    @Test
+    public void getIDTest(){
+        assertTrue("Empty field should have the ID 0", sut.getID(new Point(3,3))==0);
+        assertTrue("Black Pawn should have the ID -1", sut.getID(new Point(0,1))==-1);
+        assertTrue("White Pawn should have the ID 1", sut.getID(new Point(0,6))==1);
+        assertTrue("Black King should have the ID -6", sut.getID(new Point(4,0))==-6);
+        assertTrue("White King should have the ID 6", sut.getID(new Point(4,7))==6);
+    }
+
+    @Test
+    public void getPossibleMovesTest() throws Exception {
         // try to move pawn at 0:1
         // This is a black pawn -> no movements possible
         assertTrue("Black pawn should not be allowed to move in initial game position",
                 sut.getPossibleMoves(new Point(0,1)).length==0);
-
 
         // Now try to move pawn at 0:6
         // This is a white pawn -> movements to possible 0:5 && 0:4 possible
