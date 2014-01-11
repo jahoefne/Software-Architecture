@@ -60,8 +60,10 @@ public interface IGameController {
     boolean whitesTurn();
 
     /**
-     * Checks if the field is in checkmate position
-     * @return TRUE, if checkmate, FALSE not checkmate
+     * Returns whether the game is over.
+     * this is the case if only one king is left on the board, call this function after every move
+     * if the return value is 'true' the player that did the last move won the game.
+     * @return true if the game is over
      */
-    boolean isCheckMate();
+    boolean isGameOver();
 }

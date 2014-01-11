@@ -18,6 +18,7 @@ import java.util.ArrayList;
     public class GameController implements IGameController{
 
         private static GameController instance;
+        private boolean gameOver=false;
         private static final int FIELD_LENGTH = 8;
 
         public static GameController getInstance() {
@@ -32,11 +33,16 @@ import java.util.ArrayList;
 
         public void resetGame() {
             this.field = new Field();
+            this.gameOver=false;
             this.validator = new MoveValidator();
         }
 
         public Point[] getPossibleMoves(Point p) {
             ArrayList<Point> list = new ArrayList<Point>();
+
+            if(gameOver)
+                return list.toArray(new Point[list.size()]);
+
             for (int y = 0; y < FIELD_LENGTH; y++) {
                 for (int x = 0; x < FIELD_LENGTH; x++) {
                     if (validator.isValid(p, new Point(x, y), field)) {
@@ -49,7 +55,7 @@ import java.util.ArrayList;
 
 
         public boolean move(Point x, Point y) {
-            return validator.moveIfValid(x, y, field);
+            return !gameOver && validator.moveIfValid(x, y, field);
         }
 
         public String getUnicode(Point x) {
@@ -64,9 +70,21 @@ import java.util.ArrayList;
             return field.getWhiteOrBlack() > 0;
         }
 
-        public boolean isCheckMate(){
-            // TODO: implement check mate test
-            return false;
+        public boolean isGameOver(){
+            // the game is over if there are not 2 kings on the board anymore
+           int numberOfKings=0;
+           for (int y = 0; y < FIELD_LENGTH; y++) {
+               for (int x = 0; x < FIELD_LENGTH; x++) {
+                   if (Math.abs(field.getCell(x,y))==6){
+                        numberOfKings++;
+                   }
+               }
+           }
+            if(numberOfKings!=2){
+                 this.gameOver=true;
+            }
+
+            return gameOver;
         }
 
         @Override

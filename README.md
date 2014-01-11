@@ -6,7 +6,7 @@
 This Chess programm was developed by two computer science students of the **[HTWG Konstanz](http://www.htwg-konstanz.de)** as a part of the Software Engineering lecture.
 
 #### Project
-In the project teams of 2 students develop a small java game in order to train the software engineering ascpects acquired during the lecture.
+In the project teams of 2 students develop a small java game in order to train the software engineering aspects acquired during the lecture.
 
 
 #### How to run 

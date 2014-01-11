@@ -30,9 +30,9 @@ public class GameControllerTest {
     }
 
     @Test
-    public void isCheckMateTest(){
+    public void isGameOverTest(){
         assertTrue("The should not be a check mate in the initial game position!",
-                sut.isCheckMate()==false);
+                sut.isGameOver()==false);
     }
 
     @Test

@@ -130,11 +130,18 @@ class GUI extends JFrame implements ActionListener {
 
         handleMovement(p);
 
-        // set status text
-        if (controller.whitesTurn()) {
-            status.setText("Whites turn!");
-        } else {
-            status.setText("Blacks turn!");
+        if(controller.isGameOver()){
+          if (controller.whitesTurn()) {
+             status.setText("Black Won!");
+          } else {
+             status.setText("White Won!");
+        }
+        }else{
+            if (controller.whitesTurn()) {
+                status.setText("Whites turn!");
+            } else {
+                status.setText("Blacks turn!");
+            }
         }
     }
 
