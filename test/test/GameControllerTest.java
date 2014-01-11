@@ -29,10 +29,22 @@ public class GameControllerTest {
         sut.resetGame();
     }
 
-   /* @Test
-    public void testReset() throws Exception {
+    @Test
+    public void getPossibleMovesTest() throws Exception {
+        sut = new GameController();
 
-    }*/
+        // try to move pawn at 0:1
+        // This is a black pawn -> no movements possible
+        assertTrue("Black pawn should not be allowed to move in initial game position",
+                sut.getPossibleMoves(new Point(0,1)).length==0);
+
+
+        // Now try to move pawn at 0:6
+        // This is a white pawn -> movements to possible 0:5 && 0:4 possible
+        Point[] possible = sut.getPossibleMoves(new Point(0,6));
+        assertTrue("There should be two possible fields to move: is: "+possible.length,
+                possible.length==2);
+    }
 
     @Test
     public void testMove() throws Exception {
