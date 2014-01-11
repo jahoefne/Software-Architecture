@@ -22,7 +22,6 @@ class GUI extends JFrame implements ActionListener {
     private JLabel status;
     private final GridLayout layout = new GridLayout(9, 8);
 
-
     private Point selected = new Point(-1, -1);
     private Color tmp;
     private Point[] possibilities;
@@ -70,7 +69,6 @@ class GUI extends JFrame implements ActionListener {
         mainPanel.add(status);
         mainPanel.add(new JLabel(""));
         mainPanel.add(new JLabel(""));
-        // skip positions
 
         newGame = new JButton("New Game!");
         newGame.setActionCommand("new");
@@ -108,21 +106,39 @@ class GUI extends JFrame implements ActionListener {
         });
     }
 
+    // gets called when a button is clicked
     public void actionPerformed(ActionEvent actionEvent) {
 
         if (actionEvent.getActionCommand().equals("quit")) {
             System.exit(0);
         }
 
+        if(actionEvent.getActionCommand().equals("new")){
+            // TODO: start new game
+            return;
+        }
 
         String s[] = actionEvent.getActionCommand().split(" ");
 
-        // TODO: chrash if new game button pressed because of the of point below
         Point p = new Point(Integer.parseInt(s[0]), Integer.parseInt(s[1]));
 
+        // if an empty field has been clicked and no figure to move was selected before
+        // ignore
         if (fields[p.x][p.y].getText().equals("") && selected.x == -1) {
             return;
         }
+
+        handleMovement(p);
+
+        // set status text
+        if (controller.whitesTurn()) {
+            status.setText("Whites turn!");
+        } else {
+            status.setText("Blacks turn!");
+        }
+    }
+
+    private void handleMovement(Point p) {
 
         if (selected.x == -1) {
             possibilities = controller.getPossibleMoves(p);
@@ -158,12 +174,6 @@ class GUI extends JFrame implements ActionListener {
                 fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
             }
             selected = new Point(-1, -1);
-        }
-
-        if (controller.whitesTurn()) {
-            status.setText("Whites turn!");
-        } else {
-            status.setText("Blacks turn!");
         }
     }
 }
