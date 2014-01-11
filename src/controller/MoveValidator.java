@@ -150,8 +150,9 @@ public class MoveValidator {
         int moveMask = this.setBit(dirId);
         int captureMask = this.setBit(dirId + NUMBER_OF_DIRECTIONS);
 
-        if (mayNotMove(p1, p2, field, figureToMove, dirId))
+        if (mayNotMove(p1, p2, field, figureToMove, dirId)){
             return false;
+        }
 
         if ((figureToMove.getBitMask() & moveMask) == 0 && destinationFigure.getId() == Figures.Empty.id()) {
             return false;
