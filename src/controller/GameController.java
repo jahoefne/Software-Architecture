@@ -40,8 +40,9 @@ import java.util.ArrayList;
         public Point[] getPossibleMoves(Point p) {
             ArrayList<Point> list = new ArrayList<Point>();
 
-            if(gameOver)
+            if(gameOver){
                 return list.toArray(new Point[list.size()]);
+            }
 
             for (int y = 0; y < FIELD_LENGTH; y++) {
                 for (int x = 0; x < FIELD_LENGTH; x++) {
@@ -75,7 +76,7 @@ import java.util.ArrayList;
            int numberOfKings=0;
            for (int y = 0; y < FIELD_LENGTH; y++) {
                for (int x = 0; x < FIELD_LENGTH; x++) {
-                   if (Math.abs(field.getCell(x,y))==6){
+                   if (Math.abs(field.getCell(x,y))==Figures.KingWhite.id()){
                         numberOfKings++;
                    }
                }
