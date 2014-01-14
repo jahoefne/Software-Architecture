@@ -77,14 +77,22 @@ public class Field implements IField{
     @Override
     public String toString() {
         String rep = (whiteOrBlack > ZERO) ? "Whites " : "Blacks ";
+        String line = "\n-----------------------------------------"+
+        		"------------------------";
         rep += "Turn!\n";
+        rep += line + "\n";
         for (int y = ZERO; y < LEN; y++) {
+        	rep += (8-y)+"|";
             for (int x = ZERO; x < LEN; x++) {
-                rep += (field[x][y] >= ZERO) ? " " + field[x][y] + " |" :
-                        field[x][y] + " |";
+                rep += (field[x][y] != ZERO) ? "   " + Figures.lookUpID(field[x][y]).getMask().getUnicode() + "\t|" :
+                	 "\t|";
             }
+            rep += line;
             rep += "\n";
         }
+        rep += "     A      B       C       D"+
+        		"       E       F       G       H";
+        rep += "\nEnter your move or HELP:\n";
         return rep;
     }
 

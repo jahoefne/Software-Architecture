@@ -68,37 +68,37 @@ public enum Figures {
             (byte) 1,
             "10000000000000000010000000000010",
             true,
-            "\u265F"),
+            "\u2659"),
 
     RookWhite(
             (byte) 2,
             "10001000100010001000100010001000",
             false,
-            "\u265C"),
+            "\u2656"),
 
     KnightWhite(
             (byte) 3,
             "01010101010101010101010101010101",
             true,
-            "\u265E"),
+            "\u2658"),
 
     BishopWhite(
             (byte) 4,
             "00100010001000100010001000100010",
             false,
-            "\u265D"),
+            "\u2657"),
 
     QueenWhite(
             (byte) 5,
             "10101010101010101010101010101010",
             false,
-            "\u265B"),
+            "\u2655"),
 
     KingWhite(
             (byte) 6,
             "10101010101010101010101010101010",
             true,
-            "\u265A");
+            "\u2654");
 
 
     private final IFigureMask mask;
