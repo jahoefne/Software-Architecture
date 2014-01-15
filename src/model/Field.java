@@ -92,7 +92,6 @@ public class Field implements IField{
         }
         rep += "     A      B       C       D"+
         		"       E       F       G       H";
-        rep += "\nEnter your move or HELP:\n";
         return rep;
     }
 

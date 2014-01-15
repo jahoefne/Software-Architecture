@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.*;
+import util.IObservable;
 
 /**
  * User: jahoefne
@@ -9,7 +10,7 @@ import java.awt.*;
  *
  * Game controller Interface
  */
-public interface IGameController {
+public interface IGameController extends IObservable {
 
     /**
      * Restarts the game

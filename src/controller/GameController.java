@@ -6,6 +6,11 @@ import model.IField;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Observable;
+
+import util.Event;
+import util.IObservable;
+import util.IObserver;
 
     /**
      * User: jahoefne
@@ -15,13 +20,13 @@ import java.util.ArrayList;
      * this class also serves as the 'Game Object' instantiate a GameController object in order
      * to start a new game.
      */
-    public class GameController implements IGameController{
+    public class GameController implements IObservable, IGameController{
 
-        private static GameController instance;
+        private IGameController instance = null;
         private boolean gameOver=false;
         private static final int FIELD_LENGTH = 8;
 
-        public static GameController getInstance() {
+        public IGameController getInstance() {
             if (instance == null) {
                 instance = new GameController();
             }
@@ -35,6 +40,7 @@ import java.util.ArrayList;
             this.field = new Field();
             this.gameOver=false;
             this.validator = new MoveValidator();
+            notifyObservers();
         }
 
         public Point[] getPossibleMoves(Point p) {
@@ -56,7 +62,10 @@ import java.util.ArrayList;
 
 
         public boolean move(Point x, Point y) {
-            return !gameOver && validator.moveIfValid(x, y, field);
+            boolean retval = !gameOver && validator.moveIfValid(x, y, field);
+            notifyObservers();
+            return retval;
+            
         }
 
         public String getUnicode(Point x) {
@@ -84,7 +93,7 @@ import java.util.ArrayList;
             if(numberOfKings!=2){
                  this.gameOver=true;
             }
-
+            notifyObservers();
             return gameOver;
         }
 
@@ -92,5 +101,35 @@ import java.util.ArrayList;
         public String toString() {
             return field.toString();
         }
+
+		@Override
+		public void addObserver(IObserver s) {
+			instance.addObserver(s);
+			
+		}
+
+		@Override
+		public void removeObserver(IObserver s) {
+			instance.removeObserver(s);
+			
+		}
+
+		@Override
+		public void removeAllObservers() {
+			instance.removeAllObservers();
+			
+		}
+
+		@Override
+		public void notifyObservers() {
+			instance.notifyObservers();
+			
+		}
+
+		@Override
+		public void notifyObservers(Event e) {
+			instance.notifyObservers();
+			
+		}
 
 }
