@@ -11,6 +11,8 @@ public class chess {
 		PropertyConfigurator.configure("log4j.properties");
 		
 		IGameController controller =  GameController.getInstance();
+		
+		@SuppressWarnings("unused")
 		GUI gui = new GUI(controller);
 		TUI tui = new TUI(controller);
 		

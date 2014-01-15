@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-
 import util.Event;
 import util.IObserver;
 
@@ -165,6 +163,7 @@ private void handleMovement(Point p) {
         tmp = fields[p.x][p.y].getBackground();
         fields[p.x][p.y].setBackground(Color.darkGray);
         selected = p;
+        repaint_GUI();
         } else if (selected.x == p.x && selected.y == p.y) {
         fields[p.x][p.y].setBackground(tmp);
         tmp = null;
@@ -172,6 +171,7 @@ private void handleMovement(Point p) {
         for (int i = 0; i < possibilities.length; i++) {
         fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
         }
+        repaint_GUI();
         } else {
         fields[selected.x][selected.y].setBackground(tmp);
         if (controller.move(selected, p)) {
@@ -188,6 +188,7 @@ private void handleMovement(Point p) {
         fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
         }
         selected = new Point(-1, -1);
+        repaint_GUI();
         }
         }
 
@@ -200,6 +201,12 @@ private void handleMovement(Point p) {
 	public void repaint_GUI(){
 		for (int i = 0; i < LENGTH_OF_BOARD; i++) {
             for (int x = 0; x < LENGTH_OF_BOARD; x++) {
+            	Point p = new Point(x,i);
+            	if (controller.getID(p) < 0) {
+                    fields[p.x][p.y].setForeground(Color.black);
+                    } else {
+                    fields[p.x][p.y].setForeground(Color.white);
+                    }
                 fields[x][i].setText(controller.getUnicode(new Point(x, i)));
             }
 		}

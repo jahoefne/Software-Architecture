@@ -59,8 +59,11 @@ import java.util.ArrayList;
 
         public boolean move(Point x, Point y) {
             boolean retval = !gameOver && validator.moveIfValid(x, y, field);
-            notifyObservers();
+            if(retval){
+            	notifyObservers();
+            }
             return retval;
+            
             
         }
 
@@ -88,9 +91,9 @@ import java.util.ArrayList;
            }
             if(numberOfKings!=2){
                  this.gameOver=true;
-                 
+                 notifyObservers();
             }
-            notifyObservers();
+            
             return gameOver;
         }
 
@@ -98,5 +101,6 @@ import java.util.ArrayList;
         public String toString() {
             return field.toString();
         }
+        
 
 }
