@@ -88,6 +88,7 @@ import java.util.ArrayList;
            }
             if(numberOfKings!=2){
                  this.gameOver=true;
+                 
             }
             notifyObservers();
             return gameOver;

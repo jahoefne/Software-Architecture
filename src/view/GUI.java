@@ -7,18 +7,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+
+import util.Event;
+import util.IObserver;
 
 /**
  * User: jahoefne
  * Creation Date: 03.11.13
  * Time: 13:42
  */
-class GUI extends JFrame implements ActionListener {
+class GUI extends JFrame implements ActionListener, IObserver {
 
     private static final int LENGTH_OF_BOARD = 8;
 
     private final JButton[][] fields = new JButton[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
-    private final IGameController controller = new GameController();// GameController.getInstance();
+    private IGameController controller;// GameController.getInstance();
     private JLabel status;
     private final GridLayout layout = new GridLayout(9, 8);
 
@@ -30,7 +34,21 @@ class GUI extends JFrame implements ActionListener {
     private static final int FILED_SIZE = 70;
     private static final int FONT_SIZE = 36;
 
+    public GUI(IGameController controller) {
+    	
+    	this.controller = controller;
+    	controller.addObserver(this);
 
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame frame = new JFrame("Chess");
+
+        frame.setContentPane(this.createContentPane());
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
     JPanel createContentPane() {
         JButton newGame;
         JButton quit;
@@ -85,23 +103,12 @@ class GUI extends JFrame implements ActionListener {
         return totalGUI;
     }
 
-    private static void createAndShowGUI() {
-
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        JFrame frame = new JFrame("Chess");
-
-        GUI gui = new GUI();
-        frame.setContentPane(gui.createContentPane());
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
+   
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+                new GUI(new GameController());
             }
         });
     }
@@ -183,4 +190,18 @@ private void handleMovement(Point p) {
         selected = new Point(-1, -1);
         }
         }
-        }
+
+	@Override
+	public void update(Event e) {
+		System.out.println("notfied GUI");
+		repaint_GUI();
+		
+	}
+	public void repaint_GUI(){
+		for (int i = 0; i < LENGTH_OF_BOARD; i++) {
+            for (int x = 0; x < LENGTH_OF_BOARD; x++) {
+                fields[x][i].setText(controller.getUnicode(new Point(x, i)));
+            }
+		}
+	}
+}
