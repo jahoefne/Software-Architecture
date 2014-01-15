@@ -13,6 +13,8 @@ import java.io.InputStreamReader;
 public final class TUI implements IObserver{
 	
 	private static String newLine = System.getProperty("line.separator");
+	private static final String enter_command = "Enter your move or HELP:";
+	private String message = null;
 	private static Logger logger = Logger.getLogger("TUI.class");
     
     private IGameController GAME_CONTROLLER;
@@ -25,7 +27,11 @@ public final class TUI implements IObserver{
 
     public void printTUI(){
     	logger.info(GAME_CONTROLLER);
-    	logger.info("Enter your move or HELP:"+newLine);
+    	if(message != null){
+    		logger.info(message+newLine);
+    	}
+    	message = null;
+    	logger.info(enter_command+newLine);
     }
     
     public boolean read_input(){
@@ -41,14 +47,16 @@ public final class TUI implements IObserver{
 	    return handle_input(input);
     }
     
-    private static void display_help(){
+    private void display_help(){
     	String helptext = "----valid commands----\n" +
     			"NEW GAME - Starts a new game of chess\n"+
     			"MOVE A B - Moves a piece from point A to point B\n"+
     			"           Example: MOVE A2 A4\n"+
     			"EXIT     - Close the game\n"+
     			"HELP     - Display help\n";
-
+    	logger.info(helptext);
+    	logger.info("Enter your move or HELP:"+newLine);
+    	read_input();
 
     }
     private boolean handle_input(String input){
@@ -94,14 +102,16 @@ public final class TUI implements IObserver{
 		int to_x = to.charAt(0) - 65;
 		int to_y = 8 - (to.charAt(1) - '0');
 		if(GAME_CONTROLLER.move(new Point(from_x,from_y), new Point(to_x, to_y))){
-			logger.info("Successful MOVE");
+			logger.info("Last move was valid!");
 		}else{
-			logger.info("Invalid MOVE");
+			logger.info("Last move was invalid!");
 		}
+		
     }
 
 	@Override
 	public void update(Event e) {
+		
         System.out.println("notified!");
 		printTUI();
 	}

@@ -13,6 +13,13 @@ public class chess {
 		IGameController controller =  GameController.getInstance();
 
 		TUI tui = new TUI(controller);
+		
+		tui.printTUI();
+		
+		boolean continu = true;
+		while(continu){
+			continu = tui.read_input();
+		}
 	}
 
 }
