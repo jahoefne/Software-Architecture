@@ -1,9 +1,8 @@
 package view;
-import org.apache.log4j.PropertyConfigurator;
 
 import controller.GameController;
 import controller.IGameController;
-import view.TUI;
+import org.apache.log4j.PropertyConfigurator;
 
 public class chess {
 
@@ -11,11 +10,9 @@ public class chess {
 		
 		PropertyConfigurator.configure("log4j.properties");
 		
-		IGameController controller = new GameController();
-		
-		TUI tui = new TUI(controller);
-		tui.printTUI();
+		IGameController controller =  GameController.getInstance();
 
+		TUI tui = new TUI(controller);
 	}
 
 }

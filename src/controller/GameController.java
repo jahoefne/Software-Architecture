@@ -3,14 +3,10 @@ package controller;
 import model.Field;
 import model.Figures;
 import model.IField;
+import util.Observable;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Observable;
-
-import util.Event;
-import util.IObservable;
-import util.IObserver;
 
     /**
      * User: jahoefne
@@ -20,13 +16,13 @@ import util.IObserver;
      * this class also serves as the 'Game Object' instantiate a GameController object in order
      * to start a new game.
      */
-    public class GameController implements IObservable, IGameController{
+    public class GameController extends Observable implements IGameController{
 
-        private IGameController instance = null;
+        private static GameController instance=null;
         private boolean gameOver=false;
         private static final int FIELD_LENGTH = 8;
 
-        public IGameController getInstance() {
+        public static IGameController getInstance() {
             if (instance == null) {
                 instance = new GameController();
             }
@@ -101,35 +97,5 @@ import util.IObserver;
         public String toString() {
             return field.toString();
         }
-
-		@Override
-		public void addObserver(IObserver s) {
-			instance.addObserver(s);
-			
-		}
-
-		@Override
-		public void removeObserver(IObserver s) {
-			instance.removeObserver(s);
-			
-		}
-
-		@Override
-		public void removeAllObservers() {
-			instance.removeAllObservers();
-			
-		}
-
-		@Override
-		public void notifyObservers() {
-			instance.notifyObservers();
-			
-		}
-
-		@Override
-		public void notifyObservers(Event e) {
-			instance.notifyObservers();
-			
-		}
 
 }

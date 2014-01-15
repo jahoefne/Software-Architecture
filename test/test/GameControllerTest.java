@@ -25,7 +25,7 @@ public class GameControllerTest {
 
     @Before
     public void before() {
-        sut = GameController.getInstance();
+        sut = new GameController();//GameController.getInstance();
         sut.resetGame();
     }
 

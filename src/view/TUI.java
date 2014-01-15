@@ -1,16 +1,13 @@
 package view;
 
-import java.awt.Point;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Observable;
-import controller.GameController;
 import controller.IGameController;
-
-import org.apache.log4j.*;
-
+import org.apache.log4j.Logger;
 import util.Event;
 import util.IObserver;
+
+import java.awt.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 
 public final class TUI implements IObserver{
@@ -19,8 +16,8 @@ public final class TUI implements IObserver{
 	private static Logger logger = Logger.getLogger("TUI.class");
     
     private IGameController GAME_CONTROLLER;
-    
-    // useless but to satisfy sonar..
+
+
     public TUI(IGameController controller) {
     	this.GAME_CONTROLLER = controller;
     	controller.addObserver(this);
@@ -51,7 +48,8 @@ public final class TUI implements IObserver{
     			"           Example: MOVE A2 A4\n"+
     			"EXIT     - Close the game\n"+
     			"HELP     - Display help\n";
-    	
+
+
     }
     private boolean handle_input(String input){
     	
@@ -104,7 +102,7 @@ public final class TUI implements IObserver{
 
 	@Override
 	public void update(Event e) {
+        System.out.println("notified!");
 		printTUI();
-		
 	}
 }
