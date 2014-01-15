@@ -2,13 +2,13 @@ package view;
 
 import controller.GameController;
 import controller.IGameController;
+import util.Event;
+import util.IObserver;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import util.Event;
-import util.IObserver;
 
 /**
  * User: jahoefne
@@ -20,7 +20,7 @@ class GUI extends JFrame implements ActionListener, IObserver {
     private static final int LENGTH_OF_BOARD = 8;
 
     private final JButton[][] fields = new JButton[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
-    private IGameController controller;// GameController.getInstance();
+    private IGameController controller;
     private JLabel status;
     private final GridLayout layout = new GridLayout(9, 8);
 
@@ -33,9 +33,9 @@ class GUI extends JFrame implements ActionListener, IObserver {
     private static final int FONT_SIZE = 36;
 
     public GUI(IGameController controller) {
-    	
-    	this.controller = controller;
-    	controller.addObserver(this);
+
+        this.controller = controller;
+        controller.addObserver(this);
 
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("Chess");
@@ -46,7 +46,7 @@ class GUI extends JFrame implements ActionListener, IObserver {
         frame.pack();
         frame.setVisible(true);
     }
-    
+
     JPanel createContentPane() {
         JButton newGame;
         JButton quit;
@@ -101,7 +101,6 @@ class GUI extends JFrame implements ActionListener, IObserver {
         return totalGUI;
     }
 
-   
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -118,7 +117,7 @@ class GUI extends JFrame implements ActionListener, IObserver {
             System.exit(0);
         }
 
-        if(actionEvent.getActionCommand().equals("new")){
+        if (actionEvent.getActionCommand().equals("new")) {
             // TODO: start new game
             return;
         }
@@ -135,80 +134,81 @@ class GUI extends JFrame implements ActionListener, IObserver {
 
         handleMovement(p);
 
-        if(controller.isGameOver()){
-          if (controller.whitesTurn()) {
-             status.setText("Black Won!");
-          } else {
-             status.setText("White Won!");
-        }
-        }else{
+        if (controller.isGameOver()) {
+            if (controller.whitesTurn()) {
+                status.setText("Black Won!");
+            } else {
+                status.setText("White Won!");
+            }
+        } else {
             if (controller.whitesTurn()) {
                 status.setText("Whites turn!");
-        } else {
-        status.setText("Blacks turn!");
+            } else {
+                status.setText("Blacks turn!");
+            }
         }
-        }
-        }
+    }
 
-private void handleMovement(Point p) {
+    private void handleMovement(Point p) {
 
         if (selected.x == -1) {
-        possibilities = controller.getPossibleMoves(p);
+            possibilities = controller.getPossibleMoves(p);
 
-        tmpColors = new Color[possibilities.length];
-        for (int i = 0; i < possibilities.length; i++) {
-        tmpColors[i] = fields[possibilities[i].x][possibilities[i].y].getBackground();
-        fields[possibilities[i].x][possibilities[i].y].setBackground(Color.RED);
-        }
-        tmp = fields[p.x][p.y].getBackground();
-        fields[p.x][p.y].setBackground(Color.darkGray);
-        selected = p;
-        repaint_GUI();
+            tmpColors = new Color[possibilities.length];
+            for (int i = 0; i < possibilities.length; i++) {
+                tmpColors[i] = fields[possibilities[i].x][possibilities[i].y].getBackground();
+                fields[possibilities[i].x][possibilities[i].y].setBackground(Color.RED);
+            }
+            tmp = fields[p.x][p.y].getBackground();
+            fields[p.x][p.y].setBackground(Color.darkGray);
+            selected = p;
+            repaintGUI();
         } else if (selected.x == p.x && selected.y == p.y) {
-        fields[p.x][p.y].setBackground(tmp);
-        tmp = null;
-        selected = new Point(-1, -1);
-        for (int i = 0; i < possibilities.length; i++) {
-        fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
-        }
-        repaint_GUI();
+            fields[p.x][p.y].setBackground(tmp);
+            tmp = null;
+            selected = new Point(-1, -1);
+            for (int i = 0; i < possibilities.length; i++) {
+                fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
+            }
+            repaintGUI();
         } else {
-        fields[selected.x][selected.y].setBackground(tmp);
-        if (controller.move(selected, p)) {
-        fields[p.x][p.y].setText(fields[selected.x][selected.y].getText());
-        fields[selected.x][selected.y].setText("");
+            fields[selected.x][selected.y].setBackground(tmp);
+            if (controller.move(selected, p)) {
+                fields[p.x][p.y].setText(fields[selected.x][selected.y].getText());
+                fields[selected.x][selected.y].setText("");
 
-        if (controller.getID(p) < 0) {
-        fields[p.x][p.y].setForeground(Color.black);
-        } else {
-        fields[p.x][p.y].setForeground(Color.white);
-        }
-        }
-        for (int i = 0; i < possibilities.length; i++) {
-        fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
-        }
-        selected = new Point(-1, -1);
-        repaint_GUI();
-        }
-        }
-
-	@Override
-	public void update(Event e) {
-		System.out.println("notfied GUI");
-		repaint_GUI();
-		
-	}
-	public void repaint_GUI(){
-		for (int i = 0; i < LENGTH_OF_BOARD; i++) {
-            for (int x = 0; x < LENGTH_OF_BOARD; x++) {
-            	Point p = new Point(x,i);
-            	if (controller.getID(p) < 0) {
+                if (controller.getID(p) < 0) {
                     fields[p.x][p.y].setForeground(Color.black);
-                    } else {
+                } else {
                     fields[p.x][p.y].setForeground(Color.white);
-                    }
+                }
+            }
+            for (int i = 0; i < possibilities.length; i++) {
+                fields[possibilities[i].x][possibilities[i].y].setBackground(tmpColors[i]);
+            }
+            selected = new Point(-1, -1);
+            repaintGUI();
+        }
+    }
+
+    @Override
+    public void update(Event e) {
+        System.out.println("notfied GUI");
+        repaintGUI();
+
+    }
+
+    public void repaintGUI() {
+        for (int i = 0; i < LENGTH_OF_BOARD; i++) {
+            for (int x = 0; x < LENGTH_OF_BOARD; x++) {
+                Point p = new Point(x, i);
+                if (controller.getID(p) < 0) {
+                    fields[p.x][p.y].setForeground(Color.black);
+                } else {
+                    fields[p.x][p.y].setForeground(Color.white);
+                }
                 fields[x][i].setText(controller.getUnicode(new Point(x, i)));
             }
-		}
-	}
+        }
+    }
 }

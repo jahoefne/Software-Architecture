@@ -5,8 +5,9 @@ import model.Figures;
 import model.IField;
 import util.Observable;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
     /**
      * User: jahoefne
@@ -58,36 +59,35 @@ import java.util.ArrayList;
 
 
         public boolean move(Point x, Point y) {
+
+            List<Point> enemyPossibleMoves = getTurnsPossibleMoves(positionsColour());
         	
-        	ArrayList<Point> enemy_possible_moves = get_turns_possible_moves(positions_colour());
-        	
-            boolean retval = !gameOver && validator.moveIfValid(x, y, field);
+            boolean returnValue = !gameOver && validator.moveIfValid(x, y, field);
             
-            if(retval){
-            	
+            if(returnValue){
             	// Need to switch turn otherwise are no moves valid for the moved figure
             	field.toggleWhiteOrBlack();
-            	Point[] possible_moves_moved_Figure = getPossibleMoves(y);
-            	for(Point possibility : possible_moves_moved_Figure){
-            		enemy_possible_moves.add(possibility);
+            	Point[] possibleMovesMovedFigure = getPossibleMoves(y);
+            	for(Point possibility : possibleMovesMovedFigure){
+            		enemyPossibleMoves.add(possibility);
             		System.out.println(possibility);
             	}
             	field.toggleWhiteOrBlack();
             	notifyObservers();
             }
             
-            Point king_position = get_king_position((byte)6 * (byte)field.getWhiteOrBlack());
+            Point kingPosition = getKingPosition((byte) 6 * (byte) field.getWhiteOrBlack());
             
-        	if(king_in_check(king_position, enemy_possible_moves)){
+        	if(kingInCheck(kingPosition, enemyPossibleMoves)){
         		
-        		if(enemy_possible_moves.containsAll(moves_king_in_check(king_position))){
+        		if(enemyPossibleMoves.containsAll(movesKingInCheck(kingPosition))){
         			System.out.println("Schach Matt");
         			gameOver = true;
         		}else{
         			System.out.println("Schach");
         		}
         	}
-            return retval;
+            return returnValue;
             
             
         }
@@ -122,36 +122,36 @@ import java.util.ArrayList;
             return gameOver;
         }
         
-        private ArrayList<Point> moves_king_in_check(Point king_position){
-        	Point[] moves = getPossibleMoves(king_position);
-        	ArrayList<Point> retList = new ArrayList<Point>();
+        private List<Point> movesKingInCheck(Point kingPosition){
+        	Point[] moves = getPossibleMoves(kingPosition);
+            List<Point> retList = new ArrayList<Point>();
         	for(Point p : moves){
         		retList.add(p);
         	}
         	return retList;
         }
         
-        private ArrayList<Point> get_turns_possible_moves(ArrayList<Point> enemy_positions){
-        	ArrayList<Point> enemy_possible_moves = new ArrayList<Point>();
-        	for(Point p : enemy_positions){
-        		Point[] possiblities = getPossibleMoves(p);
-        		for(Point possible_move : possiblities){
-        			enemy_possible_moves.add(possible_move);
+        private List<Point> getTurnsPossibleMoves(List<Point> enemyPositions){
+            List<Point> enemyPossibleMoves = new ArrayList<Point>();
+        	for(Point p : enemyPositions){
+        		Point[] possibilities = getPossibleMoves(p);
+        		for(Point possibleMove : possibilities){
+        			enemyPossibleMoves.add(possibleMove);
         		}
         	}
-        	return enemy_possible_moves;
+        	return enemyPossibleMoves;
         }
         
         // check if king is in check
-        private boolean king_in_check(Point king_position, ArrayList<Point> enemy_possible_moves){
-        	return enemy_possible_moves.contains(king_position);
+        private boolean kingInCheck(Point kingPosition, List<Point> enemyPossibleMoves){
+        	return enemyPossibleMoves.contains(kingPosition);
         }
         
         //gets all possible positions of colour on turn
-        private ArrayList<Point> positions_colour(){
+        private List<Point> positionsColour(){
         	byte turn = field.getWhiteOrBlack();
-        	
-        	ArrayList<Point> positions = new ArrayList<Point>();
+
+            List<Point> positions = new ArrayList<Point>();
         	for (int y = 0; y < FIELD_LENGTH; y++) {
                 for (int x = 0; x < FIELD_LENGTH; x++) {
                 	if(turn > 0){
@@ -169,7 +169,7 @@ import java.util.ArrayList;
         }
 
         //gets Position of king
-        private Point get_king_position(int b){
+        private Point getKingPosition(int b){
         	for (int y = 0; y < FIELD_LENGTH; y++) {
                 for (int x = 0; x < FIELD_LENGTH; x++) {
                     if(instance.field.getCell(x, y) == (byte)b ){
