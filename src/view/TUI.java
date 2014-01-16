@@ -69,12 +69,12 @@ public final class TUI implements IObserver {
         String[] inputSplitted = input.split(" ");
         
         if (inputSplitted.length == ONE){
-        	return HelpOrExit(input);
+        	return helpOrExit(input);
         }else{
-        	return NewOrMove(inputSplitted);
+        	return newOrMove(inputSplitted);
         }
     }
-    private boolean NewOrMove(String[] inputSplitted){
+    private boolean newOrMove(String[] inputSplitted){
     	
     	if (inputSplitted[0].equalsIgnoreCase("NEW")
                 && inputSplitted[1].equalsIgnoreCase("GAME")
@@ -90,10 +90,10 @@ public final class TUI implements IObserver {
             executeMove(inputSplitted[1], inputSplitted[2]);
             return true;
         }
-        return invalid_command();
+        return invalidCommand();
     }
     
-    private boolean HelpOrExit(String input){
+    private boolean helpOrExit(String input){
     	if (input.equals("HELP")) {
             displayHelp();
             return true;
@@ -102,9 +102,9 @@ public final class TUI implements IObserver {
             logger.info("Exiting Game");
             return false;
         }
-    	return invalid_command();
+    	return invalidCommand();
     }
-    private boolean invalid_command(){
+    private boolean invalidCommand(){
     	logger.info("Invalid command, type HELP for help");
     	return true;
     }
