@@ -45,7 +45,7 @@ public final class TUI implements IObserver {
         try {
             input = br.readLine();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("Error reading input");
         }
         return handleInput(input);
     }
@@ -68,22 +68,26 @@ public final class TUI implements IObserver {
 
         if (input.equals("HELP") && inputSplitted.length == 1) {
             displayHelp();
-        } else if (inputSplitted[0].equalsIgnoreCase("NEW")
+            return true;
+        }
+        if (inputSplitted[0].equalsIgnoreCase("NEW")
                 && inputSplitted[1].equalsIgnoreCase("GAME")
                 && inputSplitted.length == NEW_COMMAND_LENGTH) {
             gameController.resetGame();
+            return true;
 
-        } else if (inputSplitted[0].equalsIgnoreCase("MOVE") &&
+        }
+        if (inputSplitted[0].equalsIgnoreCase("MOVE") &&
                 validPoint(inputSplitted[1]) &&
                 validPoint(inputSplitted[2]) &&
                 inputSplitted.length == MOVE_COMMAND_LENGTH) {
             executeMove(inputSplitted[1], inputSplitted[2]);
-
-        } else if (input.equals("EXIT")) {
+            return true;
+        }
+        if (input.equals("EXIT")) {
             logger.info("Exiting Game");
             return false;
         }
-
         logger.info("Invalid command, type HELP for help");
         return true;
     }

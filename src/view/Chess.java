@@ -4,7 +4,7 @@ import controller.GameController;
 import controller.IGameController;
 import org.apache.log4j.PropertyConfigurator;
 
-public class Chess {
+public final class Chess {
 	
 	private Chess(){}
 
