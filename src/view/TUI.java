@@ -23,6 +23,8 @@ public final class TUI implements IObserver {
     private static final int MIN_FIELD = 1;
     private static final int MAX_FIELD = 8;
     private static final int TOINT = 65;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
 
     public TUI(IGameController controller) {
         this.gameController = controller;
@@ -65,12 +67,16 @@ public final class TUI implements IObserver {
 
     private boolean handleInput(String input) {
         String[] inputSplitted = input.split(" ");
-
-        if (input.equals("HELP") && inputSplitted.length == 1) {
-            displayHelp();
-            return true;
+        
+        if (inputSplitted.length == ONE){
+        	return help_or_exit(input);
+        }else{
+        	return new_or_move(inputSplitted);
         }
-        if (inputSplitted[0].equalsIgnoreCase("NEW")
+    }
+    private boolean new_or_move(String[] inputSplitted){
+    	
+    	if (inputSplitted[0].equalsIgnoreCase("NEW")
                 && inputSplitted[1].equalsIgnoreCase("GAME")
                 && inputSplitted.length == NEW_COMMAND_LENGTH) {
             gameController.resetGame();
@@ -84,20 +90,31 @@ public final class TUI implements IObserver {
             executeMove(inputSplitted[1], inputSplitted[2]);
             return true;
         }
-        if (input.equals("EXIT")) {
+        return invalid_command();
+    }
+    
+    private boolean help_or_exit(String input){
+    	if (input.equals("HELP")) {
+            displayHelp();
+            return true;
+        }
+    	if (input.equals("EXIT")) {
             logger.info("Exiting Game");
             return false;
         }
-        logger.info("Invalid command, type HELP for help");
-        return true;
+    	return invalid_command();
+    }
+    private boolean invalid_command(){
+    	logger.info("Invalid command, type HELP for help");
+    	return true;
     }
 
     private static boolean validPoint(String point) {
         int a = (int) point.charAt(0);
         int b = point.charAt(1) - '0';
-        return (a >= (int) 'A' && a <= (int) 'H'
-                && b >= MIN_FIELD  && b <= MAX_FIELD
-                && point.length() == 2);
+        boolean correct_char = a >= (int) 'A' && a <= (int) 'H';
+        boolean correct_number = b >= MIN_FIELD  && b <= MAX_FIELD;
+        return correct_char && correct_number && (point.length() == TWO);
 
     }
 
