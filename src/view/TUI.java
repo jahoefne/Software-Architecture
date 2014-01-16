@@ -1,5 +1,6 @@
 package view;
 
+import controller.GameController;
 import controller.IGameController;
 import org.apache.log4j.Logger;
 import util.Event;
@@ -14,7 +15,7 @@ public final class TUI implements IObserver {
 
     private static String newLine = System.getProperty("line.separator");
     private static final String ENTER_COMMAND = "Enter your move or HELP:";
-    private String message = null;
+
     private static Logger logger = Logger.getLogger("TUI.class");
     private IGameController gameController;
     
@@ -32,15 +33,17 @@ public final class TUI implements IObserver {
     }
 
     public void printTUI() {
+    	
         logger.info(gameController);
-        if (message != null) {
-            logger.info(message + newLine);
+        if(gameController.getCheck()){
+        	logger.info("King in check!");
+        	gameController.setCheck();
         }
-        message = null;
         logger.info(ENTER_COMMAND + newLine);
     }
 
     public boolean readInput() {
+
         String input = null;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -62,7 +65,6 @@ public final class TUI implements IObserver {
         logger.info(helpText);
         logger.info("Enter your move or HELP:" + newLine);
         readInput();
-
     }
 
     private boolean handleInput(String input) {
@@ -81,13 +83,15 @@ public final class TUI implements IObserver {
                 && inputSplitted.length == NEW_COMMAND_LENGTH) {
             gameController.resetGame();
             return true;
-
         }
         if (inputSplitted[0].equalsIgnoreCase("MOVE") &&
                 validPoint(inputSplitted[1]) &&
                 validPoint(inputSplitted[2]) &&
                 inputSplitted.length == MOVE_COMMAND_LENGTH) {
             executeMove(inputSplitted[1], inputSplitted[2]);
+            if(gameController.getCheck()){
+            	logger.info("King in check!");
+            }
             return true;
         }
         return invalidCommand();
@@ -128,6 +132,7 @@ public final class TUI implements IObserver {
         } else {
             logger.info("Last move was invalid!");
         }
+        
     }
 
     @Override

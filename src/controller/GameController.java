@@ -22,6 +22,8 @@ import java.util.List;
         private static GameController instance=null;
         private boolean gameOver=false;
         private static final int FIELD_LENGTH = 8;
+        private boolean check = false;
+        private boolean checkMate = false;
 
         public static IGameController getInstance() {
             if (instance == null) {
@@ -79,12 +81,14 @@ import java.util.List;
             
         	if(kingInCheck(kingPosition, enemyPossibleMoves)){
         		
+        		this.check = true;
+        		
         		if(enemyPossibleMoves.containsAll(movesKingInCheck(kingPosition))){
-        			
-        		}else{
-        			
+        			checkMate = true;
         		}
+        		notifyObservers();
         	}
+        	
             return returnValue;
             
             
@@ -176,6 +180,13 @@ import java.util.List;
                 }
             }
         	return null;
+        }
+        
+        public boolean getCheck(){
+        	return this.check;
+        }
+        public void setCheck(){
+        	this.check = false;
         }
 
         @Override

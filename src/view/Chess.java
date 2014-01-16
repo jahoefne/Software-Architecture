@@ -2,6 +2,8 @@ package view;
 
 import controller.GameController;
 import controller.IGameController;
+
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 public final class Chess {
@@ -22,7 +24,7 @@ public final class Chess {
 
         boolean continu = true;
         while (continu) {
-            continu = tui.readInput();
+        		 continu = tui.readInput(); 
         }
     }
 

@@ -67,4 +67,15 @@ public interface IGameController extends IObservable {
      * @return true if the game is over
      */
     boolean isGameOver();
+    
+    /**
+     *  Returns if a king is in check
+     * @return True if a king in check, otherwise false
+     */
+    public boolean getCheck();
+    
+    /**
+     * Used to set check variable to false
+     */
+    public void setCheck();
 }
