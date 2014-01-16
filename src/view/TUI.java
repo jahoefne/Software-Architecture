@@ -16,9 +16,13 @@ public final class TUI implements IObserver {
     private static final String ENTER_COMMAND = "Enter your move or HELP:";
     private String message = null;
     private static Logger logger = Logger.getLogger("TUI.class");
-
     private static IGameController gameController;
-
+    
+    private static final int  NEW_COMMAND_LENGTH = 2;
+    private static final int MOVE_COMMAND_LENGTH = 3;
+    private static final int MIN_FIELD = 1;
+    private static final int MAX_FIELD = 8;
+    private static final int TOINT = 65;
 
     public TUI(IGameController controller) {
         this.gameController = controller;
@@ -41,7 +45,7 @@ public final class TUI implements IObserver {
         try {
             input = br.readLine();
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
         return handleInput(input);
     }
@@ -66,13 +70,13 @@ public final class TUI implements IObserver {
             displayHelp();
         } else if (inputSplitted[0].equalsIgnoreCase("NEW")
                 && inputSplitted[1].equalsIgnoreCase("GAME")
-                && inputSplitted.length == 2) {
+                && inputSplitted.length == NEW_COMMAND_LENGTH) {
             gameController.resetGame();
 
         } else if (inputSplitted[0].equalsIgnoreCase("MOVE") &&
                 validPoint(inputSplitted[1]) &&
                 validPoint(inputSplitted[2]) &&
-                inputSplitted.length == 3) {
+                inputSplitted.length == MOVE_COMMAND_LENGTH) {
             executeMove(inputSplitted[1], inputSplitted[2]);
 
         } else if (input.equals("EXIT")) {
@@ -87,20 +91,17 @@ public final class TUI implements IObserver {
     private static boolean validPoint(String point) {
         int a = (int) point.charAt(0);
         int b = point.charAt(1) - '0';
-        if (a >= (int) 'A' && a <= (int) 'H'
-                && b >= 1 && b <= 8
-                && point.length() == 2) {
-            return true;
-        } else {
-            return false;
-        }
+        return (a >= (int) 'A' && a <= (int) 'H'
+                && b >= MIN_FIELD  && b <= MAX_FIELD
+                && point.length() == 2);
+
     }
 
     private void executeMove(String from, String to) {
-        int fromX = from.charAt(0) - 65;
-        int fromY = 8 - (from.charAt(1) - '0');
-        int toX = to.charAt(0) - 65;
-        int toY = 8 - (to.charAt(1) - '0');
+        int fromX = from.charAt(0) - TOINT;
+        int fromY = MAX_FIELD - (from.charAt(1) - '0');
+        int toX = to.charAt(0) - TOINT;
+        int toY = MAX_FIELD - (to.charAt(1) - '0');
         if (gameController.move(new Point(fromX, fromY), new Point(toX, toY))) {
             logger.info("Last move was valid!");
         } else {
@@ -110,7 +111,6 @@ public final class TUI implements IObserver {
 
     @Override
     public void update(Event e) {
-        System.out.println("notified!");
         printTUI();
     }
 }

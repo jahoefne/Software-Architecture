@@ -5,6 +5,8 @@ import controller.IGameController;
 import org.apache.log4j.PropertyConfigurator;
 
 public class Chess {
+	
+	private Chess(){}
 
     public static void main(String[] args) {
 
