@@ -16,7 +16,7 @@ public final class TUI implements IObserver {
     private static final String ENTER_COMMAND = "Enter your move or HELP:";
     private String message = null;
     private static Logger logger = Logger.getLogger("TUI.class");
-    private static IGameController gameController;
+    private IGameController gameController;
     
     private static final int NEW_COMMAND_LENGTH = 2;
     private static final int MOVE_COMMAND_LENGTH = 3;

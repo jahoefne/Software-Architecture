@@ -193,7 +193,6 @@ class GUI extends JFrame implements ActionListener, IObserver {
 
     @Override
     public void update(Event e) {
-        System.out.println("notfied GUI");
         repaintGUI();
 
     }

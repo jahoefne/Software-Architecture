@@ -70,7 +70,6 @@ import java.util.List;
             	Point[] possibleMovesMovedFigure = getPossibleMoves(y);
             	for(Point possibility : possibleMovesMovedFigure){
             		enemyPossibleMoves.add(possibility);
-            		System.out.println(possibility);
             	}
             	field.toggleWhiteOrBlack();
             	notifyObservers();
@@ -81,10 +80,9 @@ import java.util.List;
         	if(kingInCheck(kingPosition, enemyPossibleMoves)){
         		
         		if(enemyPossibleMoves.containsAll(movesKingInCheck(kingPosition))){
-        			System.out.println("Schach Matt");
-        			gameOver = true;
+        			
         		}else{
-        			System.out.println("Schach");
+        			
         		}
         	}
             return returnValue;
