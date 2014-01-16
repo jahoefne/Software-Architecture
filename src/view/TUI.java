@@ -18,10 +18,10 @@ public final class TUI implements IObserver {
     private static Logger logger = Logger.getLogger("TUI.class");
     private static IGameController gameController;
     
-    private static final int  NEW_COMMAND_LENGTH = 2;
+    private static final int NEW_COMMAND_LENGTH = 2;
     private static final int MOVE_COMMAND_LENGTH = 3;
-    private static final int MIN_FIELD = 1;
-    private static final int MAX_FIELD = 8;
+    private static final int MinField = 1;
+    private static final int MaxField = 8;
     private static final int TOINT = 65;
     private static final int ONE = 1;
     private static final int TWO = 2;
@@ -69,12 +69,12 @@ public final class TUI implements IObserver {
         String[] inputSplitted = input.split(" ");
         
         if (inputSplitted.length == ONE){
-        	return help_or_exit(input);
+        	return HelpOrExit(input);
         }else{
-        	return new_or_move(inputSplitted);
+        	return NewOrMove(inputSplitted);
         }
     }
-    private boolean new_or_move(String[] inputSplitted){
+    private boolean NewOrMove(String[] inputSplitted){
     	
     	if (inputSplitted[0].equalsIgnoreCase("NEW")
                 && inputSplitted[1].equalsIgnoreCase("GAME")
@@ -93,7 +93,7 @@ public final class TUI implements IObserver {
         return invalid_command();
     }
     
-    private boolean help_or_exit(String input){
+    private boolean HelpOrExit(String input){
     	if (input.equals("HELP")) {
             displayHelp();
             return true;
@@ -112,17 +112,17 @@ public final class TUI implements IObserver {
     private static boolean validPoint(String point) {
         int a = (int) point.charAt(0);
         int b = point.charAt(1) - '0';
-        boolean correct_char = a >= (int) 'A' && a <= (int) 'H';
-        boolean correct_number = b >= MIN_FIELD  && b <= MAX_FIELD;
-        return correct_char && correct_number && (point.length() == TWO);
+        boolean correctChar = a >= (int) 'A' && a <= (int) 'H';
+        boolean correctNumber = b >= MinField  && b <= MaxField;
+        return correctChar && correctNumber && (point.length() == TWO);
 
     }
 
     private void executeMove(String from, String to) {
         int fromX = from.charAt(0) - TOINT;
-        int fromY = MAX_FIELD - (from.charAt(1) - '0');
+        int fromY = MaxField - (from.charAt(1) - '0');
         int toX = to.charAt(0) - TOINT;
-        int toY = MAX_FIELD - (to.charAt(1) - '0');
+        int toY = MaxField - (to.charAt(1) - '0');
         if (gameController.move(new Point(fromX, fromY), new Point(toX, toY))) {
             logger.info("Last move was valid!");
         } else {
