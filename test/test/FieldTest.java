@@ -48,7 +48,6 @@ public class FieldTest {
     public void move() {
         sut.move(new Point(0, 1), new Point(0, 2));
         assertTrue(sut.getCell(0, 2) == -1);
-
     }
 
     @Test
@@ -56,6 +55,15 @@ public class FieldTest {
         assertTrue(sut.getWhiteOrBlack() == 1);
         sut.toggleWhiteOrBlack();
         assertTrue(sut.getWhiteOrBlack() == -1);
+    }
+    @Test
+    public void toStringTest(){
+    	String field = sut.toString();
+    	// Visual tested
+    	assertTrue(field.equals(sut.toString()));
+    	sut.toggleWhiteOrBlack();
+    	field = sut.toString();
+    	assertTrue(field.equals(sut.toString()));
     }
 
     @AfterClass

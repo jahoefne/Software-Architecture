@@ -1,6 +1,8 @@
 package test;
 
 import controller.GameController;
+import controller.IGameController;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,7 +30,7 @@ public class GameControllerTest {
         sut = new GameController();//GameController.getInstance();
         sut.resetGame();
     }
-
+    
     @Test
     public void isGameOverTest(){
         assertTrue("The should not be a check mate in the initial game position!",
@@ -74,14 +76,12 @@ public class GameControllerTest {
     @Test
     public void getUnicode() {
         for (int i = 0; i < 8; i++) {
-
             //testing pawn unicodes
             assertTrue(sut.getUnicode(new Point(i, 1)).compareTo("\u265F") == 0);
-            assertTrue(sut.getUnicode(new Point(i, 6)).compareTo("\u265F") == 0);
+            assertTrue(sut.getUnicode(new Point(i, 6)).compareTo("\u2659") == 0);
         }
-
     }
-
+   
     @Test
     public void whitesTurn() {
         assertTrue(sut.whitesTurn() == true);
@@ -89,8 +89,8 @@ public class GameControllerTest {
         assertTrue(sut.whitesTurn() == false);
         sut.move(new Point(1, 1), new Point(1, 3));
         assertTrue(sut.whitesTurn() == true);
-
     }
+
 
 
 }
