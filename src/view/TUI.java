@@ -20,8 +20,8 @@ public final class TUI implements IObserver {
     
     private static final int NEW_COMMAND_LENGTH = 2;
     private static final int MOVE_COMMAND_LENGTH = 3;
-    private static final int MinField = 1;
-    private static final int MaxField = 8;
+    private static final int MIN_FIELD = 1;
+    private static final int MAX_FIELD = 8;
     private static final int TOINT = 65;
     private static final int ONE = 1;
     private static final int TWO = 2;
@@ -113,16 +113,16 @@ public final class TUI implements IObserver {
         int a = (int) point.charAt(0);
         int b = point.charAt(1) - '0';
         boolean correctChar = a >= (int) 'A' && a <= (int) 'H';
-        boolean correctNumber = b >= MinField  && b <= MaxField;
+        boolean correctNumber = b >= MIN_FIELD  && b <= MAX_FIELD;
         return correctChar && correctNumber && (point.length() == TWO);
 
     }
 
     private void executeMove(String from, String to) {
         int fromX = from.charAt(0) - TOINT;
-        int fromY = MaxField - (from.charAt(1) - '0');
+        int fromY = MAX_FIELD - (from.charAt(1) - '0');
         int toX = to.charAt(0) - TOINT;
-        int toY = MaxField - (to.charAt(1) - '0');
+        int toY = MAX_FIELD - (to.charAt(1) - '0');
         if (gameController.move(new Point(fromX, fromY), new Point(toX, toY))) {
             logger.info("Last move was valid!");
         } else {
