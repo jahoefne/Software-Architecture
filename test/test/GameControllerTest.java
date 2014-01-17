@@ -91,6 +91,17 @@ public class GameControllerTest {
         sut.move(new Point(1, 1), new Point(1, 3));
         assertTrue(sut.whitesTurn() == true);
     }
+    
+    @Test
+    public void gameOvertest(){
+    	sut.move(new Point(5,6), new Point(5,5));
+    	sut.move(new Point(4,1), new Point(4,2));
+    	sut.move(new Point(6,6), new Point(6,4));
+    	sut.move(new Point(3,0), new Point(7,4));
+    	sut.move(new Point(4,7), new Point(5,6));
+    	sut.move(new Point(7,4), new Point(5,6));
+    	assertTrue(sut.isGameOver());
+    }
 
     @Test
     public void checkTest(){
