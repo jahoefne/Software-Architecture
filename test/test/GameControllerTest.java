@@ -2,7 +2,6 @@ package test;
 
 import controller.GameController;
 import controller.IGameController;
-
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,7 +17,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class GameControllerTest {
 
-    private GameController sut;
+    private IGameController sut;
 
     @BeforeClass
     public static void beforeClass() {
@@ -27,7 +26,7 @@ public class GameControllerTest {
 
     @Before
     public void before() {
-        sut = new GameController();//GameController.getInstance();
+        sut = GameController.getInstance();
         sut.resetGame();
     }
     
@@ -93,7 +92,7 @@ public class GameControllerTest {
         assertTrue(sut.whitesTurn() == true);
     }
     @Test
-    public void checktest(){
+    public void checkTest(){
     	sut.move(new Point(2, 6), new Point(2, 5));
     	sut.move(new Point(3, 1), new Point(3, 2));
     	sut.move(new Point(3, 7), new Point(0, 4));
