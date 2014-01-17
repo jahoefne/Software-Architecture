@@ -1,6 +1,5 @@
 package view;
 
-import controller.GameController;
 import controller.IGameController;
 import org.apache.log4j.Logger;
 import util.Event;

@@ -23,6 +23,7 @@ import java.util.List;
         private boolean gameOver=false;
         private static final int FIELD_LENGTH = 8;
         private boolean check = false;
+        private static final int SIX=6;
 
         public static IGameController getInstance() {
             if (instance == null) {
@@ -76,7 +77,6 @@ import java.util.List;
             	notifyObservers();
             }
 
-            final int SIX = 6;
             Point kingPosition = getKingPosition((byte) SIX * (byte) field.getWhiteOrBlack());
             
         	if(kingInCheck(kingPosition, enemyPossibleMoves)){
@@ -114,15 +114,6 @@ import java.util.List;
             }
             
             return gameOver;
-        }
-        
-        private List<Point> movesKingInCheck(Point kingPosition){
-        	Point[] moves = getPossibleMoves(kingPosition);
-            List<Point> retList = new ArrayList<Point>();
-        	for(Point p : moves){
-        		retList.add(p);
-        	}
-        	return retList;
         }
         
         private List<Point> getTurnsPossibleMoves(List<Point> enemyPositions){
