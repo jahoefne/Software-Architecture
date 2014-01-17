@@ -37,6 +37,8 @@ class GUI extends JFrame implements ActionListener, IObserver {
         this.controller = controller;
         controller.addObserver(this);
 
+    }
+    public void init(){
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("Chess");
 

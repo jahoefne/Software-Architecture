@@ -5,7 +5,7 @@ import model.Figures;
 import model.IField;
 import util.Observable;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,6 @@ import java.util.List;
         private boolean gameOver=false;
         private static final int FIELD_LENGTH = 8;
         private boolean check = false;
-        private boolean checkMate = false;
 
         public static IGameController getInstance() {
             if (instance == null) {
@@ -76,22 +75,15 @@ import java.util.List;
             	field.toggleWhiteOrBlack();
             	notifyObservers();
             }
-            
-            Point kingPosition = getKingPosition((byte) 6 * (byte) field.getWhiteOrBlack());
+
+            final int SIX = 6;
+            Point kingPosition = getKingPosition((byte) SIX * (byte) field.getWhiteOrBlack());
             
         	if(kingInCheck(kingPosition, enemyPossibleMoves)){
-        		
         		this.check = true;
-        		
-        		if(enemyPossibleMoves.containsAll(movesKingInCheck(kingPosition))){
-        			checkMate = true;
-        		}
         		notifyObservers();
         	}
-        	
             return returnValue;
-            
-            
         }
 
         public String getUnicode(Point x) {
@@ -193,7 +185,4 @@ import java.util.List;
         public String toString() {
             return field.toString();
         }
-        
-        
-
 }

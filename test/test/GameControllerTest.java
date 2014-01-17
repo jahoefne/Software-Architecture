@@ -91,6 +91,7 @@ public class GameControllerTest {
         sut.move(new Point(1, 1), new Point(1, 3));
         assertTrue(sut.whitesTurn() == true);
     }
+
     @Test
     public void checkTest(){
     	sut.move(new Point(2, 6), new Point(2, 5));
@@ -98,9 +99,6 @@ public class GameControllerTest {
     	sut.move(new Point(3, 7), new Point(0, 4));
     	assertTrue( 1 > 0 );
     }
-    
-
-    	
 }
 
 

@@ -16,6 +16,7 @@ public final class Chess {
 
         @SuppressWarnings("unused")
         GUI gui = new GUI(controller);
+        gui.init();
         TUI tui = new TUI(controller);
 
         tui.printTUI();

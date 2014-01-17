@@ -1,7 +1,8 @@
 package controller;
 
-import java.awt.*;
 import util.IObservable;
+
+import java.awt.*;
 
 /**
  * User: jahoefne
@@ -72,10 +73,10 @@ public interface IGameController extends IObservable {
      *  Returns if a king is in check
      * @return True if a king in check, otherwise false
      */
-    public boolean getCheck();
+    boolean getCheck();
     
     /**
      * Used to set check variable to false
      */
-    public void setCheck();
+    void setCheck();
 }
