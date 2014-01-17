@@ -88,11 +88,6 @@ class GUI extends JFrame implements ActionListener, IObserver {
         mainPanel.add(new JLabel(""));
         mainPanel.add(new JLabel(""));
 
-        newGame = new JButton("New Game!");
-        newGame.setActionCommand("new");
-        newGame.addActionListener(this);
-        mainPanel.add(newGame);
-
         quit = new JButton("Quit!");
         quit.setActionCommand("quit");
         quit.addActionListener(this);
@@ -117,11 +112,6 @@ class GUI extends JFrame implements ActionListener, IObserver {
 
         if (actionEvent.getActionCommand().equals("quit")) {
             System.exit(0);
-        }
-
-        if (actionEvent.getActionCommand().equals("new")) {
-            // TODO: start new game
-            return;
         }
 
         String s[] = actionEvent.getActionCommand().split(" ");

@@ -61,7 +61,7 @@ import java.util.List;
 
 
         public boolean move(Point x, Point y) {
-
+             System.out.println(x+"    "+y);
             List<Point> enemyPossibleMoves = getTurnsPossibleMoves(positionsColour());
         	
             boolean returnValue = !gameOver && validator.moveIfValid(x, y, field);
