@@ -18,8 +18,8 @@ public class Vector2D {
 
     // constructs vector out of 2 integers
     public Vector2D(int x, int y) {
-        this.x = (double)x;
-        this.y = (double)y;
+        this.x = (double) x;
+        this.y = (double) y;
     }
 
     // compares 2 vectors

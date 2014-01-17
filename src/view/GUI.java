@@ -50,7 +50,6 @@ class GUI extends JFrame implements ActionListener, IObserver {
     }
 
     JPanel createContentPane() {
-        JButton newGame;
         JButton quit;
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());

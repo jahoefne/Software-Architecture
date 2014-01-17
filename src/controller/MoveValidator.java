@@ -15,13 +15,13 @@ public class MoveValidator {
     //l l i g f
     //- j - h -
     private static final Vector2D[] DIRECTIONS = {
-     // denotes the 16 possible direction vectors
+            // denotes the 16 possible direction vectors
             new Vector2D(0, -1),
             // x -> a
             new Vector2D(1, -2),
-             // x -> b
+            // x -> b
             new Vector2D(1, -1),
-             // x -> c
+            // x -> c
             new Vector2D(2, -1),
             // x -> d
             new Vector2D(1, 0),
@@ -29,33 +29,33 @@ public class MoveValidator {
             new Vector2D(2, 1),
             // x -> f
             new Vector2D(1, 1),
-             // x -> g
+            // x -> g
             new Vector2D(1, 2),
-             // x -> h
+            // x -> h
             new Vector2D(0, 1),
-             // x -> i
+            // x -> i
             new Vector2D(-1, 2),
-             // x -> j
+            // x -> j
             new Vector2D(-1, 1),
-             // x -> k
+            // x -> k
             new Vector2D(-2, 1),
-             // x -> l
+            // x -> l
             new Vector2D(-1, 0),
-             // x -> m
+            // x -> m
             new Vector2D(-2, -1),
-              // x -> n
+            // x -> n
             new Vector2D(-1, -1),
-              // x -> o
+            // x -> o
             new Vector2D(-1, -2)
-              // x -> p
+            // x -> p
     };
 
     // Moves the figure at p1 to p2 if the move is valid
     public boolean moveIfValid(Point p1, Point p2, IField field) {
         if (isValid(p1, p2, field)) {
-        // if the move is valid
+            // if the move is valid
             field.move(p1, p2);
-             // move p1 to p2
+            // move p1 to p2
             field.toggleWhiteOrBlack();
             // change color for next move
             return true;
@@ -116,10 +116,10 @@ public class MoveValidator {
 
 
     private static final int PAWN_STARTPOS = 6;
-    
+
     // returns whether figure is a pawn and pos is a pawn start-position
     private boolean isPawnInStartPosition(IFigureMask figure, Point pos) {
-    
+
         if ((figure.getId() == Figures.PawnBlack.id() && pos.y == 1)) {
             return false;
         } else if (figure.getId() == Figures.PawnWhite.id() && pos.y == PAWN_STARTPOS) {
@@ -139,8 +139,6 @@ public class MoveValidator {
     }
 
 
-
-
     // checks if the move is valid
     public boolean isValid(Point p1, Point p2, IField field) {
         IFigureMask figureToMove = Figures.lookUpID(field.getCell(p1.x, p1.y)).getMask();
@@ -152,7 +150,7 @@ public class MoveValidator {
         int moveMask = this.setBit(dirId);
         int captureMask = this.setBit(dirId + NUMBER_OF_DIRECTIONS);
 
-        if (mayNotMove(p1, p2, field, figureToMove, dirId)){
+        if (mayNotMove(p1, p2, field, figureToMove, dirId)) {
             return false;
         }
 
