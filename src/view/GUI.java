@@ -33,7 +33,6 @@ class GUI extends JFrame implements ActionListener, IObserver {
     private static final int FONT_SIZE = 36;
 
     public GUI(IGameController controller) {
-
         this.controller = controller;
         controller.addObserver(this);
 

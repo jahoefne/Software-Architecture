@@ -12,11 +12,12 @@ public final class Chess {
 
         PropertyConfigurator.configure("log4j.properties");
 
-        IGameController controller = GameController.getInstance();
+        IGameController controller = new GameController();
 
         @SuppressWarnings("unused")
         GUI gui = new GUI(controller);
         gui.init();
+
         TUI tui = new TUI(controller);
 
         tui.printTUI();

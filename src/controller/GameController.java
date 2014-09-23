@@ -19,18 +19,10 @@ import java.util.List;
  */
 public class GameController extends Observable implements IGameController {
 
-    private static GameController instance = null;
     private boolean gameOver = false;
     private static final int FIELD_LENGTH = 8;
     private boolean check = false;
     private static final int SIX = 6;
-
-    public static IGameController getInstance() {
-        if (instance == null) {
-            instance = new GameController();
-        }
-        return instance;
-    }
 
     private IField field = new Field();
     private MoveValidator validator = new MoveValidator();
@@ -156,7 +148,7 @@ public class GameController extends Observable implements IGameController {
     private Point getKingPosition(int b) {
         for (int y = 0; y < FIELD_LENGTH; y++) {
             for (int x = 0; x < FIELD_LENGTH; x++) {
-                if (instance.field.getCell(x, y) == (byte) b) {
+                if (this.field.getCell(x, y) == (byte) b) {
                     return new Point(x, y);
                 }
             }
