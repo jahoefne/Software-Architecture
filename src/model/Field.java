@@ -25,6 +25,14 @@ public class Field implements IField{
     //	    negative => Black
     //      positive => White
 
+
+    public Field(byte[][] field, byte whiteOrBlack){
+        this.field=field;
+        this.whiteOrBlack = whiteOrBlack;
+    }
+
+
+
     // Resets the field
     final void reset() {
         whiteOrBlack = ONE;
@@ -53,8 +61,15 @@ public class Field implements IField{
         field[SEVEN][SEVEN] = Figures.RookWhite.id();
     }
 
+
+
     public Field() {
         this.reset();
+    }
+
+    @Override
+    public byte[][] getField() {
+        return field;
     }
 
     public byte getCell(int x, int y) {

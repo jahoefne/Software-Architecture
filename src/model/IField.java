@@ -11,6 +11,8 @@ package model;
  */
 public interface IField {
 
+    byte[][] getField();
+
     /**
      * Returns value of the cell at Point(x,y)
      * @param x the x coordinate of the cell

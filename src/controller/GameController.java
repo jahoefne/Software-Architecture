@@ -27,6 +27,25 @@ public class GameController extends Observable implements IGameController {
     private IField field = new Field();
     private MoveValidator validator = new MoveValidator();
 
+
+    public GameController(){}
+
+    public GameController(boolean gameOver, boolean check, Field field){
+        this.gameOver=gameOver;
+        this.check=check;
+        this.field=field;
+    }
+
+    public IField getField(){
+        return field;
+    }
+
+    public static int getFieldLength() {
+        return FIELD_LENGTH;
+    }
+
+
+
     public void resetGame() {
         this.field = new Field();
         this.gameOver = false;
