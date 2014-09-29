@@ -55,7 +55,7 @@ public interface IGameController extends IObservable {
      * @return 0 if the field is empty. <0 if the field is occupied by a black figure,
      * >0 if it is occupied by a white figure
      */
-    byte getID(Point x);
+    int getID(Point x);
 
     /**
      * Returns if it's the white players, or black players turn

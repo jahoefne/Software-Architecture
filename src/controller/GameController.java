@@ -100,7 +100,7 @@ public class GameController extends Observable implements IGameController {
         return Figures.lookUpID(field.getCell(x)).getMask().getUnicode();
     }
 
-    public byte getID(Point x) {
+    public int getID(Point x) {
         return Figures.lookUpID(field.getCell(x)).getMask().getId();
     }
 

@@ -2,7 +2,7 @@ package model;
 
 // describes the FigureMask Bitmasks
 public class FigureMask implements IFigureMask{
-    private final byte id;
+    private final int id;
     private final int bitMask;
     private final boolean limited;
 
@@ -18,14 +18,14 @@ public class FigureMask implements IFigureMask{
         return mask;
     }
 
-    public FigureMask(byte id, String bitMask, boolean limited, String unicode) {
+    public FigureMask(int id, String bitMask, boolean limited, String unicode) {
         this.bitMask = this.parse(bitMask);
         this.limited = limited;
         this.id = id;
         this.setUnicode(unicode);
     }
 
-    public byte getId() {
+    public int getId() {
         return id;
     }
 

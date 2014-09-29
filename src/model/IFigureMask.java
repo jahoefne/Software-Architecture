@@ -11,7 +11,7 @@ public interface IFigureMask {
      * Gets the internal representation of the figure
      * @return the internal representation
      **/
-    byte getId();
+    int getId();
 
     /**
      * Returns the bitmask which describes the figures move and capture capabilities

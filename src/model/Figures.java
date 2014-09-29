@@ -24,78 +24,78 @@ package model;
 //This is combined in the class FigureMask.
 public enum Figures {
     PawnBlack(
-            (byte) -1,
+             -1,
             "00000000100000000000001000100000",
             true,
             "\u265F"),
 
     RookBlack(
-            (byte) -2,
+            -2,
             "10001000100010001000100010001000",
             false,
             "\u265C"),
     KnightBlack(
-            (byte) -3,
+            -3,
             "01010101010101010101010101010101",
             true,
             "\u265E"),
 
     BishopBlack(
-            (byte) -4,
+             -4,
             "00100010001000100010001000100010",
             false,
             "\u265D"),
 
     QueenBlack(
-            (byte) -5,
+             -5,
             "10101010101010101010101010101010",
             false,
             "\u265B"),
 
     KingBlack(
-            (byte) -6,
+             -6,
             "10101010101010101010101010101010",
             true,
             "\u265A"),
 
     Empty(
-            (byte) 0,
+             0,
             "00000000000000000000000000000000",
             true,
             ""),
 
     PawnWhite(
-            (byte) 1,
+             1,
             "10000000000000000010000000000010",
             true,
             "\u2659"),
 
     RookWhite(
-            (byte) 2,
+             2,
             "10001000100010001000100010001000",
             false,
             "\u2656"),
 
     KnightWhite(
-            (byte) 3,
+             3,
             "01010101010101010101010101010101",
             true,
             "\u2658"),
 
     BishopWhite(
-            (byte) 4,
+             4,
             "00100010001000100010001000100010",
             false,
             "\u2657"),
 
     QueenWhite(
-            (byte) 5,
+             5,
             "10101010101010101010101010101010",
             false,
             "\u2655"),
 
     KingWhite(
-            (byte) 6,
+             6,
             "10101010101010101010101010101010",
             true,
             "\u2654");
@@ -103,11 +103,11 @@ public enum Figures {
 
     private final IFigureMask mask;
 
-    Figures(byte id, String mask, boolean limited, String unicode) {
+    Figures(int id, String mask, boolean limited, String unicode) {
         this.mask = new FigureMask(id, mask, limited, unicode);
     }
 
-    public byte id() {
+    public int id() {
         return mask.getId();
     }
 
@@ -117,7 +117,7 @@ public enum Figures {
 
 
     // for reverse lookup
-    public static Figures lookUpID(byte id) {
+    public static Figures lookUpID(int id) {
         for (Figures s : values()) {
             if (s.id() == id) {
                 return s;

@@ -9,7 +9,7 @@ import java.awt.*;
 // Figures.java
 public class Field implements IField{
 
-    private byte[][] field;
+    private int[][] field;
     private static final int LEN = 8;
     private static final int ZERO = 0;
     private static final int ONE = 1;
@@ -26,7 +26,7 @@ public class Field implements IField{
     //      positive => White
 
 
-    public Field(byte[][] field, byte whiteOrBlack){
+    public Field(int[][] field, byte whiteOrBlack){
         this.field=field;
         this.whiteOrBlack = whiteOrBlack;
     }
@@ -36,7 +36,7 @@ public class Field implements IField{
     // Resets the field
     final void reset() {
         whiteOrBlack = ONE;
-        field = new byte[LEN][LEN];
+        field = new int[LEN][LEN];
         for (int x = ZERO; x < LEN; x++) {
             field[x][ONE] = Figures.PawnBlack.id();
             field[x][SIX] = Figures.PawnWhite.id();
@@ -68,15 +68,15 @@ public class Field implements IField{
     }
 
     @Override
-    public byte[][] getField() {
+    public int[][] getField() {
         return field;
     }
 
-    public byte getCell(int x, int y) {
+    public int getCell(int x, int y) {
         return this.getCell(new Point(x, y));
     }
 
-    public byte getCell(Point p) {
+    public int getCell(Point p) {
         return field[p.x][p.y];
     }
 
@@ -85,7 +85,7 @@ public class Field implements IField{
         field[pos1.x][pos1.y] = Figures.Empty.id();
     }
 
-    public void set(Point p, byte value) {
+    public void set(Point p, int value) {
         field[p.x][p.y] = value;
     }
 

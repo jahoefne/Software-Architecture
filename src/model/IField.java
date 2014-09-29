@@ -11,7 +11,7 @@ package model;
  */
 public interface IField {
 
-    byte[][] getField();
+    int[][] getField();
 
     /**
      * Returns value of the cell at Point(x,y)
@@ -19,14 +19,14 @@ public interface IField {
      * @param y  the x coordinate of the cell
      * @return the value of the cell at Point(x,y)
      **/
-     byte getCell(int x, int y);
+     int getCell(int x, int y);
 
     /**
      * Returns value of the cell at Point p
      * @param p the Point
      * @return the value of the cell at Point p
      **/
-     byte getCell(Point p);
+     int getCell(Point p);
 
     /**
      * Moves pos1, to pos2. The value at pos2 is replaces with the value of pos1
@@ -41,7 +41,7 @@ public interface IField {
      * @param p the position cell to alter
      * @param value the new value for the cell at p
      **/
-     void set(Point p, byte value);
+     void set(Point p, int value);
 
     /**
      * Toggles whether it is the white or the black players turn
