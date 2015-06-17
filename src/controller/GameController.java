@@ -23,11 +23,10 @@ public class GameController extends Observable implements IGameController {
     private static final int FIELD_LENGTH = 8;
     private boolean check = false;
     private static final int SIX = 6;
+    private String gameID = java.util.UUID.randomUUID().toString();
 
     private IField field = new Field();
     private MoveValidator validator = new MoveValidator();
-
-
     public GameController(){}
 
     public GameController(boolean gameOver, boolean check, Field field){
@@ -43,8 +42,6 @@ public class GameController extends Observable implements IGameController {
     public static int getFieldLength() {
         return FIELD_LENGTH;
     }
-
-
 
     public void resetGame() {
         this.field = new Field();
@@ -186,5 +183,13 @@ public class GameController extends Observable implements IGameController {
     @Override
     public String toString() {
         return field.toString();
+    }
+
+    public String getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(String gameID) {
+        this.gameID = gameID;
     }
 }
