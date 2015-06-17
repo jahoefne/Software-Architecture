@@ -7,6 +7,7 @@ import util.Observable;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,11 +20,19 @@ import java.util.List;
  */
 public class GameController extends Observable implements IGameController {
 
+    /**
+     * Added the following attributes for compatibility with hte webtech project
+     */
+    private String gameID = java.util.UUID.randomUUID().toString();
+    private String createdBy;
+    private Date createdOn;
+    private String blackPlayerID;
+    private String whitePlayerID;
+
     private boolean gameOver = false;
     private static final int FIELD_LENGTH = 8;
     private boolean check = false;
     private static final int SIX = 6;
-    private String gameID = java.util.UUID.randomUUID().toString();
 
     private IField field = new Field();
     private MoveValidator validator = new MoveValidator();
@@ -191,5 +200,37 @@ public class GameController extends Observable implements IGameController {
 
     public void setGameID(String gameID) {
         this.gameID = gameID;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public String getWhitePlayerID() {
+        return whitePlayerID;
+    }
+
+    public void setWhitePlayerID(String whitePlayerID) {
+        this.whitePlayerID = whitePlayerID;
+    }
+
+    public String getBlackPlayerID() {
+        return blackPlayerID;
+    }
+
+    public void setBlackPlayerID(String blackPlayerID) {
+        this.blackPlayerID = blackPlayerID;
     }
 }
