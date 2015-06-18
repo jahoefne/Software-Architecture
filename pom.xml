@@ -21,6 +21,13 @@
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>db4o-8.0.249.16098-all-java5</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/db4o-8.0.249.16098-all-java5.jar</systemPath>
+        </dependency>
 	    <dependency>
 	        <groupId>log4j</groupId>
 	        <artifactId>log4j</artifactId>

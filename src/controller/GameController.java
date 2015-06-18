@@ -3,6 +3,8 @@ package controller;
 import model.Field;
 import model.Figures;
 import model.IField;
+import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import util.Observable;
 
 import java.awt.*;
@@ -23,7 +25,12 @@ public class GameController extends Observable implements IGameController {
     /**
      * Added the following attributes for compatibility with hte webtech project
      */
+    @JsonProperty("_id")
     private String gameID = java.util.UUID.randomUUID().toString();
+
+    @JsonProperty("_rev")
+    private String rev;
+
     private String createdBy;
     private Date createdOn;
     private String blackPlayerID;
@@ -34,7 +41,9 @@ public class GameController extends Observable implements IGameController {
     private boolean check = false;
     private static final int SIX = 6;
 
+    @JsonDeserialize(as=Field.class)
     private IField field = new Field();
+
     private MoveValidator validator = new MoveValidator();
     public GameController(){}
 
