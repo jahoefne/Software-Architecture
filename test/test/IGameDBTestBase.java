@@ -2,22 +2,21 @@ package test;
 
 import controller.GameController;
 import org.junit.*;
-import persistence.CouchGameDB;
+import persistence.IGameDB;
+
 import static org.junit.Assert.*;
 import java.awt.*;
 
 
-public class CouchDBTest{
-        private CouchGameDB sut;
+public abstract class IGameDBTestBase<T extends IGameDB> {
+        private T sut;
 
-        @BeforeClass
-        public static void beforeClass() {
-            System.out.println("Testing the CouchDB..");
-        }
+        protected abstract T createSut();
 
         @Before
-        public void setUp() throws Exception {
-            sut = new CouchGameDB();
+        public void setUp() {
+            sut = createSut();
+            System.out.println("Testing the "+sut.getClass().getName()+" GameDB implementation");
         }
 
         @Test
