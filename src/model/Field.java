@@ -1,5 +1,7 @@
 package model;
 
+
+import javax.persistence.*;
 import java.awt.*;
 
 
@@ -7,9 +9,12 @@ import java.awt.*;
 // The field is realized as a 2D byte Array, with one byte for each cell.
 // The state of the field is denoted by the enum defined in
 // Figures.java
+@Entity
 public class Field implements IField{
 
+    @Column( length = 100000 )
     private int[][] field;
+
     private static final int LEN = 8;
     private static final int ZERO = 0;
     private static final int ONE = 1;
@@ -30,8 +35,6 @@ public class Field implements IField{
         this.field=field;
         this.whiteOrBlack = whiteOrBlack;
     }
-
-
 
     // Resets the field
     final void reset() {
@@ -70,6 +73,10 @@ public class Field implements IField{
     @Override
     public int[][] getField() {
         return field;
+    }
+
+    public void setField(int[][] field) {
+        this.field = field;
     }
 
     public int getCell(int x, int y) {
@@ -116,5 +123,21 @@ public class Field implements IField{
 
     public byte getWhiteOrBlack() {
         return whiteOrBlack;
+    }
+
+    public void setWhiteOrBlack(byte whiteOrBlack) {
+        this.whiteOrBlack = whiteOrBlack;
+    }
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

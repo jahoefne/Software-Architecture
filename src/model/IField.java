@@ -1,6 +1,7 @@
 package model;
 
         import java.awt.*;
+        import java.io.Serializable;
 
 /**
  * User: jahoefne
@@ -9,7 +10,7 @@ package model;
  * The Field represents the current Field state and may be altered using the methods declared in
  * this interface
  */
-public interface IField {
+public interface IField extends Serializable {
 
     int[][] getField();
 

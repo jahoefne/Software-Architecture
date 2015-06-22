@@ -5,10 +5,12 @@ import model.Figures;
 import model.IField;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.hibernate.annotations.Entity;
 import util.Observable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,14 +44,22 @@ public class GameController extends Observable implements IGameController, Seria
     private String whitePlayerID;
 
     private boolean gameOver = false;
+
     private static final int FIELD_LENGTH = 8;
+
+     /* Check is a reserved word in SQL which makes hibernate fail! */
+    @Column(name = "checkBool")
     private boolean check = false;
+
     private static final int SIX = 6;
 
     @JsonDeserialize(as=Field.class)
-    private IField field = new Field();
 
-    private MoveValidator validator = new MoveValidator();
+    @OneToOne
+    private Field field = new Field();
+
+    private static MoveValidator validator = new MoveValidator();
+
     public GameController(){}
 
     public GameController(boolean gameOver, boolean check, Field field){

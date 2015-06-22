@@ -180,4 +180,5 @@ public class MoveValidator {
         }
         return false;
     }
+
 }

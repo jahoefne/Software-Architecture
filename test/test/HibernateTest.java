@@ -15,7 +15,7 @@ public class HibernateTest{
 
     @BeforeClass
     public static void beforeClass() {
-        System.out.println("Testing the CouchDB..");
+        System.out.println("Testing Hibernate with MySql");
     }
 
     @Before
