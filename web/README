@@ -1,0 +1,6 @@
+Chess-Online
+============
+
+WebTec project for AIN.
+
+In order to run the project you need a MongoDB running on the same server as the play project (with standard port).

@@ -1,0 +1,16 @@
+<polymer-element name="chess-board" attributes="data size">
+    <template>
+        <link rel="stylesheet" href="./chess-board.css" />
+        <div class="{{wrapper}}">
+            <template repeat="{{field in fields}}">
+                <div  id="{{field.row}}{{field.col}}"
+                      index="{{field.i}}"
+                      class="field {{field.color}} {{field.highlight}}"
+                      on-click="{{clickedField}}">
+                    <span class="font-center">{{field.figure}}</span>
+                </div>
+            </template>
+        </div>
+    </template>
+    <script src="./chess-board.js"></script>
+</polymer-element>

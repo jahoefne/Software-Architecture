@@ -1,0 +1,51 @@
+@(user: Option[User])
+<link rel="stylesheet" href="@routes.Assets.at("deps/css/gh-fork-ribbon.css")" />
+<div class="github-fork-ribbon-wrapper right-bottom">
+    <div class="github-fork-ribbon">
+        <a href="https://github.com/jahoefne/Chess-Online">Fork me on GitHub</a>
+    </div>
+</div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-brand" >Chess-Online</span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">About</a></li>
+                <li><a href="/game/new">New Game</a></li>
+
+                @if(user != None){
+                    <li><a href="/game/list">My Games</a></li>
+                }
+
+             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                @user match{
+                    case Some(u) => {
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <span class="glyphicon glyphicon-lock" aria-hidden="true"> </span>
+                            @u.main.email
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu navbar-right" role="menu">
+                            <li><a href="/auth/logout">Logout</a></li>
+                        </ul> </li> }
+                    case _ => {
+                        <li><a href="/login">Login/Register</a></li> }
+                    }
+            </ul>
+        </div>
+        </div>
+    </div>
+</nav>

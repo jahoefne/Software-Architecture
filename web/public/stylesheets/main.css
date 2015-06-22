@@ -1,0 +1,72 @@
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: url(/assets/images/intro-bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.share-button{
+    bottom: 0px;
+}
+
+@font-face {
+    font-family: ChessFont;
+    src: url('/assets/deps/fonts/Chess_Font.ttf') format("truetype");
+}
+
+.jumbotron {
+    height:100%;
+    background-color:rgba(20, 20, 20, 0.7)
+}
+
+#error{
+    color:red;
+}
+
+.right-bottom .github-fork-ribbon {
+    background-color: #202020;
+}
+
+.centered {
+   margin: 0 auto !important;
+   float: none !important;
+}
+
+#chooseRoleModalDialog{
+    margin-top:30%;
+    box-shadow: 10px 10px 15px #000;
+	
+}
+
+.loginFrame{
+    width:80%;
+    height:100%;
+    border:0;
+}
+
+table, .head-box{
+    background-color:rgba(20, 20, 20, 0.7);
+    border-radius:5px;
+}
+
+tr {
+    padding:200px;
+}
+
+hr{
+    border: 0;
+    border-top: 2px solid #f0f0f0;
+}
+
+@media screen and (max-width: 500px) {
+    .github-fork-ribbon-wrapper {
+        display: none;
+    }
+}

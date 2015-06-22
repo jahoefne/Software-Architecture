@@ -1,0 +1,60 @@
+@(gameList: List[model.ActiveGame], user: Option[User])
+<html>
+
+@baseHeader("Game List")
+
+<body>
+<script src="@routes.Assets.at("javascripts/board.js")"></script>
+<script>
+          function deleteGame(uri){
+            $.ajax({
+                url: uri,
+                type: 'DELETE',
+                success: function(result) {
+                    window.location.reload();
+                }
+            });
+          }
+</script>
+
+@baseNavBar(user)
+<div class="container">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 head-box text-center">
+        <h3 style="padding: 5px">Hi @user.get.main.firstName, there are @gameList.size games created by you:</h3>
+    </div>
+</div>
+</div>
+<br>
+    <table align="center">
+        @for(game <- gameList){
+            <tr>
+                <td><hr></td>
+            </tr>
+            <tr>
+                <td>
+                    <chess-board data="@{game.getField.getField.map(_.mkString(",")).mkString(",")}" light="" size="small"></chess-board>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-4 text-center">
+                    <h5><span class="label label-default text-center">Started on: @game.createdOn.toString("dd.MM.yyyy HH:mm:ss")</span></h5>
+                     </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                   <div class="row centered">
+                            <a class="btn btn-success" href="@routes.Application.game(game.uuid)">Join</a>
+                            <span class="btn btn-danger" onclick="deleteGame('@routes.Application.game(game.uuid)')">Delete</span>
+                   </div>
+
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+</body>
+</html>

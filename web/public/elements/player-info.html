@@ -1,0 +1,79 @@
+<polymer-element name="single-player-info" attributes="name, color, pic">
+    <template>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style>
+            .player{
+                max-width: 120px;
+                min-width: 100px;
+                width: auto;
+			}
+
+            img {
+                width: 100%;
+				max-width: 100px;
+                border-radius: 50%;
+                border: 2px solid;
+                margin: auto;
+                background-color:#232323;
+                -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+                box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+            }
+
+            #name-span { margin-top:10px; }
+        </style>
+        <div class="player" vertical  center-justified layout>
+            <img style="border-color:{{color}};" src="{{pic}}" />
+            <span id="name-span">{{name}}</span>
+        </div>
+    </template>
+    <script>
+        Polymer('single-player-info', {
+           // google wants to give us only 50x50px images, just query a bigger size anyway
+           picChanged: function(){
+                var tmp = this.pic;
+
+                // img is from google and 50x50px
+                if(tmp.indexOf("googleusercontent.com") > -1 &&
+                   tmp.indexOf("50", tmp.length - tmp.length) !== -1 ){
+                     tmp = tmp.substring(0, tmp.length - 2);
+                     this.pic = tmp.concat("200");
+                }
+           }
+        });
+    </script>
+</polymer-element>
+
+<polymer-element name="player-info" attributes="black, white, blackPic, whitePic, status, playerRole" noscript>
+    <template>
+        <style>
+            #box{
+                border-color:3px solid #2D2D2D;
+                border-radius:5px;
+                background-color:rgba(20, 20, 20, 0.7);
+                padding:10px;
+                color:#ffffff;
+            }
+        </style>
+
+            <div horizontal center-justified layout>
+                <div id="box" vertical layout layout>
+                    <h2>{{status}}</h2>
+                    <div horizontal layout>
+                        <single-player-info
+                           name="{{white}}"
+                           color="#EEEEEE"
+                           pic="{{whitePic}}">
+                        </single-player-info>
+                        <h2 style="padding: 10px;" flex>VS</h2>
+                        <single-player-info
+                           name="{{black}}"
+                           color="#000000"
+                           pic="{{blackPic}}">
+                        </single-player-info>
+                    </div>
+                        (Your role: {{playerRole}})
+                </span>
+            </div>
+    </template>
+</polymer-element>

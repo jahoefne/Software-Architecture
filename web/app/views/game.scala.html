@@ -1,0 +1,56 @@
+@(gameUUID:String, playerUUID:String, user: Option[User])
+<!DOCTYPE html>
+<html>
+
+@baseHeader("Game")
+
+<script type="text/javascript">
+    window._global_playerID = "@(playerUUID)";
+    window._global_uuid = "@(gameUUID)";
+
+    @user match{
+        case Some(u) => { window._global_username = "@u.main.fullName.get"; }
+        case None => { window._global_username = "Unregistered User";}
+    }
+</script>
+
+<script src="@routes.Assets.at("javascripts/GameController.js")"></script>
+<script src="@routes.Assets.at("javascripts/share.js")"></script>
+
+
+<body class="text-center">
+@baseNavBar(user)
+    <div class="container">
+        <player-info white="loading.." black="loading.." whitePic="/assets/images/white.png" blackPic="/assets/images/black.png"></player-info>
+
+        <h3><span class="btn btn-default" onClick="$('#chooseRoleModal').modal('show');">Choose Side</span></h3>
+
+        <div id="chooseRoleModal" class="modal fade">
+            <div class="modal-dialog">
+                <div  id="chooseRoleModalDialog" class="modal-content">
+                    <div class="modal-header">Choose your role:</div>
+                        <div class="modal-body">
+                            <button type="button" class="btn btn-primary" onClick="GameController.becomeSpectator();">Spectator</button>
+                            <button type="button" class="btn btn-primary" onClick="GameController.becomeWhitePlayer();">White</button>
+                            <button type="button" class="btn btn-primary" onClick="GameController.becomeBlackPlayer();">Black</button>
+                        </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+
+    <div class="game-container">
+        <div class="row">
+            <div class="col-md-8" style="margin-top: 20px;">
+                    <chess-board data="" light="" size="normal"></chess-board>
+            </div>
+            @baseChat(user)
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center" style="margin-top: 30px; margin-bottom: 30px;">
+                <div class="share-button centered"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
