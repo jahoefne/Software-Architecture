@@ -5,9 +5,12 @@ import model.Figures;
 import model.IField;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.hibernate.annotations.Entity;
 import util.Observable;
 
+import javax.persistence.Id;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,12 +23,14 @@ import java.util.List;
  * this class also serves as the 'Game Object' instantiate a GameController object in order
  * to start a new game.
  */
-public class GameController extends Observable implements IGameController {
+@Entity
+public class GameController extends Observable implements IGameController, Serializable {
 
     /**
      * Added the following attributes for compatibility with hte webtech project
      */
     @JsonProperty("_id")
+    @Id
     private String gameID = java.util.UUID.randomUUID().toString();
 
     @JsonProperty("_rev")
