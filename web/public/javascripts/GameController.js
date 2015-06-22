@@ -73,7 +73,7 @@ var GameController = {
     },
 
 	sendMessage : function(message) {
-		console.log("sendMessage");
+		console.log("sendMessage",message);
 		if (this.socket.readyState !== this.socket.OPEN) {
 			console.log("Error sending message")
 			return false;

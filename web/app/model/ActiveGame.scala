@@ -8,8 +8,7 @@ import play.api.libs.json.{Json, JsValue}
 
 
 /** Represents an active game instance */
-case class ActiveGame( uuid: String,
-                       cont: Option[GameController] = Some(new GameController()),
+/*case class ActiveGame( cont: Option[GameController] = Some(new GameController()),
                        createdOn: DateTime = DateTime.now,
                        createdBy: String,
                        players:(Option[String], Option[String]) = (None, None))
@@ -61,4 +60,4 @@ case class ActiveGame( uuid: String,
     "whiteOrBlack" -> this.getField.getWhiteOrBlack.toInt,
     "gameOver" -> this.isGameOver
   )
-}
+}*/

@@ -1,4 +1,5 @@
-@(gameList: List[model.ActiveGame], user: Option[User])
+@import controller.GameController
+@(gameList: java.util.List[GameController], user: Option[User])
 <html>
 
 @baseHeader("Game List")
@@ -39,15 +40,15 @@
             <tr>
                 <td>
                     <div class="col-md-4 text-center">
-                    <h5><span class="label label-default text-center">Started on: @game.createdOn.toString("dd.MM.yyyy HH:mm:ss")</span></h5>
+                    <h5><span class="label label-default text-center">Started on: @game.getCreatedOn.toString</span></h5>
                      </div>
                 </td>
             </tr>
             <tr>
                 <td class="text-center">
                    <div class="row centered">
-                            <a class="btn btn-success" href="@routes.Application.game(game.uuid)">Join</a>
-                            <span class="btn btn-danger" onclick="deleteGame('@routes.Application.game(game.uuid)')">Delete</span>
+                            <a class="btn btn-success" href="@routes.Application.game(game.getGameID))">Join</a>
+                            <span class="btn btn-danger" onclick="deleteGame('@routes.Application.game(game.getGameID)')">Delete</span>
                    </div>
 
                 </td>

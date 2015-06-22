@@ -1,5 +1,6 @@
 import controllers._
 import java.lang.reflect.Constructor
+import persistence.CouchGameDB
 import play.api.mvc.WithFilters
 import play.filters.gzip.GzipFilter
 import securesocial.core.RuntimeEnvironment
@@ -28,7 +29,6 @@ object Global extends WithFilters(new GzipFilter()) with play.api.GlobalSettings
       params.length == 1 && params(0) == classOf[RuntimeEnvironment[User]]
     }.map {
         _.asInstanceOf[Constructor[A]].newInstance(MyRuntimeEnvironment)
-
     }
     instance.getOrElse(super.getControllerInstance(controllerClass))
   }

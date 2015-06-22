@@ -47,28 +47,35 @@ public class GameController extends Observable implements IGameController, Seria
 
     private static final int FIELD_LENGTH = 8;
 
-     /* Check is a reserved word in SQL which makes hibernate fail! */
+    /* Check is a reserved word in SQL which makes hibernate fail! */
     @Column(name = "checkBool")
     private boolean check = false;
 
     private static final int SIX = 6;
 
-    @JsonDeserialize(as=Field.class)
+    @JsonDeserialize(as = Field.class)
 
     @OneToOne
     private Field field = new Field();
 
     private static MoveValidator validator = new MoveValidator();
 
-    public GameController(){}
-
-    public GameController(boolean gameOver, boolean check, Field field){
-        this.gameOver=gameOver;
-        this.check=check;
-        this.field=field;
+    public GameController(String gameID, String createdBy) {
+        this.gameID = gameID;
+        this.createdBy = createdBy;
     }
 
-    public IField getField(){
+
+    public GameController() {
+    }
+
+    public GameController(boolean gameOver, boolean check, Field field) {
+        this.gameOver = gameOver;
+        this.check = check;
+        this.field = field;
+    }
+
+    public IField getField() {
         return field;
     }
 
@@ -247,7 +254,16 @@ public class GameController extends Observable implements IGameController, Seria
     }
 
     public void setWhitePlayerID(String whitePlayerID) {
+        if (whitePlayerID.equals(blackPlayerID))
+            blackPlayerID = null;
         this.whitePlayerID = whitePlayerID;
+    }
+
+    public void movePlayerToSpec(String playerID) {
+        if (playerID.equals(blackPlayerID))
+            blackPlayerID = null;
+        if (playerID.equals(whitePlayerID))
+            whitePlayerID = null;
     }
 
     public String getBlackPlayerID() {
@@ -255,6 +271,8 @@ public class GameController extends Observable implements IGameController, Seria
     }
 
     public void setBlackPlayerID(String blackPlayerID) {
+        if (blackPlayerID.equals(whitePlayerID))
+            whitePlayerID = null;
         this.blackPlayerID = blackPlayerID;
     }
 }
