@@ -1,6 +1,6 @@
 package controllers
 
-import _root_.java.util.Comparator
+import _root_.java.util.{UUID, Comparator}
 
 import controller.GameController
 import persistence.{CouchGameDB, IGameDB}
@@ -25,7 +25,7 @@ class Application(override implicit val env: RuntimeEnvironment[User]) extends s
 
   /** Create a new game instance */
   def newGame =  Action { implicit request =>
-    val gameUUID = ShortUUID.randomUUID.uuid
+    val gameUUID = UUID.randomUUID.toString
     val playerId =  ShortUUID.uuid
     gameDB.saveGame( new GameController(gameUUID, playerId))
     Redirect(routes.Application.game(gameUUID))
