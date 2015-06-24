@@ -18,7 +18,7 @@ class ChessWebSocketActor(out: ActorRef, playerID: String, gameID: String, gameD
 
   def gameToJson(gameController: GameController) : JsValue = Json.obj(
     "type" -> "ActiveGame",
-    "uuid" -> gameController.getGameID(),
+    "uuid" -> gameController.get_id(),
     "field" -> gameController.getField.getField,
     "check" -> gameController.getCheck,
     "white" -> gameController.getWhitePlayerID,

@@ -3,7 +3,7 @@ package controllers
 import _root_.java.util.{UUID, Comparator}
 
 import controller.GameController
-import persistence.{HibernateGameDB, CouchGameDB, IGameDB}
+import persistence._
 import play.api.libs.json.JsValue
 import play.api.mvc._
 import play.api.Play.current
@@ -17,7 +17,7 @@ object ShortUUID{ def uuid = (Random.alphanumeric take  8).mkString }
 
 class Application(override implicit val env: RuntimeEnvironment[User]) extends securesocial.core.SecureSocial[User] {
 
-  val gameDB = new HibernateGameDB()
+  val gameDB = new LightCouchGameDB()
   /** Landing Page */
   def index = UserAwareAction{ implicit request =>
     Ok(views.html.index(request.user))

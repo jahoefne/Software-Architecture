@@ -38,7 +38,7 @@ public class GameController extends Observable implements IGameController, Seria
 
     @Column(name = "rev")
     @JsonProperty("_rev")
-    private String _rev;
+    private String _rev = null;
 
     private String createdBy;
     private Date createdOn;
@@ -56,7 +56,6 @@ public class GameController extends Observable implements IGameController, Seria
     private static final int SIX = 6;
 
     @JsonDeserialize(as = Field.class)
-
     @OneToOne
     private Field field = new Field();
 
@@ -276,5 +275,13 @@ public class GameController extends Observable implements IGameController, Seria
         if (blackPlayerID.equals(whitePlayerID))
             whitePlayerID = null;
         this.blackPlayerID = blackPlayerID;
+    }
+
+    public String get_rev() {
+        return _rev;
+    }
+
+    public void set_rev(String _rev) {
+        this._rev = _rev;
     }
 }

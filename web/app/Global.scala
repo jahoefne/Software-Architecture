@@ -13,7 +13,9 @@ import scala.collection.immutable.ListMap
  * Global Settings used for SecureSocial
  */
 object Global extends WithFilters(
-  new GzipFilter(shouldGzip = (request, response) => response.headers.get("Content-Type").exists(_.startsWith("text/html")))
+  new GzipFilter(shouldGzip = (request, response) =>
+    response.headers.get("Content-Type").exists(_.startsWith("text/html")) || response.headers.get("Content-Type").exists(_.startsWith("text/css"))
+  )
 ) with play.api.GlobalSettings {
 
 

@@ -30,7 +30,6 @@ public abstract class IGameDBTestBase<T extends IGameDB> {
             System.out.println("\tTrying to load game with uuid " + save.get_id());
             GameController load = sut.loadGameWithUUID(save.get_id());
             System.out.println("\t\tDone!");
-
             assertTrue(load.get_id().equals(save.get_id())
                     && load.getField().getWhiteOrBlack() == save.getField().getWhiteOrBlack());
 

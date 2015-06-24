@@ -31,7 +31,10 @@ public class LightCouchGameDB implements IGameDB {
 
     @Override
     public void saveGame(GameController game) {
-        dbClient.save(game);
+        if(game.get_rev()!=null)
+            dbClient.update(game);
+        else
+            dbClient.save(game);
     }
 
     @Override
