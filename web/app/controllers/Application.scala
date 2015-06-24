@@ -15,13 +15,23 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 object ShortUUID{ def uuid = (Random.alphanumeric take  8).mkString }
 
+object GameDB{
+  val gameDB = try{
+    new LightCouchGameDB()
+  }catch {
+    case e:Exception => println(e)
+      null
+  }
+}
+
 class Application(override implicit val env: RuntimeEnvironment[User]) extends securesocial.core.SecureSocial[User] {
 
-  val gameDB = new LightCouchGameDB()
   /** Landing Page */
   def index = UserAwareAction{ implicit request =>
     Ok(views.html.index(request.user))
   }
+
+  val gameDB = GameDB.gameDB
 
   /** Create a new game instance */
   def newGame =  Action { implicit request =>
