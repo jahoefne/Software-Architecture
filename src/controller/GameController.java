@@ -3,14 +3,12 @@ package controller;
 import model.Field;
 import model.Figures;
 import model.IField;
+import org.bson.types.ObjectId;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import util.Observable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,18 +23,21 @@ import java.util.List;
  * this class also serves as the 'Game Object' instantiate a GameController object in order
  * to start a new game.
  */
-@Entity
+@javax.persistence.Entity
+@org.mongodb.morphia.annotations.Entity
 public class GameController extends Observable implements IGameController, Serializable {
 
     /**
      * Added the following attributes for compatibility with hte webtech project
      */
     @JsonProperty("_id")
-    @Column(name = "id")
-    @Id
+    @javax.persistence.Column(name = "id")
+    @javax.persistence.Id
+    @org.mongodb.morphia.annotations.Id
     private String _id = java.util.UUID.randomUUID().toString();
 
-    @Column(name = "rev")
+
+    @javax.persistence.Column(name = "rev")
     @JsonProperty("_rev")
     private String _rev = null;
 
@@ -50,13 +51,13 @@ public class GameController extends Observable implements IGameController, Seria
     private static final int FIELD_LENGTH = 8;
 
     /* Check is a reserved word in SQL which makes hibernate fail! */
-    @Column(name = "checkBool")
+    @javax.persistence.Column(name = "checkBool")
     private boolean check = false;
 
     private static final int SIX = 6;
 
     @JsonDeserialize(as = Field.class)
-    @OneToOne
+    @javax.persistence.OneToOne
     private Field field = new Field();
 
     private static MoveValidator validator = new MoveValidator();

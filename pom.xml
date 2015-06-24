@@ -22,11 +22,30 @@
     </build>
     <repositories>
         <repository>
-            <_id>sonatype-forge</_id>
+            <id>sonatype-forge</id>
             <url>https://repository.sonatype.org/content/groups/forge/</url>
         </repository>
     </repositories>
     <dependencies>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb.morphia</groupId>
+            <artifactId>morphia</artifactId>
+            <version>1.0.0-rc0</version>
+        </dependency>
+
+
+
+
         <dependency>
             <groupId>com.db4o</groupId>
             <artifactId>db4o-core-java5</artifactId>
