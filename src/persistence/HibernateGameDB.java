@@ -15,8 +15,16 @@ public class HibernateGameDB implements IGameDB{
     static class HibernateUtil {
         private static final SessionFactory sessionFactory;
         static {
-            final AnnotationConfiguration cfg = new AnnotationConfiguration();
-            cfg.configure(new File("src/hibernate.cfg.xml"));
+            final AnnotationConfiguration cfg = new AnnotationConfiguration()
+                    .setProperty("hibernate.connection.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect")
+                    .setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver")
+                    .setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/chess?createDatabaseIfNotExist=true")
+                    .setProperty("hibernate.connection.username", "root")
+                    .setProperty("hibernate.show_sql","false")
+                    .setProperty("hibernate.current_session_context_class", "thread")
+                    .setProperty("hibernate.hbm2ddl.auto","update");
+            cfg.addAnnotatedClass(model.Field.class);
+            cfg.addAnnotatedClass(controller.GameController.class);
             sessionFactory = cfg.buildSessionFactory();
         }
         private HibernateUtil() {
