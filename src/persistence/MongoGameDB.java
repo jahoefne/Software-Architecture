@@ -3,6 +3,7 @@ package persistence;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.ReflectionDBObject;
+import com.mongodb.WriteConcern;
 import controller.GameController;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
@@ -41,7 +42,7 @@ public class MongoGameDB implements IGameDB {
 
     @Override
     public void saveGame(GameController game) {
-        datastore.save(game);
+        datastore.save(game, WriteConcern.JOURNALED);
     }
 
     @Override
