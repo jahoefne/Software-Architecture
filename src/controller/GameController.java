@@ -32,11 +32,13 @@ public class GameController extends Observable implements IGameController, Seria
      * Added the following attributes for compatibility with hte webtech project
      */
     @JsonProperty("_id")
+    @Column(name = "id")
     @Id
-    private String gameID = java.util.UUID.randomUUID().toString();
+    private String _id = java.util.UUID.randomUUID().toString();
 
+    @Column(name = "rev")
     @JsonProperty("_rev")
-    private String rev;
+    private String _rev;
 
     private String createdBy;
     private Date createdOn;
@@ -60,8 +62,8 @@ public class GameController extends Observable implements IGameController, Seria
 
     private static MoveValidator validator = new MoveValidator();
 
-    public GameController(String gameID, String createdBy) {
-        this.gameID = gameID;
+    public GameController(String id, String createdBy) {
+        this._id = id;
         this.createdBy = createdBy;
     }
 
@@ -225,12 +227,12 @@ public class GameController extends Observable implements IGameController, Seria
         return field.toString();
     }
 
-    public String getGameID() {
-        return gameID;
+    public String get_id() {
+        return _id;
     }
 
-    public void setGameID(String gameID) {
-        this.gameID = gameID;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getCreatedBy() {

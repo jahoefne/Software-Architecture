@@ -22,7 +22,7 @@
     </build>
     <repositories>
         <repository>
-            <id>sonatype-forge</id>
+            <_id>sonatype-forge</_id>
             <url>https://repository.sonatype.org/content/groups/forge/</url>
         </repository>
     </repositories>
@@ -53,6 +53,16 @@
             <artifactId>common-junit48</artifactId>
             <version>2.16</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lightcouch</groupId>
+            <artifactId>lightcouch</artifactId>
+            <version>0.1.8</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
