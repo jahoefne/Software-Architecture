@@ -41,7 +41,6 @@ public class DB4OGameDB implements IGameDB {
         synchronized(DB4OGameDB.class) {
             ObjectSet<GameController> set = session.query(new Predicate<GameController>() {
                 public boolean match(GameController game) {
-                    System.out.println(game.get_id() + "  " + game.get_id().equals(uuid));
                     return game.get_id().equals(uuid);
                 }
             });
