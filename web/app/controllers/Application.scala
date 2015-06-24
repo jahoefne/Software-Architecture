@@ -13,7 +13,7 @@ import securesocial.core._
 import scala.util.Random
 import scala.concurrent.ExecutionContext.Implicits.global
 
-object UUID{ def uuid = (Random.alphanumeric take  8).mkString }
+object ShortUUID{ def uuid = (Random.alphanumeric take  8).mkString }
 
 class Application(override implicit val env: RuntimeEnvironment[User]) extends securesocial.core.SecureSocial[User] {
 
@@ -25,8 +25,8 @@ class Application(override implicit val env: RuntimeEnvironment[User]) extends s
 
   /** Create a new game instance */
   def newGame =  Action { implicit request =>
-    val gameUUID = UUID.uuid
-    val playerId =  UUID.uuid
+    val gameUUID = ShortUUID.randomUUID.uuid
+    val playerId =  ShortUUID.uuid
     gameDB.saveGame( new GameController(gameUUID, playerId))
     Redirect(routes.Application.game(gameUUID))
   }
@@ -46,7 +46,7 @@ class Application(override implicit val env: RuntimeEnvironment[User]) extends s
         case true =>
           val playerId = request.user match {
             case Some(user) => user.uuid
-            case None => UUID.uuid
+            case None => ShortUUID.uuid
           }
           Ok(views.html.game( uuid, playerId, request.user))
         case false =>

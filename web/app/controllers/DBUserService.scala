@@ -95,7 +95,7 @@ object DBUserService extends UserService[User] {
     mode match {
 
       case SaveMode.SignUp =>
-        val newUser = User(UUID.uuid, profile)
+        val newUser = User(ShortUUID.uuid, profile)
         users.save(newUser)
         Future.successful(newUser)
 
@@ -109,7 +109,7 @@ object DBUserService extends UserService[User] {
             Future.successful(updated)
 
           case None =>
-            val newUser = User(UUID.uuid, profile)
+            val newUser = User(ShortUUID.uuid, profile)
             users.save(newUser)
             Future.successful(newUser)
         }
