@@ -28,7 +28,6 @@ public class IGameDBTest {
                 new Object[]{new LightCouchGameDB()},
                 new Object[]{new DB4OGameDB()}
                 // Hibernate test is failing on jenkins because there doesn't seem to be a mysql server running
-                // on localhost ,new Object[]{new HibernateGameDB()}
         );
     }
 
