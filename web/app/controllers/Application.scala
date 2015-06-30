@@ -23,17 +23,18 @@ class Application(implicit val bindingModule: BindingModule) extends securesocia
 
   /** Injected Dependencies **/
   override implicit val env:RuntimeEnvironment[User] = inject [RuntimeEnvironment[User]]
-  val logginActor = inject [ActorRef]
+  val loggingActor = inject [ActorRef]
   val gameDB = inject [IGameDB]
-
 
   /** Landing Page */
   def index = UserAwareAction{ implicit request =>
+    loggingActor ! LogMessage("Accessing Index", Some(request.remoteAddress))
     Ok(views.html.index(request.user))
   }
 
   /** Create a new game instance */
   def newGame =  Action { implicit request =>
+    loggingActor ! LogMessage("Creating new Game", Some(request.remoteAddress))
     val gameUUID = UUID.randomUUID.toString
     val playerId =  ShortUUID.uuid
     gameDB.saveGame( new GameController(gameUUID, playerId))
@@ -42,6 +43,7 @@ class Application(implicit val bindingModule: BindingModule) extends securesocia
 
   /** Delete existing game **/
   def deleteGame(uuid: String) = SecuredAction { implicit request =>
+    loggingActor ! LogMessage("Deleting Game", Some(request.remoteAddress))
     gameDB.deleteGameWithUUID(uuid)
     Ok
   }
@@ -51,6 +53,7 @@ class Application(implicit val bindingModule: BindingModule) extends securesocia
     * it's uuid as playerId, otherwise use a random id */
   def game(uuid: String) = UserAwareAction {
     implicit request =>
+      loggingActor ! LogMessage("Accessing Game with id: "+uuid, Some(request.remoteAddress))
       gameDB.doeGameExistWithUUID(uuid) match {
         case true =>
           val playerId = request.user match {
@@ -66,17 +69,19 @@ class Application(implicit val bindingModule: BindingModule) extends securesocia
   /** Create websocket for game: uuid */
   def socket (uuid: String, playerID: String) = WebSocket.acceptWithActor[JsValue, JsValue] {
     request => out =>
-      ChessWebSocketActor.props(out = out, playerID = playerID , gameID = uuid, gameDB)
+      ChessWebSocketActor.props(out = out, logActor = loggingActor, playerID = playerID , gameID = uuid, gameDB)
   }
 
   /** Return a list of all game instances */
   def gameList =  SecuredAction { implicit request =>
+    loggingActor ! LogMessage("Listing Games of user "+request.user.uuid, Some(request.remoteAddress))
     val list = gameDB.listGames(request.user.uuid)
     Ok(views.html.gameList(list, Some(request.user)))
   }
 
   /** Render Login Container */
   def login = UserAwareAction { implicit request =>
+    loggingActor ! LogMessage("Login "+request.user.toString)
     Ok(views.html.loginContainer(request.user))
   }
 }

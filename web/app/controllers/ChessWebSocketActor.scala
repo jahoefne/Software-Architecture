@@ -10,11 +10,12 @@ import play.api.Logger
 import play.api.libs.json._
 
 /** Defines the WebSocketActor + Companion */
-class ChessWebSocketActor(out: ActorRef, playerID: String, gameID: String, gameDB: IGameDB) extends Actor {
+class ChessWebSocketActor(out: ActorRef, logActor: ActorRef, playerID: String, gameID: String, gameDB: IGameDB) extends Actor {
 
   val log = Logger(this getClass() getName())
   val mediator = DistributedPubSubExtension(context.system).mediator
   mediator ! Subscribe(gameID, self)
+  println("Creating new Actor")
 
   def gameToJson(gameController: GameController) : JsValue = Json.obj(
     "type" -> "ActiveGame",
@@ -37,9 +38,13 @@ class ChessWebSocketActor(out: ActorRef, playerID: String, gameID: String, gameD
       /**
        * Messages that do not have to be routed to other players
        **/
-      case "GetGame" => out ! gameToJson(gameDB.loadGameWithUUID(gameID))
+      case "GetGame" =>
+        logActor ! LogMessage(playerID + " Requesting Game")
+        out ! gameToJson(gameDB.loadGameWithUUID(gameID))
 
       case "PossibleMoves" =>
+        logActor ! LogMessage(playerID + " querinyg PossibleMoves")
+
         val src = new Point((msg \ "x").as[Int], (msg \ "y").as[Int])
         val moves = Array[Array[Int]](Array[Int](src.x, src.y)) ++
           (for (p: Point <- gameDB.loadGameWithUUID(gameID).getPossibleMoves(src))
@@ -58,24 +63,28 @@ class ChessWebSocketActor(out: ActorRef, playerID: String, gameID: String, gameD
       case "Move" =>
         val src = new Point((msg \ "srcX").as[Int], (msg \ "srcY").as[Int])
         val dst = new Point((msg \ "dstX").as[Int],  (msg \ "dstY").as[Int])
+        logActor ! LogMessage(playerID + " Move "+src.toString + " to " +dst.toString)
         val game =  gameDB.loadGameWithUUID(gameID)
         game.move(src,dst)
         gameDB.saveGame(game)
         mediator ! Publish(gameID, gameToJson(game))
 
       case "WhitePlayer" =>
+        logActor ! LogMessage(playerID + " becomming white player")
         val game = gameDB.loadGameWithUUID(gameID)
         game.setWhitePlayerID(playerID)
         gameDB.saveGame(game)
         mediator ! Publish(gameID, gameToJson(game))
 
       case "BlackPlayer" =>
+        logActor ! LogMessage(playerID + " becomming black player")
         val game = gameDB.loadGameWithUUID(gameID)
         game.setBlackPlayerID(playerID)
         gameDB.saveGame(game)
         mediator ! Publish(gameID, gameToJson(game))
 
       case "Spectator" =>
+        logActor ! LogMessage(playerID + " becomming spectator")
         val game = gameDB.loadGameWithUUID(gameID)
         game.movePlayerToSpec(playerID)
         gameDB.saveGame(game)
@@ -104,6 +113,6 @@ class ChessWebSocketActor(out: ActorRef, playerID: String, gameID: String, gameD
 
 /** WS-Companion - for props */
 object ChessWebSocketActor {
-  def props(out: ActorRef, playerID: String, gameID: String, gameDB: IGameDB) =
-    Props(new ChessWebSocketActor(out, playerID, gameID, gameDB))
+  def props(out: ActorRef, logActor: ActorRef, playerID: String, gameID: String, gameDB: IGameDB) =
+    Props(new ChessWebSocketActor(out, logActor, playerID, gameID, gameDB))
 }

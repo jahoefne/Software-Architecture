@@ -21,7 +21,6 @@ object MyRuntimeEnvironment extends RuntimeEnvironment.Default[User] {
   )
 }
 
-
 /**
  * Config For Subcut Injection
  */
@@ -32,7 +31,7 @@ object DefaultConfig extends NewBindingModule({ module =>
   bind [IGameDB] toSingleInstance new DB4OGameDB
   bind [ActorRef] toSingleInstance Akka.system().actorOf(Props(new LoggingActor()))
 
-  // controllers.Application is itself injectable, so we need the toModuleSingle form to pay the config forward
+  // controllers.Application is itself injectable, so we need the toModuleSingle form
   bind [controllers.Application] toModuleSingle { implicit module => new controllers.Application }
 
 })
