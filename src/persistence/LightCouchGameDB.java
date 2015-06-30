@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LightCouchGameDB implements IGameDB {
-    CouchDbClient dbClient;
+    private CouchDbClient dbClient;
 
     public LightCouchGameDB() {
         CouchDbProperties properties = new CouchDbProperties()

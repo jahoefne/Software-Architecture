@@ -14,9 +14,9 @@ import java.util.List;
 
 public class CouchGameDB implements IGameDB {
 
-    HttpClient httpClient;
-    CouchDbInstance dbInstance;
-    CouchDbConnector db;
+    private HttpClient httpClient;
+    private CouchDbInstance dbInstance;
+    private CouchDbConnector db;
 
     public CouchGameDB() {
         try {

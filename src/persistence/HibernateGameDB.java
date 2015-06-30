@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.List;
 
 public class HibernateGameDB implements IGameDB{
-    static class HibernateUtil {
+    static final class HibernateUtil {
         private static final SessionFactory sessionFactory;
         static {
             final AnnotationConfiguration cfg = new AnnotationConfiguration()
