@@ -62,23 +62,63 @@ public class GameController extends Observable implements IGameController, Seria
 
     private static MoveValidator validator = new MoveValidator();
 
+    private List<IPlugin> plugins = new ArrayList<IPlugin>();
+
     public GameController(String id, String createdBy) {
         this._id = id;
         this.createdBy = createdBy;
     }
-
-
-    public GameController() {
+    public GameController(String id, String createdBy, List<IPlugin> plugins) {
+        this._id = id;
+        this.createdBy = createdBy;
+        this.plugins = plugins;
+        for(IPlugin p : plugins){
+            p.gameCreatedPlugin(this);
+        }
     }
+
+    public GameController(List<IPlugin> plugins) {
+        this.plugins = plugins;
+        for(IPlugin p : plugins){
+            p.gameCreatedPlugin(this);
+        }
+    }
+
+    public GameController(){}
 
     public GameController(boolean gameOver, boolean check, Field field) {
         this.gameOver = gameOver;
         this.check = check;
         this.field = field;
+        for(IPlugin p : plugins){
+            p.gameCreatedPlugin(this);
+        }
+    }
+
+    public GameController(boolean gameOver, boolean check, Field field,List<IPlugin> plugins) {
+        this.gameOver = gameOver;
+        this.check = check;
+        this.field = field;
+        this.plugins = plugins;
+        for(IPlugin p : plugins){
+            p.gameCreatedPlugin(this);
+        }
+    }
+
+    public void addPlugin(IPlugin plugin){
+        plugins.add(plugin);
+    }
+
+    public void removePlugin(IPlugin plugin){
+        plugins.remove(plugin);
     }
 
     public IField getField() {
         return field;
+    }
+
+    public void setField(Field field) {
+        this.field = field;
     }
 
     public static int getFieldLength() {
@@ -132,6 +172,10 @@ public class GameController extends Observable implements IGameController, Seria
             this.check = true;
             notifyObservers();
         }
+
+        for(IPlugin p : plugins){
+            p.moveCalledPlugin(this, x, y);
+        }
         return returnValue;
     }
 
@@ -159,6 +203,9 @@ public class GameController extends Observable implements IGameController, Seria
         }
         if (numberOfKings != 2) {
             this.gameOver = true;
+            for(IPlugin p : plugins){
+                p.gameOver(this);
+            }
             notifyObservers();
         }
 

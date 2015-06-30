@@ -5,6 +5,7 @@ import controller.IGameController;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import plugin.FrenchRevolutionPlugin;
 
 import java.awt.*;
 import java.util.UUID;
@@ -28,6 +29,7 @@ public class GameControllerTest {
     @Before
     public void before() {
         sut = new GameController();
+        sut.addPlugin(new FrenchRevolutionPlugin());
         sut.resetGame();
     }
     
@@ -72,7 +74,7 @@ public class GameControllerTest {
         sut.setCreatedBy(by);
         sut.setWhitePlayerID(by);
         sut.movePlayerToSpec(by);
-        assertTrue(GameController.getFieldLength()==8);
+        assertTrue(GameController.getFieldLength() == 8);
     }
 
     @Test

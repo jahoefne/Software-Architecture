@@ -2,7 +2,12 @@ package view;
 
 import controller.GameController;
 import controller.IGameController;
+import controller.IPlugin;
 import org.apache.log4j.PropertyConfigurator;
+import plugin.FrenchRevolutionPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Chess {
 	
@@ -12,7 +17,9 @@ public final class Chess {
 
         PropertyConfigurator.configure("log4j.properties");
 
-        IGameController controller = new GameController();
+        List<IPlugin> plugins = new ArrayList<IPlugin>();
+        plugins.add(new FrenchRevolutionPlugin());
+        IGameController controller = new GameController(plugins);
 
         @SuppressWarnings("unused")
         GUI gui = new GUI(controller);

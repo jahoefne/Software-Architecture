@@ -1,16 +1,18 @@
 package controllers
 
+import _root_.java.util
 import _root_.java.util.{UUID, Comparator}
 
 import akka.actor.ActorRef
 import com.escalatesoft.subcut.inject.{BindingModule, Injectable}
-import controller.GameController
+import controller.{IPlugin, GameController}
 import persistence._
 import play.api.libs.json.JsValue
 import play.api.mvc._
 import play.api.Play.current
 import model._
 import play.libs.Json
+import plugin.FrenchRevolutionPlugin
 import securesocial.core._
 import scala.util.Random
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -37,7 +39,10 @@ class Application(implicit val bindingModule: BindingModule) extends securesocia
     loggingActor ! LogMessage("Creating new Game", Some(request.remoteAddress))
     val gameUUID = UUID.randomUUID.toString
     val playerId =  ShortUUID.uuid
-    gameDB.saveGame( new GameController(gameUUID, playerId))
+
+    var plugins = new util.ArrayList[IPlugin]()
+    plugins.add(new FrenchRevolutionPlugin())
+    gameDB.saveGame( new GameController(gameUUID, playerId, plugins))
     Redirect(routes.Application.game(gameUUID))
   }
 
@@ -75,8 +80,7 @@ class Application(implicit val bindingModule: BindingModule) extends securesocia
   /** Return a list of all game instances */
   def gameList =  SecuredAction { implicit request =>
     loggingActor ! LogMessage("Listing Games of user "+request.user.uuid, Some(request.remoteAddress))
-    val list = gameDB.listGames(request.user.uuid)
-    Ok(views.html.gameList(list, Some(request.user)))
+    Ok(views.html.gameList(null, Some(request.user)))
   }
 
   /** Render Login Container */

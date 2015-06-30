@@ -1,5 +1,7 @@
 package controller;
 
+import model.Field;
+import model.IField;
 import util.IObservable;
 
 import java.awt.*;
@@ -81,11 +83,16 @@ public interface IGameController extends IObservable {
      */
     boolean getCheck();
 
+
+    void addPlugin(IPlugin plugin);
+    void removePlugin(IPlugin plugin);
+
+
     /**
-     * Used to set check variable to false
+     * from webtech project
      */
     void setCheck();
-
+    void setField(Field field);
     void setCreatedBy(String createdBy);
     void setCreatedOn(Date createdOn);
     void movePlayerToSpec(String playerID);
