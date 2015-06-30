@@ -16,7 +16,7 @@ public class LightCouchGameDB implements IGameDB {
                 .setDbName("lightchess")
                 .setCreateDbIfNotExist(true)
                 .setProtocol("http")
-                .setHost("127.0.0.1")
+                .setHost("lenny2.in.htwg-konstanz.de")
                 .setPort(5984)
                 .setMaxConnections(1000)
                 .setConnectionTimeout(0);

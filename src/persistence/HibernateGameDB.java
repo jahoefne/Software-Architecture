@@ -58,8 +58,9 @@ public class HibernateGameDB implements IGameDB{
         Transaction t= session.beginTransaction();
         List games = session.createCriteria(GameController.class).add(Restrictions.eq("id", uuid)).list();
         t.commit();
-        if(!games.isEmpty()&& games.get(0) instanceof GameController)
-            return (GameController)games.get(0);
+        if(!games.isEmpty()&& games.get(0) instanceof GameController) {
+            return (GameController) games.get(0);
+        }
         return null;
     }
 

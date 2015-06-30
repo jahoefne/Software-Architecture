@@ -253,16 +253,19 @@ public class GameController extends Observable implements IGameController, Seria
     }
 
     public void setWhitePlayerID(String whitePlayerID) {
-        if (whitePlayerID.equals(blackPlayerID))
+        if (whitePlayerID.equals(blackPlayerID)) {
             blackPlayerID = null;
+        }
         this.whitePlayerID = whitePlayerID;
     }
 
     public void movePlayerToSpec(String playerID) {
-        if (playerID.equals(blackPlayerID))
+        if (playerID.equals(blackPlayerID)) {
             blackPlayerID = null;
-        if (playerID.equals(whitePlayerID))
+        }
+        if (playerID.equals(whitePlayerID)) {
             whitePlayerID = null;
+        }
     }
 
     public String getBlackPlayerID() {
@@ -270,8 +273,9 @@ public class GameController extends Observable implements IGameController, Seria
     }
 
     public void setBlackPlayerID(String blackPlayerID) {
-        if (blackPlayerID.equals(whitePlayerID))
+        if (blackPlayerID.equals(whitePlayerID)) {
             whitePlayerID = null;
+        }
         this.blackPlayerID = blackPlayerID;
     }
 

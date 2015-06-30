@@ -20,7 +20,7 @@ public class CouchGameDB implements IGameDB {
 
     public CouchGameDB() {
         try {
-            httpClient = new StdHttpClient.Builder().url("http://localhost:5984").build();
+            httpClient = new StdHttpClient.Builder().url("http://lenny2.in.htwg-konstanz.de:5984/").build();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -57,8 +57,9 @@ public class CouchGameDB implements IGameDB {
 
         for(String id : ids){
             GameController game = loadGameWithUUID(id);
-            if(game.getCreatedBy()==uuid)
+            if(game.getCreatedBy()==uuid){
                 games.add(game);
+            }
         }
         return games;
     }

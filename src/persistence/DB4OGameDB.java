@@ -44,8 +44,9 @@ public class DB4OGameDB implements IGameDB {
                     return game.get_id().equals(uuid);
                 }
             });
-            if (set.hasNext())
+            if (set.hasNext()){
                 return set.next();
+            }
             return null;
         }
     }
