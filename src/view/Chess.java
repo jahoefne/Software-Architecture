@@ -4,7 +4,8 @@ import controller.GameController;
 import controller.IGameController;
 import controller.IPlugin;
 import org.apache.log4j.PropertyConfigurator;
-import plugin.OneHundredMovesOrLess;
+
+import plugin.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public final class Chess {
         List<IPlugin> plugins = new ArrayList<IPlugin>();
         //plugins.add(new FrenchRevolutionPlugin());
         plugins.add(new OneHundredMovesOrLess());
+        plugins.add(new NoPawns());
         IGameController controller = new GameController(plugins);
 
         @SuppressWarnings("unused")

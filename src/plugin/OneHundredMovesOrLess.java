@@ -6,10 +6,12 @@ import controller.IPlugin;
 import java.awt.*;
 import org.apache.log4j.Logger;
 
-/*
-    Limits the number of moves to 100. If no one wins before, the player
-    which did the 100th move wins automatically.
+/**
+ * Limits the number of moves to 100. If no one wins before, the player
+ * which did the 100th move wins automatically.
  */
+
+// TODO: movesDone counts up even if nothing has moved
 
 public class OneHundredMovesOrLess implements IPlugin {
     private final static int MAX_MOVES = 100;

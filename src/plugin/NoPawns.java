@@ -4,25 +4,26 @@ import controller.GameController;
 import controller.IPlugin;
 import model.Field;
 import model.Figures;
-import org.apache.log4j.Logger;
 
 import java.awt.*;
+import org.apache.log4j.Logger;
 
+/**
+ * Deactivates all pawns.
+ */
 
-public class FrenchRevolutionPlugin implements IPlugin{
-    private static Logger logger = Logger.getLogger("FrenchRevolutionPlugin.class");
+public class NoPawns implements IPlugin {
+    private static Logger logger = Logger.getLogger("NoPawns.class");
 
     @Override
     public void gameCreatedPlugin(GameController controller) {
+        logger.debug("loaded");
 
         Field f = new Field();
         int[][] fArr = f.getField();
         for(int i=0;i<8;i++){
-            fArr[i][6] = Figures.KingWhite.id();
-            fArr[i][7] = Figures.QueenWhite.id();
-
-            fArr[i][0] = Figures.PawnBlack.id();
-            fArr[i][1] = Figures.PawnBlack.id();
+            fArr[i][1] = Figures.Empty.id();
+            fArr[i][6] = Figures.Empty.id();
         }
         f.setField(fArr);
         controller.setField(f);
@@ -30,12 +31,12 @@ public class FrenchRevolutionPlugin implements IPlugin{
 
     @Override
     public void moveCalledPlugin(GameController controller, Point src, Point tgt) {
-        logger.debug("move called "+ src.toString() + " to "+ tgt.toString());
+
     }
 
     @Override
     public void gameOver(GameController controller) {
-        logger.debug("GameOver");
+
     }
 
     @Override
