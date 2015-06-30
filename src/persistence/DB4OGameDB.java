@@ -58,21 +58,4 @@ public class DB4OGameDB implements IGameDB {
             session.commit();
         }
     }
-
-    @Override
-    public List<GameController> listGames(final String uuid) {
-        synchronized(DB4OGameDB.class) {
-            List<GameController> games = new ArrayList<GameController>();
-
-            ObjectSet<GameController> set = session.query(new Predicate<GameController>() {
-                public boolean match(GameController game) {
-                    return game.getCreatedBy().equals(uuid);
-                }
-            });
-            for (GameController c : set) {
-                games.add(c);
-            }
-            return games;
-        }
-    }
 }

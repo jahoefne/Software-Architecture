@@ -49,18 +49,4 @@ public class CouchGameDB implements IGameDB {
         db.delete(loadGameWithUUID(uuid));
     }
 
-    @Override
-    public List<GameController> listGames(String uuid) {
-        /** This can be done more efficient, but it works for now */
-        List<String> ids = db.getAllDocIds();
-        List<GameController> games = new ArrayList<GameController>();
-
-        for(String id : ids){
-            GameController game = loadGameWithUUID(id);
-            if(game.getCreatedBy()==uuid){
-                games.add(game);
-            }
-        }
-        return games;
-    }
 }

@@ -73,8 +73,4 @@ public class HibernateGameDB implements IGameDB{
         t.commit();
     }
 
-    @Override
-    public List<GameController> listGames(String uuid) {
-        return null;
-    }
 }

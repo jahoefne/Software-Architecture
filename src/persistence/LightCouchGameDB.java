@@ -31,10 +31,11 @@ public class LightCouchGameDB implements IGameDB {
 
     @Override
     public void saveGame(GameController game) {
-        if(game.get_rev()!=null)
+        if(game.get_rev()!=null) {
             dbClient.update(game);
-        else
+        }else{
             dbClient.save(game);
+        }
     }
 
     @Override
@@ -47,16 +48,4 @@ public class LightCouchGameDB implements IGameDB {
         dbClient.remove(loadGameWithUUID(uuid));
     }
 
-    @Override
-    public List<GameController> listGames(String uuid) {
-        /** This can be done more efficient, but it works for now */
-       /* List<GameController> games = new ArrayList<GameController>();
-
-        for(String id : ids){
-            GameController game = loadGameWithUUID(id);
-            if(game.getCreatedBy()==uuid)
-                games.add(game);
-        }*/
-        return new ArrayList<GameController>();
-    }
 }

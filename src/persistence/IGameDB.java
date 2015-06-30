@@ -17,6 +17,4 @@ public interface IGameDB {
     /** Delete the game with uuid from the database */
     void deleteGameWithUUID(String uuid);
 
-    /** Return a list of all games created by uuid */
-    List<GameController> listGames(String uuid);
 }
