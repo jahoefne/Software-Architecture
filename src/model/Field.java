@@ -3,6 +3,7 @@ package model;
 
 import javax.persistence.*;
 import java.awt.*;
+import java.util.Arrays;
 
 
 // Denotes a Chess field.
@@ -32,7 +33,7 @@ public class Field implements IField{
 
 
     public Field(int[][] field, byte whiteOrBlack){
-        this.field=field;
+        this.field=copy2dArray(field);
         this.whiteOrBlack = whiteOrBlack;
     }
 
@@ -75,8 +76,17 @@ public class Field implements IField{
         return field;
     }
 
+    /** To Make Sonar Happy */
+    public int[][] copy2dArray(int[][] src) {
+        int[][] dst = new int[src.length][];
+        for (int i = 0; i < src.length; i++) {
+            dst[i] = Arrays.copyOf(src[i], src[i].length);
+        }
+        return dst;
+    }
+
     public void setField(int[][] field) {
-        this.field = field;
+        this.field = copy2dArray(field);
     }
 
     public int getCell(int x, int y) {
