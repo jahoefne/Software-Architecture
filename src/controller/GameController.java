@@ -228,11 +228,11 @@ public class GameController extends Observable implements IGameController, Seria
     }
 
     public String get_id() { //NOSONAR
-        return _id;
+        return _id;//NOSONAR
     }
 
     public void set_id(String _id) { //NOSONAR
-        this._id = _id;
+        this._id = _id; //NOSONAR
     }
 
     public String getCreatedBy() {
@@ -282,11 +282,11 @@ public class GameController extends Observable implements IGameController, Seria
         this.blackPlayerID = blackPlayerID;
     }
 
-    public String get_rev() {
-        return _rev;
-    } //NOSONAR
+    public String get_rev() { //NOSONAR
+        return _rev; //NOSONAR
+    }
 
-    public void set_rev(String _rev) {
-        this._rev = _rev;
-    } //NOSONAR
+    public void set_rev(String _rev) {//NOSONAR
+        this._rev = _rev;//NOSONAR
+    }
 }
