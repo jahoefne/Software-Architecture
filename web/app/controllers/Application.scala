@@ -2,6 +2,8 @@ package controllers
 
 import _root_.java.util.{UUID, Comparator}
 
+import akka.actor.ActorRef
+import com.escalatesoft.subcut.inject.{BindingModule, Injectable}
 import controller.GameController
 import persistence._
 import play.api.libs.json.JsValue
@@ -15,23 +17,20 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 object ShortUUID{ def uuid = (Random.alphanumeric take  8).mkString }
 
-object GameDB{
-  val gameDB = try{
-    new LightCouchGameDB()
-  }catch {
-    case e:Exception => println(e)
-      null
-  }
-}
 
-class Application(override implicit val env: RuntimeEnvironment[User]) extends securesocial.core.SecureSocial[User] {
+
+class Application(implicit val bindingModule: BindingModule) extends securesocial.core.SecureSocial[User] with Injectable {
+
+  /** Injected Dependencies **/
+  override implicit val env:RuntimeEnvironment[User] = inject [RuntimeEnvironment[User]]
+  val logginActor = inject [ActorRef]
+  val gameDB = inject [IGameDB]
+
 
   /** Landing Page */
   def index = UserAwareAction{ implicit request =>
     Ok(views.html.index(request.user))
   }
-
-  val gameDB = GameDB.gameDB
 
   /** Create a new game instance */
   def newGame =  Action { implicit request =>
