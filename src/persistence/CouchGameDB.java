@@ -1,6 +1,7 @@
 package persistence;
 
 import controller.GameController;
+import org.apache.log4j.Logger;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
 import org.ektorp.http.HttpClient;
@@ -17,12 +18,13 @@ public class CouchGameDB implements IGameDB {
     private HttpClient httpClient;
     private CouchDbInstance dbInstance;
     private CouchDbConnector db;
+    private static Logger logger = Logger.getLogger("CouchGameDB.class");
 
     public CouchGameDB() {
         try {
             httpClient = new StdHttpClient.Builder().url("http://lenny2.in.htwg-konstanz.de:5984/").build();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         dbInstance = new StdCouchDbInstance(httpClient);
         db = new StdCouchDbConnector("SASS2015_Chess_11_Games", dbInstance);
