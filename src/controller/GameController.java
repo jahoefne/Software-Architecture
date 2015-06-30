@@ -3,7 +3,6 @@ package controller;
 import model.Field;
 import model.Figures;
 import model.IField;
-import org.bson.types.ObjectId;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import util.Observable;
@@ -24,7 +23,6 @@ import java.util.List;
  * to start a new game.
  */
 @javax.persistence.Entity
-@org.mongodb.morphia.annotations.Entity
 public class GameController extends Observable implements IGameController, Serializable {
 
     /**
@@ -33,7 +31,6 @@ public class GameController extends Observable implements IGameController, Seria
     @JsonProperty("_id")
     @javax.persistence.Column(name = "id")
     @javax.persistence.Id
-    @org.mongodb.morphia.annotations.Id
     private String _id = java.util.UUID.randomUUID().toString();
 
 
