@@ -26,17 +26,20 @@ import java.util.List;
 public class GameController extends Observable implements IGameController, Serializable {
 
     /**
-     * Added the following attributes for compatibility with hte webtech project
+     *  _id is a naming convention from lightcouch
      */
     @JsonProperty("_id")
     @javax.persistence.Column(name = "id")
     @javax.persistence.Id
-    private String _id = java.util.UUID.randomUUID().toString();
+    private String _id = java.util.UUID.randomUUID().toString(); // NOSONAR
 
 
+    /**
+     * _rev is a namingconvention from lightcouch
+     */
     @javax.persistence.Column(name = "rev")
     @JsonProperty("_rev")
-    private String _rev = null;
+    private String _rev = null; //NOSONAR
 
     private String createdBy;
     private Date createdOn;
@@ -224,11 +227,11 @@ public class GameController extends Observable implements IGameController, Seria
         return field.toString();
     }
 
-    public String get_id() {
+    public String get_id() { //NOSONAR
         return _id;
     }
 
-    public void set_id(String _id) {
+    public void set_id(String _id) { //NOSONAR
         this._id = _id;
     }
 
@@ -281,9 +284,9 @@ public class GameController extends Observable implements IGameController, Seria
 
     public String get_rev() {
         return _rev;
-    }
+    } //NOSONAR
 
     public void set_rev(String _rev) {
         this._rev = _rev;
-    }
+    } //NOSONAR
 }
