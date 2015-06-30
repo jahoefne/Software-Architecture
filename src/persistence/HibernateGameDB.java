@@ -20,7 +20,8 @@ public class HibernateGameDB implements IGameDB{
                     .setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver")
                     .setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/chess?createDatabaseIfNotExist=true")
                     .setProperty("hibernate.connection.username", "root")
-                    .setProperty("hibernate.show_sql","false")
+                    .setProperty("hibernate.connection.password", "root")
+                    .setProperty("hibernate.show_sql", "false")
                     .setProperty("hibernate.current_session_context_class", "thread")
                     .setProperty("hibernate.hbm2ddl.auto","update");
             cfg.addAnnotatedClass(model.Field.class);
