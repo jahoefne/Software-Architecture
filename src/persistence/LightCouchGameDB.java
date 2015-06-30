@@ -11,6 +11,8 @@ import java.util.List;
 
 public class LightCouchGameDB implements IGameDB {
     private CouchDbClient dbClient;
+    private static final int PORT = 5984;
+    private static final int MAX_CONN = 200;
 
     public LightCouchGameDB() {
         CouchDbProperties properties = new CouchDbProperties()
@@ -18,8 +20,8 @@ public class LightCouchGameDB implements IGameDB {
                 .setCreateDbIfNotExist(true)
                 .setProtocol("http")
                 .setHost("lenny2.in.htwg-konstanz.de")
-                .setPort(5984)
-                .setMaxConnections(1000)
+                .setPort(PORT)
+                .setMaxConnections(MAX_CONN)
                 .setConnectionTimeout(0);
 
         dbClient = new CouchDbClient(properties);

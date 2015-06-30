@@ -15,21 +15,22 @@ import java.util.List;
 
 public class CouchGameDB implements IGameDB {
 
-    private HttpClient httpClient;
-    private CouchDbInstance dbInstance;
+
     private CouchDbConnector db;
     private static Logger logger = Logger.getLogger("CouchGameDB.class");
 
     public CouchGameDB() {
+        HttpClient httpClient;
+        CouchDbInstance dbInstance;
         try {
             httpClient = new StdHttpClient.Builder().url("http://lenny2.in.htwg-konstanz.de:5984/").build();
+
+            dbInstance = new StdCouchDbInstance(httpClient);
+            db = new StdCouchDbConnector("SASS2015_Chess_11_Games", dbInstance);
+            db.createDatabaseIfNotExists();
         } catch (MalformedURLException e) {
             logger.error(e.toString());
         }
-        dbInstance = new StdCouchDbInstance(httpClient);
-        db = new StdCouchDbConnector("SASS2015_Chess_11_Games", dbInstance);
-        db.createDatabaseIfNotExists();
-
     }
 
     @Override
