@@ -9,4 +9,5 @@ public interface IPlugin {
     void gameCreatedPlugin(GameController controller);
     void moveCalledPlugin(GameController controller, Point src, Point tgt);
     void gameOver(GameController controller);
+    boolean getGameOver();
 }

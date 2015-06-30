@@ -209,6 +209,13 @@ public class GameController extends Observable implements IGameController, Seria
             notifyObservers();
         }
 
+        for(IPlugin p : plugins){
+            if (p.getGameOver()) {
+                gameOver = true;
+                break;
+            }
+        }
+
         return gameOver;
     }
 

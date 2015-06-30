@@ -14,6 +14,7 @@ public class FrenchRevolutionPlugin implements IPlugin{
 
     @Override
     public void gameCreatedPlugin(GameController controller) {
+ /*
         Field f = new Field();
         int[][] fArr = f.getField();
         for(int i=0;i<8;i++){
@@ -24,7 +25,7 @@ public class FrenchRevolutionPlugin implements IPlugin{
             fArr[i][1] = Figures.PawnBlack.id();
         }
         f.setField(fArr);
-        controller.setField(f);
+        controller.setField(f);*/
     }
 
     @Override
@@ -35,5 +36,10 @@ public class FrenchRevolutionPlugin implements IPlugin{
     @Override
     public void gameOver(GameController controller) {
         logger.debug("GameOver");
+    }
+
+    @Override
+    public boolean getGameOver() {
+        return false;
     }
 }
