@@ -16,24 +16,25 @@ var GameController = {
     },
 
     onOpen: function(){
+        console.log("Onopen!");
         this.becomeSpectator();
         this.sendMessage({type: "GetGame"});
-        this.sendMessage({type: "getAllChatMessages"});
         $('#chooseRoleModal').modal('show');
+        console.log("Showing choose role modal!",$('#chooseRoleModal').innerHTML);
     },
 
     becomeBlackPlayer: function(){
-        $('#chooseRoleModal').modal('hide')
+        $('#chooseRoleModal').modal('hide');
         this.sendMessage({ type: "BlackPlayer" })
     },
 
     becomeWhitePlayer: function(){
-        $('#chooseRoleModal').modal('hide')
+        $('#chooseRoleModal').modal('hide');
         this.sendMessage({ type: "WhitePlayer" })
     },
 
     becomeSpectator: function(){
-        $('#chooseRoleModal').modal('hide')
+        $('#chooseRoleModal').modal('hide');
         this.sendMessage({ type: "Spectator" })
     },
 
@@ -60,16 +61,12 @@ var GameController = {
             document.querySelector("chess-board").gotPossibleMovesMessage(msg);
             break;
 
-        case "getAllChatMessages":
-            angular.element($('#chatwrapper')).scope().addAllMsgs(msg.msgs)
-            break;
-
         case "chatMessage":
             angular.element($('#chatwrapper')).scope().addMsg(msg);
              break;
         default:
             break;
-       };
+       }
     },
 
 	sendMessage : function(message) {
