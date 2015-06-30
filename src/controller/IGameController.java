@@ -3,6 +3,7 @@ package controller;
 import util.IObservable;
 
 import java.awt.*;
+import java.util.Date;
 
 /**
  * User: jahoefne
@@ -84,4 +85,10 @@ public interface IGameController extends IObservable {
      * Used to set check variable to false
      */
     void setCheck();
+
+    void setCreatedBy(String createdBy);
+    void setCreatedOn(Date createdOn);
+    void movePlayerToSpec(String playerID);
+    void setBlackPlayerID(String blackPlayerID);
+    void setWhitePlayerID(String whitePlayerID);
 }

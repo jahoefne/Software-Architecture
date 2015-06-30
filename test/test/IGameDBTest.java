@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.UUID;
 
 @RunWith(Parameterized.class)
 public class IGameDBTest {
@@ -60,6 +61,12 @@ public class IGameDBTest {
         sut.saveGame(save);
         sut.deleteGameWithUUID(save.get_id());
         assertFalse(sut.doeGameExistWithUUID(save.get_id()));
+    }
+
+    @Test
+    public void loadNonExistingGame(){
+        System.out.println("Loading Non existing Game");
+        assertNull(sut.loadGameWithUUID(UUID.randomUUID().toString()));
     }
 
     @AfterClass

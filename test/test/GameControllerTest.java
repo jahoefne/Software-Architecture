@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.UUID;
 
 import static org.junit.Assert.assertTrue;
 
@@ -33,7 +34,7 @@ public class GameControllerTest {
     @Test
     public void isGameOverTest(){
         assertTrue("The should not be a check mate in the initial game position!",
-                sut.isGameOver()==false);
+                sut.isGameOver() == false);
     }
 
     @Test
@@ -42,7 +43,7 @@ public class GameControllerTest {
         assertTrue("Black Pawn should have the ID -1", sut.getID(new Point(0,1))==-1);
         assertTrue("White Pawn should have the ID 1", sut.getID(new Point(0,6))==1);
         assertTrue("Black King should have the ID -6", sut.getID(new Point(4,0))==-6);
-        assertTrue("White King should have the ID 6", sut.getID(new Point(4,7))==6);
+        assertTrue("White King should have the ID 6", sut.getID(new Point(4, 7))==6);
     }
 
     @Test
@@ -57,6 +58,21 @@ public class GameControllerTest {
         Point[] possible = sut.getPossibleMoves(new Point(0,6));
         assertTrue("There should be two possible fields to move: is: "+possible.length,
                 possible.length==2);
+    }
+
+    @Test
+    public void testFieldLength(){
+       assertTrue(GameController.getFieldLength()==8);
+    }
+
+    @Test
+    public void createdByTest(){
+        String by  = UUID.randomUUID().toString();
+        sut.setBlackPlayerID(by);
+        sut.setCreatedBy(by);
+        sut.setWhitePlayerID(by);
+        sut.movePlayerToSpec(by);
+        assertTrue(GameController.getFieldLength()==8);
     }
 
     @Test

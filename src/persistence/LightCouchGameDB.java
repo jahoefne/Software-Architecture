@@ -3,6 +3,7 @@ package persistence;
 import controller.GameController;
 import org.lightcouch.CouchDbClient;
 import org.lightcouch.CouchDbProperties;
+import org.lightcouch.NoDocumentException;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -40,7 +41,11 @@ public class LightCouchGameDB implements IGameDB {
 
     @Override
     public GameController loadGameWithUUID(String uuid) {
-        return dbClient.find(GameController.class, uuid);
+        try {
+            return dbClient.find(GameController.class, uuid);
+        }catch(NoDocumentException e){
+            return null;
+        }
     }
 
     @Override

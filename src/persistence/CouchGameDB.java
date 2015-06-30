@@ -27,6 +27,7 @@ public class CouchGameDB implements IGameDB {
         dbInstance = new StdCouchDbInstance(httpClient);
         db = new StdCouchDbConnector("SASS2015_Chess_11_Games", dbInstance);
         db.createDatabaseIfNotExists();
+
     }
 
     @Override
