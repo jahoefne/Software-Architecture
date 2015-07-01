@@ -7,10 +7,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class NoPawnsTest {
+    private NoPawns clazz;
 
     @Before
     public void setUp() throws Exception {
-
+        clazz = new NoPawns();
     }
 
     @After
@@ -30,11 +31,12 @@ public class NoPawnsTest {
 
     @Test
     public void testGameOver() throws Exception {
-
+        clazz.gameOver(null);
+        assertFalse(clazz.getGameOver());
     }
 
     @Test
     public void testGetGameOver() throws Exception {
-
+        assertFalse(clazz.getGameOver());
     }
 }
