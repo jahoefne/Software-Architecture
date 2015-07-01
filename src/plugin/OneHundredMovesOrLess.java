@@ -26,7 +26,6 @@ public class OneHundredMovesOrLess implements IPlugin {
 
     @Override
     public void moveCalledPlugin(GameController controller, Point src, Point tgt) {
-
         if (gControllerHash != controller.toString().hashCode()) {
             gControllerHash = controller.toString().hashCode();
             movesDone++;
