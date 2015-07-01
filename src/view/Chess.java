@@ -20,10 +20,9 @@ public final class Chess {
 
         List<IPlugin> plugins = new ArrayList<IPlugin>();
         //plugins.add(new FrenchRevolutionPlugin());
-        //plugins.add(new OneHundredMovesOrLess());
+        plugins.add(new OneHundredMovesOrLess());
         //plugins.add(new NoPawns());
-        
-        plugins.add(new QueenDeathmatch());
+        //plugins.add(new QueenDeathmatch());
 
         IGameController controller = new GameController(plugins);
 

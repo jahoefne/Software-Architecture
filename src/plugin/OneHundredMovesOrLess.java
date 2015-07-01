@@ -11,14 +11,13 @@ import org.apache.log4j.Logger;
  * which did the 100th move wins automatically.
  */
 
-// TODO: movesDone counts up even if nothing has moved
-
 public class OneHundredMovesOrLess implements IPlugin {
     private final static int MAX_MOVES = 100;
     private static Logger logger = Logger.getLogger("OneHundredMovesOrLess.class");
     private int movesDone = 0;
     // set this only true, if the plugin wants to end the game
     private boolean gameOver = false;
+    private int gControllerHash = 0;
 
     @Override
     public void gameCreatedPlugin(GameController controller) {
@@ -27,8 +26,12 @@ public class OneHundredMovesOrLess implements IPlugin {
 
     @Override
     public void moveCalledPlugin(GameController controller, Point src, Point tgt) {
-        movesDone++;
-        System.out.println("moves done: " + movesDone);
+
+        if (gControllerHash != controller.toString().hashCode()) {
+            gControllerHash = controller.toString().hashCode();
+            movesDone++;
+            System.out.println("moves done: " + movesDone);
+        }
 
         if (movesDone == MAX_MOVES) {
             gameOver = true;
