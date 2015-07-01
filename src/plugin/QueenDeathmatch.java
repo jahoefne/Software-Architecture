@@ -13,6 +13,7 @@ import java.awt.*;
  */
 public class QueenDeathmatch implements IPlugin {
     private static Logger logger = Logger.getLogger("QueenDeathmatch.class");
+    private static final int COLUMNS = 8;
 
     @Override
     public void gameCreatedPlugin(GameController controller) {
@@ -20,28 +21,28 @@ public class QueenDeathmatch implements IPlugin {
 
         Field f = new Field();
         int[][] fArr = f.getField();
-        for(int i=0;i<8;i++){
-            if (i > 1 && i < 6) {
+        for(int i=0; i<COLUMNS; i++){
+            if (i > 1 && i < COLUMNS - 2) {
                 fArr[i][2] = Figures.QueenBlack.id();
                 fArr[i][5] = Figures.QueenWhite.id();
             }
 
 
             fArr[i][1] = Figures.QueenBlack.id();
-            fArr[i][6] = Figures.QueenWhite.id();
+            fArr[i][COLUMNS - 2] = Figures.QueenWhite.id();
 
 
             if (i != 4) {
                 fArr[i][0] = Figures.QueenBlack.id();
-                fArr[i][7] = Figures.QueenWhite.id();
+                fArr[i][COLUMNS - 1] = Figures.QueenWhite.id();
             }
         }
 
         fArr[0][1] = Figures.Empty.id();
-        fArr[7][1] = Figures.Empty.id();
+        fArr[COLUMNS - 1][1] = Figures.Empty.id();
 
-        fArr[0][6] = Figures.Empty.id();
-        fArr[7][6] = Figures.Empty.id();
+        fArr[0][COLUMNS - 2] = Figures.Empty.id();
+        fArr[COLUMNS - 1][COLUMNS - 2] = Figures.Empty.id();
 
         f.setField(fArr);
         controller.setField(f);
@@ -49,12 +50,12 @@ public class QueenDeathmatch implements IPlugin {
 
     @Override
     public void moveCalledPlugin(GameController controller, Point src, Point tgt) {
-
+        logger.debug("move called "+ src.toString() + " to "+ tgt.toString());
     }
 
     @Override
     public void gameOver(GameController controller) {
-
+        logger.debug("gameOver called");
     }
 
     @Override

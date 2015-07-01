@@ -11,15 +11,16 @@ import java.awt.*;
 
 public class FrenchRevolutionPlugin implements IPlugin{
     private static Logger logger = Logger.getLogger("FrenchRevolutionPlugin.class");
+    private static final int COLUMNS = 8;
 
     @Override
     public void gameCreatedPlugin(GameController controller) {
 
         Field f = new Field();
         int[][] fArr = f.getField();
-        for(int i=0;i<8;i++){
-            fArr[i][6] = Figures.KingWhite.id();
-            fArr[i][7] = Figures.QueenWhite.id();
+        for(int i=0; i<COLUMNS - 2; i++){
+            fArr[i][COLUMNS - 2] = Figures.KingWhite.id();
+            fArr[i][COLUMNS - 1] = Figures.QueenWhite.id();
 
             fArr[i][0] = Figures.PawnBlack.id();
             fArr[i][1] = Figures.PawnBlack.id();

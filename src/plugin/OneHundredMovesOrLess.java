@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
  */
 
 public class OneHundredMovesOrLess implements IPlugin {
-    private final static int MAX_MOVES = 100;
+    private static final int MAX_MOVES = 100;
     private static Logger logger = Logger.getLogger("OneHundredMovesOrLess.class");
     private int movesDone = 0;
     // set this only true, if the plugin wants to end the game
@@ -29,7 +29,7 @@ public class OneHundredMovesOrLess implements IPlugin {
         if (gControllerHash != controller.toString().hashCode()) {
             gControllerHash = controller.toString().hashCode();
             movesDone++;
-            System.out.println("moves done: " + movesDone);
+            logger.info("moves done: " + movesDone);
         }
 
         if (movesDone == MAX_MOVES) {
