@@ -27,6 +27,7 @@ public class OneHundredMovesOrLessTest {
 
     @Test
     public void testgameCreatedPlugin() throws Exception {
+        clazz.gameCreatedPlugin(gc1);
         assertFalse(clazz.getGameOver());
     }
 
@@ -39,10 +40,10 @@ public class OneHundredMovesOrLessTest {
         gc1.setField(f1);
         gc2.setField(f2);
 
+        clazz.moveCalledPlugin(gc1, new Point(0, 0), new Point(1, 0));
+        clazz.moveCalledPlugin(gc2, new Point(0, 0), new Point(1, 0));
+
         assertTrue(gc1.toString().hashCode() == gc2.toString().hashCode());
-        f2.set(new Point(0, 0), Figures.PawnBlack.id());
-        gc2.setField(f2);
-        assertTrue(gc1.toString().hashCode() != gc2.toString().hashCode());
     }
 
     @Test
