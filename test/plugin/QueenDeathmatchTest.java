@@ -26,7 +26,8 @@ public class QueenDeathmatchTest {
 
     @Test
     public void testMoveCalledPlugin() throws Exception {
-
+        clazz.moveCalledPlugin(null, null, null);
+        assertFalse(clazz.getGameOver());
     }
 
     @Test
