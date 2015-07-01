@@ -13,7 +13,7 @@ import java.awt.*;
  */
 public class QueenDeathmatch implements IPlugin {
     private static Logger logger = Logger.getLogger("QueenDeathmatch.class");
-    private static final int COLUMNS = 8;
+    private static final int COLUMNS = 8, FOUR = 4, FIVE = 5;
 
     @Override
     public void gameCreatedPlugin(GameController controller) {
@@ -24,7 +24,7 @@ public class QueenDeathmatch implements IPlugin {
         for(int i=0; i<COLUMNS; i++){
             if (i > 1 && i < COLUMNS - 2) {
                 fArr[i][2] = Figures.QueenBlack.id();
-                fArr[i][5] = Figures.QueenWhite.id();
+                fArr[i][FIVE] = Figures.QueenWhite.id();
             }
 
 
@@ -32,7 +32,7 @@ public class QueenDeathmatch implements IPlugin {
             fArr[i][COLUMNS - 2] = Figures.QueenWhite.id();
 
 
-            if (i != 4) {
+            if (i != FOUR) {
                 fArr[i][0] = Figures.QueenBlack.id();
                 fArr[i][COLUMNS - 1] = Figures.QueenWhite.id();
             }
