@@ -26,6 +26,11 @@ public class OneHundredMovesOrLessTest {
     }
 
     @Test
+    public void testgameCreatedPlugin() throws Exception {
+        assertFalse(clazz.getGameOver());
+    }
+
+    @Test
     public void testMoveCalledPlugin() throws Exception {
         Field f1 = new Field(), f2 = new Field();
         f1.set(new Point(0, 0), Figures.Empty.id());
@@ -42,7 +47,8 @@ public class OneHundredMovesOrLessTest {
 
     @Test
     public void testGameOver() throws Exception {
-
+        clazz.gameOver(null);
+        assertFalse(clazz.getGameOver());
     }
 
     @Test
