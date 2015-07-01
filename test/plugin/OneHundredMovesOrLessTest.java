@@ -1,4 +1,4 @@
-package test;
+package plugin;
 
 import com.sun.org.apache.xerces.internal.util.XMLSymbols;
 import controller.GameController;
