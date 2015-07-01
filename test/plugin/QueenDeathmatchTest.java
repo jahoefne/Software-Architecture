@@ -1,8 +1,11 @@
 package plugin;
 
+import controller.GameController;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.*;
 
 import static org.junit.Assert.*;
 
@@ -26,7 +29,8 @@ public class QueenDeathmatchTest {
 
     @Test
     public void testMoveCalledPlugin() throws Exception {
-        clazz.moveCalledPlugin(null, null, null);
+        GameController g = new GameController();
+        clazz.moveCalledPlugin(g, new Point(0, 0), new Point(1, 0));
         assertFalse(clazz.getGameOver());
     }
 

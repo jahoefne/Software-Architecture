@@ -19,8 +19,7 @@ public final class Chess {
         PropertyConfigurator.configure("log4j.properties");
 
         List<IPlugin> plugins = new ArrayList<IPlugin>();
-        plugins.add(new OneHundredMovesOrLess());
-        plugins.add(new QueenDeathmatch());
+        plugins.add(new NoPawns());
 
         IGameController controller = new GameController(plugins);
 
