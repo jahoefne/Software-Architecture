@@ -22,36 +22,19 @@ public class OneHundredMovesOrLessTest {
         gc2 = new GameController("1", "b");
     }
 
-    @After
-    public void tearDown() throws Exception {
-
-    }
-
-    @Test
-    public void testGameCreatedPlugin() throws Exception {
-
-    }
-
     @Test
     public void testMoveCalledPlugin() throws Exception {
-        Field f = new Field();
-        f.set(new Point(0, 0), Figures.Empty.id());
+        Field f1 = new Field(), f2 = new Field();
+        f1.set(new Point(0, 0), Figures.Empty.id());
+        f2.set(new Point(0, 0), Figures.Empty.id());
 
-        gc1.setField(f);
-        gc2.setField(f);
+        gc1.setField(f1);
+        gc2.setField(f2);
 
         assertTrue(gc1.toString().hashCode() == gc2.toString().hashCode());
-        f.set(new Point(0, 0), Figures.PawnBlack.id());
-        assertTrue(gc1.toString().hashCode() != gc2.toString().hashCode());
+        f2.set(new Point(0, 0), Figures.PawnBlack.id());
+        gc2.setField(f2);
+        assertTrue(gc1.toString().hashCode() != gc2.toString().hashCode());/**/
     }
 
-    @Test
-    public void testGameOver() throws Exception {
-
-    }
-
-    @Test
-    public void testGetGameOver() throws Exception {
-
-    }
 }
