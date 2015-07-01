@@ -7,6 +7,7 @@ import model.Figures;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import plugin.OneHundredMovesOrLess;
 
 import java.awt.*;
 
@@ -15,11 +16,13 @@ import static org.junit.Assert.assertFalse;
 
 public class OneHundredMovesOrLessTest {
     GameController gc1, gc2;
+    OneHundredMovesOrLess clazz;
 
     @Before
     public void setUp() throws Exception {
         gc1 = new GameController("0"," a");
         gc2 = new GameController("1", "b");
+        clazz = new OneHundredMovesOrLess();
     }
 
     @Test
@@ -34,7 +37,16 @@ public class OneHundredMovesOrLessTest {
         assertTrue(gc1.toString().hashCode() == gc2.toString().hashCode());
         f2.set(new Point(0, 0), Figures.PawnBlack.id());
         gc2.setField(f2);
-        assertTrue(gc1.toString().hashCode() != gc2.toString().hashCode());/**/
+        assertTrue(gc1.toString().hashCode() != gc2.toString().hashCode());
     }
 
+    @Test
+    public void testGameOver() throws Exception {
+
+    }
+
+    @Test
+    public void testGetGameOver() throws Exception {
+        assertFalse(clazz.getGameOver());
+    }
 }
