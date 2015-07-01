@@ -11,10 +11,12 @@ import static org.junit.Assert.*;
 
 public class QueenDeathmatchTest {
     private QueenDeathmatch clazz;
+    GameController gc;
 
     @Before
     public void setUp() throws Exception {
         clazz = new QueenDeathmatch();
+        gc = new GameController("0"," a");
     }
 
     @After
@@ -24,7 +26,8 @@ public class QueenDeathmatchTest {
 
     @Test
     public void testGameCreatedPlugin() throws Exception {
-
+        clazz.gameCreatedPlugin(gc);
+        assertFalse(clazz.getGameOver());
     }
 
     @Test

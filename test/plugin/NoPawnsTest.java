@@ -21,7 +21,7 @@ public class NoPawnsTest {
 
     @After
     public void tearDown() throws Exception {
-        
+
     }
 
     @Test
